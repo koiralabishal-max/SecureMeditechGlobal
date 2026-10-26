@@ -1,0 +1,6 @@
+{
+  "name": "Secure MediTech Global",
+  "description": "Precision Healthcare Solutions & Resilient Global Supply Chains. International supplier and OEM contract manufacturer for hospital equipment, surgical supplies, and diagnostic systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

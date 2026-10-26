@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-navy: #0B2F63;
+    --brand-navy-dark: #071E40;
+    --brand-navy-light: #164082;
+    --brand-tech-blue: #38B6FF;
+    --brand-vitality-green: #10B981;
+    --brand-bg: #F8FAFC;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--brand-bg);
+  }
+}
+
+.bg-pattern-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(11, 47, 99, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 47, 99, 0.04) 1px, transparent 1px);
+}
+
+.bg-pattern-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(56, 182, 255, 0.15) 1.2px, transparent 1.2px);
+}
