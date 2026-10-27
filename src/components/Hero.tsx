@@ -85,10 +85,13 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group">
               <img
-                src="/src/assets/images/hero_medical_logistics_1792848779603.jpg"
+                src="/assets/images/hero_medical_logistics_1792848779603.jpg"
                 alt="Secure MediTech Global high-tech clinical manufacturing and global medical supply facility"
                 className="w-full h-80 sm:h-96 lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
+                loading="eager"
+                decoding="async"
+                width={600}
+                height={420}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#071E40]/90 via-[#071E40]/30 to-transparent" />
 

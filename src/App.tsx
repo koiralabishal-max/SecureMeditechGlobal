@@ -12,12 +12,14 @@ import { Hero } from './components/Hero';
 import { ProductCatalog } from './components/ProductCatalog';
 import { OemSection } from './components/OemSection';
 import { QualityComplianceSection } from './components/QualityComplianceSection';
+import { FaqSection } from './components/FaqSection';
 import { SocialProof } from './components/SocialProof';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { RfqModal } from './components/RfqModal';
 import { SpecSheetModal } from './components/SpecSheetModal';
 import { ProductDetailModal } from './components/ProductDetailModal';
+import { ChatBot } from './components/ChatBot';
 import { Toast } from './components/Toast';
 
 export default function App() {
@@ -34,6 +36,7 @@ export default function App() {
   const [activeSpecSheet, setActiveSpecSheet] = useState<Product | null>(null);
   const [activeProductDetail, setActiveProductDetail] = useState<Product | null>(null);
   const [isRfqModalOpen, setIsRfqModalOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -138,15 +141,28 @@ export default function App() {
         {/* 6. Quality & Regulatory Compliance Section */}
         <QualityComplianceSection />
 
-        {/* 7. Social Proof & Case Studies */}
+        {/* 7. Comprehensive FAQ: Lead Times, International Shipping, OEM Minimums */}
+        <FaqSection
+          onOpenChat={() => setIsChatOpen(true)}
+          onOpenRfq={() => setIsRfqModalOpen(true)}
+        />
+
+        {/* 8. Social Proof & Case Studies */}
         <SocialProof />
 
-        {/* 8. Direct Contact & Logistics Inquiries */}
+        {/* 9. Direct Contact & Logistics Inquiries */}
         <ContactSection />
       </main>
 
-      {/* 9. Comprehensive Footer */}
+      {/* 10. Comprehensive Footer */}
       <Footer />
+
+      {/* AI Procurement Specialist Multi-turn Chatbot */}
+      <ChatBot
+        isOpen={isChatOpen}
+        onToggle={() => setIsChatOpen((prev) => !prev)}
+        onOpenRfq={handleRequestBulkRfq}
+      />
 
       {/* Modals & Overlays */}
       <RfqModal

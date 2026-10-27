@@ -36,10 +36,13 @@ export const OemSection: React.FC<OemSectionProps> = ({ onStartOemInquiry }) => 
         {/* Cleanroom Facility Showcase Banner */}
         <div className="relative rounded-2xl overflow-hidden mb-12 border border-slate-200 shadow-lg">
           <img
-            src="/src/assets/images/oem_cleanroom_facility_1792848782226.jpg"
+            src="/assets/images/oem_cleanroom_facility_1792848782226.jpg"
             alt="ISO Class 7 Medical Device Cleanroom Manufacturing Facility"
             className="w-full h-64 sm:h-80 lg:h-96 object-cover"
-            referrerPolicy="no-referrer"
+            loading="lazy"
+            decoding="async"
+            width={1200}
+            height={384}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#071E40]/90 via-[#071E40]/60 to-transparent flex items-center">
             <div className="p-6 sm:p-10 max-w-xl text-white space-y-3">

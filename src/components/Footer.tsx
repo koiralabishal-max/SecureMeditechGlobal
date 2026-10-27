@@ -228,6 +228,11 @@ export const Footer: React.FC = () => {
                   Good Distribution Practice (GDP)
                 </a>
               </li>
+              <li>
+                <a href="#faq" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF]">
+                  Procurement & Logistics FAQ
+                </a>
+              </li>
             </ul>
           </div>
 

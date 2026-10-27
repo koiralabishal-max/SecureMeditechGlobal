@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 set/sterile hard blister tray, 10 sets/inner box, 40 sets/carton',
     minOrderQty: '100 sets',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_cvp_catheter_kit_1792988224908.jpg',
+    image: '/assets/images/product_cvp_catheter_kit_1792988224908.jpg',
     featured: true
   },
 
@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile peel pack, 25 pcs/dispenser box, 400 pcs/master carton',
     minOrderQty: '250 pcs',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_iv_cannula_set_1792988226730.jpg',
+    image: '/assets/images/product_iv_cannula_set_1792988226730.jpg',
     featured: true
   },
 
@@ -85,7 +85,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 set/sterile Tyvek pouch, 20 sets/box, 80 sets/carton',
     minOrderQty: '80 sets',
     leadTime: '5-7 business days',
-    image: '/src/assets/images/product_icu_pressure_monitor_1792988228259.jpg',
+    image: '/assets/images/product_icu_pressure_monitor_1792988228259.jpg',
     featured: true
   },
 
@@ -113,7 +113,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 combo kit/sealed sterile barrier pack, 10 kits/master shipper',
     minOrderQty: '50 kits',
     leadTime: '5-7 business days',
-    image: '/src/assets/images/product_cvp_catheter_kit_1792988224908.jpg',
+    image: '/assets/images/product_cvp_catheter_kit_1792988224908.jpg',
     featured: false
   },
 
@@ -142,7 +142,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pack/sterile CSR wrap in Tyvek barrier pouch, 8 packs/carton',
     minOrderQty: '40 packs',
     leadTime: '5-7 business days',
-    image: '/src/assets/images/product_surgical_gloves_1792848782534.jpg',
+    image: '/assets/images/product_surgical_gloves_1792848782534.jpg',
     featured: false
   },
 
@@ -170,7 +170,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile paper-poly pouch, 10 pcs/box, 100 pcs/carton',
     minOrderQty: '100 pcs',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_endotracheal_tube_1792988225400.jpg',
+    image: '/assets/images/product_endotracheal_tube_1792988225400.jpg',
     featured: true
   },
 
@@ -198,7 +198,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile peel pack, 10 pcs/box, 100 pcs/export carton',
     minOrderQty: '200 pcs',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_endotracheal_tube_1792988225400.jpg',
+    image: '/assets/images/product_endotracheal_tube_1792988225400.jpg',
     featured: true
   },
 
@@ -227,7 +227,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile PE or paper-poly pouch, 25 pcs/polybag, 500 pcs/carton',
     minOrderQty: '1,000 pcs',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_iv_cannula_set_1792988226730.jpg',
+    image: '/assets/images/product_iv_cannula_set_1792988226730.jpg',
     featured: true
   },
 
@@ -259,7 +259,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile blister pack, 50 pcs/dispenser box, 1,000 pcs/carton',
     minOrderQty: '1,000 pcs (20 boxes)',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_iv_cannula_set_1792988226730.jpg',
+    image: '/assets/images/product_iv_cannula_set_1792988226730.jpg',
     featured: true
   },
 
@@ -290,7 +290,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile blister pack, 10 pcs/box, 100 pcs/master carton',
     minOrderQty: '100 pcs',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_respiratory_niv_suction_1792988228094.jpg',
+    image: '/assets/images/product_respiratory_niv_suction_1792988228094.jpg',
     featured: true
   },
 
@@ -320,7 +320,7 @@ export const PRODUCTS: Product[] = [
     packaging: '50 pcs/sealed foil moisture-barrier pouch, 1,000 pcs/box, 5,000 pcs/carton',
     minOrderQty: '5,000 pcs (5 boxes)',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_icu_pressure_monitor_1792988228259.jpg',
+    image: '/assets/images/product_icu_pressure_monitor_1792988228259.jpg',
     featured: true
   },
 
@@ -350,7 +350,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sealed protective bag with headgear, 20 pcs/shipping carton',
     minOrderQty: '20 pcs',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_respiratory_niv_suction_1792988228094.jpg',
+    image: '/assets/images/product_respiratory_niv_suction_1792988228094.jpg',
     featured: true
   },
 
@@ -379,7 +379,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile double pouch, 10 pcs/box, 200 pcs/carton',
     minOrderQty: '200 pcs (20 boxes)',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_foley_dialysis_catheter_1792988227912.jpg',
+    image: '/assets/images/product_foley_dialysis_catheter_1792988227912.jpg',
     featured: true
   },
 
@@ -408,7 +408,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 set/sterile custom blister tray, 10 sets/inner box, 40 sets/carton',
     minOrderQty: '40 sets',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_foley_dialysis_catheter_1792988227912.jpg',
+    image: '/assets/images/product_foley_dialysis_catheter_1792988227912.jpg',
     featured: true
   },
 
@@ -433,7 +433,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile polybag, 50 pcs/export master carton',
     minOrderQty: '500 units',
     leadTime: '3-5 business days',
-    image: '/src/assets/images/product_spirometer_1792848780145.jpg',
+    image: '/assets/images/product_spirometer_1792848780145.jpg',
     featured: true
   },
 
@@ -458,7 +458,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pair/sterile peel pouch, 50 pairs/dispenser box, 4 boxes/carton',
     minOrderQty: '10,000 pairs (50 cartons)',
     leadTime: '7-10 business days',
-    image: '/src/assets/images/product_surgical_gloves_1792848782534.jpg',
+    image: '/assets/images/product_surgical_gloves_1792848782534.jpg',
     featured: true
   },
 
@@ -483,7 +483,7 @@ export const PRODUCTS: Product[] = [
     packaging: 'Reinforced anti-shock wooden crate with shockwatch indicator',
     minOrderQty: '1 unit',
     leadTime: '10-14 business days',
-    image: '/src/assets/images/product_biochemistry_analyzer_1792848780691.jpg',
+    image: '/assets/images/product_biochemistry_analyzer_1792848780691.jpg',
     featured: true
   },
 
@@ -508,7 +508,7 @@ export const PRODUCTS: Product[] = [
     packaging: 'Shock-isolated molded EPE foam inside reinforced industrial carton',
     minOrderQty: '5 units',
     leadTime: '5-7 business days',
-    image: '/src/assets/images/product_infusion_pump_1792848782970.jpg',
+    image: '/assets/images/product_infusion_pump_1792848782970.jpg',
     featured: true
   }
 ];

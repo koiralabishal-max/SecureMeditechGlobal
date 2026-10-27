@@ -17,6 +17,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onOpenSpecSheet,
   isInQuote
 }) => {
+  const [imgError, setImgError] = React.useState(false);
+  React.useEffect(() => {
+    setImgError(false);
+  }, [product?.id]);
+
   if (!product) return null;
 
   const whatsAppUrl = `https://wa.me/13075334504?text=${encodeURIComponent(
@@ -49,12 +54,22 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           {/* Left Column: Image, Regulatory & Logistics Profile */}
           <div className="md:col-span-5 space-y-4">
             <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-4/3 shadow-2xs">
-              <img
-                src={product.image}
-                alt={product.name}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
+              {!imgError ? (
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  decoding="async"
+                  width={480}
+                  height={360}
+                  onError={() => setImgError(true)}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-slate-50 text-slate-400">
+                  <Package className="w-12 h-12 mb-2 text-slate-300" />
+                  <span className="text-xs font-semibold">{product.name}</span>
+                </div>
+              )}
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">

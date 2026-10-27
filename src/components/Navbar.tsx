@@ -151,6 +151,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a 
+              href="#faq" 
+              className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
+            >
+              FAQ
+            </a>
+
+            <a 
               href="#contact" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
@@ -282,6 +289,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               Quality & Compliance
+            </a>
+
+            <a 
+              href="#faq" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+            >
+              FAQ
             </a>
 
             <a 
