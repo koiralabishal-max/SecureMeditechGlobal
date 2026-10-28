@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle2, Globe2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle2, Globe2, Compass, ArrowUpRight } from 'lucide-react';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  prefilledHub?: string | null;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledHub }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,6 +14,16 @@ export const ContactSection: React.FC = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (prefilledHub) {
+      setFormData((prev) => ({
+        ...prev,
+        subject: 'Bulk Procurement Inquiry',
+        message: prev.message || `Inquiry regarding dispatch capacity, customs clearance, and lead times from: ${prefilledHub}.\n\nTarget Delivery Destination: \nEstimated Monthly Consignment: `
+      }));
+    }
+  }, [prefilledHub]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,6 +106,26 @@ export const ContactSection: React.FC = () => {
                     <Clock className="w-3 h-3" />
                     Operating 24/7 Mon–Sat (Global dispatch & support)
                   </p>
+                </div>
+              </div>
+
+              {/* Global Distribution Hubs Map Quick Link */}
+              <div className="p-4 bg-gradient-to-br from-[#0B2F63] to-[#071E40] rounded-xl text-white shadow-sm flex items-start gap-3.5">
+                <div className="p-2.5 rounded-lg bg-white/10 text-[#38B6FF] shrink-0">
+                  <Compass className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">Global Distribution Hubs & 65+ Country Network</div>
+                  <p className="text-[11px] text-slate-300 mt-0.5 leading-relaxed">
+                    Check lead times, bonded warehouse facilities, and cold-chain corridors on our interactive D3 map.
+                  </p>
+                  <a
+                    href="#distribution-map"
+                    className="text-[11px] text-[#38B6FF] font-semibold hover:underline inline-flex items-center gap-1 mt-2 group"
+                  >
+                    <span>View Interactive Distribution Map</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
                 </div>
               </div>
             </div>

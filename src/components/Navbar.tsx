@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown, FileText } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { ProductCategory } from '../types';
 
 interface NavbarProps {
-  onOpenRfq: () => void;
-  quoteCount: number;
+  onOpenRfq?: () => void;
+  quoteCount?: number;
   onSelectCategory: (category: ProductCategory) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  onOpenRfq,
-  quoteCount,
   onSelectCategory
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -165,38 +163,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           </nav>
 
-          {/* Action Buttons Zone */}
-          <div className="hidden sm:flex items-center gap-3 shrink-0">
-            {/* Request a Quote (RFQ) - Tech Blue */}
-            <button
-              onClick={onOpenRfq}
-              className="relative inline-flex items-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-[#0B2F63] hover:bg-[#164082] rounded-lg shadow-sm hover:shadow-md transition-all active:scale-95 group"
-            >
-              <FileText className="w-4 h-4 text-[#38B6FF]" />
-              <span>Request a Quote (RFQ)</span>
-              {quoteCount > 0 && (
-                <span className="flex items-center justify-center w-5 h-5 text-[11px] font-bold text-white bg-[#10B981] rounded-full ring-2 ring-white animate-pulse">
-                  {quoteCount}
-                </span>
-              )}
-            </button>
-          </div>
-
           {/* Mobile Menu Hamburger */}
           <div className="flex items-center gap-2 lg:hidden">
-            <button
-              onClick={onOpenRfq}
-              className="p-2 text-[#0B2F63] hover:bg-slate-100 rounded-lg relative"
-              aria-label="View RFQ items"
-            >
-              <FileText className="w-5 h-5" />
-              {quoteCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 text-[9px] font-bold text-white bg-[#10B981] rounded-full flex items-center justify-center">
-                  {quoteCount}
-                </span>
-              )}
-            </button>
-
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-slate-700 hover:text-[#0B2F63] hover:bg-slate-100 rounded-lg focus:outline-none"
@@ -306,24 +274,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               Contact Us
             </a>
-
-            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenRfq();
-                }}
-                className="w-full py-2.5 text-xs font-bold text-center text-white bg-[#0B2F63] rounded-lg shadow-sm flex items-center justify-center gap-2"
-              >
-                <FileText className="w-4 h-4 text-[#38B6FF]" />
-                <span>Request a Quote (RFQ)</span>
-                {quoteCount > 0 && (
-                  <span className="w-5 h-5 text-[11px] font-bold text-white bg-[#10B981] rounded-full flex items-center justify-center">
-                    {quoteCount}
-                  </span>
-                )}
-              </button>
-            </div>
           </div>
         </div>
       )}

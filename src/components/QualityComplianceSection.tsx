@@ -1,7 +1,14 @@
 import React from 'react';
 import { ShieldCheck, CheckCircle2, Award, FileSpreadsheet, Globe, ThermometerSnowflake, Anchor, Plane } from 'lucide-react';
+import { GlobalDistributionMap } from './GlobalDistributionMap';
 
-export const QualityComplianceSection: React.FC = () => {
+interface QualityComplianceSectionProps {
+  onSelectHubForInquiry?: (hubName: string) => void;
+}
+
+export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> = ({
+  onSelectHubForInquiry
+}) => {
   const certificationsList = [
     {
       code: 'ISO 13485:2016',
@@ -50,10 +57,10 @@ export const QualityComplianceSection: React.FC = () => {
 
   return (
     <section id="compliance" className="py-20 bg-[#F8FAFC]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#38B6FF] mb-2">
             <Award className="w-4 h-4" />
             <span>International Regulatory Rigor</span>
@@ -67,7 +74,7 @@ export const QualityComplianceSection: React.FC = () => {
         </div>
 
         {/* 4-Column Certification Matrix */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {certificationsList.map((cert, index) => (
             <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#38B6FF]/60 transition-all flex flex-col justify-between">
               <div>
@@ -127,7 +134,13 @@ export const QualityComplianceSection: React.FC = () => {
 
         </div>
 
+        {/* Interactive D3 Global Distribution Map */}
+        <div id="distribution-map" className="scroll-mt-24">
+          <GlobalDistributionMap onSelectHubForInquiry={onSelectHubForInquiry} />
+        </div>
+
       </div>
     </section>
   );
 };
+

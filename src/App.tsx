@@ -38,12 +38,22 @@ export default function App() {
   const [isRfqModalOpen, setIsRfqModalOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [prefilledHub, setPrefilledHub] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => {
       setToastMessage((current) => (current === msg ? null : current));
     }, 3500);
+  };
+
+  const handleSelectHubForInquiry = (hubName: string) => {
+    setPrefilledHub(hubName);
+    showToast(`Configured logistics inquiry for ${hubName}`);
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleAddToQuote = (product: Product, quantity = 500) => {
@@ -139,7 +149,7 @@ export default function App() {
         <OemSection onStartOemInquiry={handleStartOemInquiry} />
 
         {/* 6. Quality & Regulatory Compliance Section */}
-        <QualityComplianceSection />
+        <QualityComplianceSection onSelectHubForInquiry={handleSelectHubForInquiry} />
 
         {/* 7. Comprehensive FAQ: Lead Times, International Shipping, OEM Minimums */}
         <FaqSection
@@ -151,7 +161,7 @@ export default function App() {
         <SocialProof />
 
         {/* 9. Direct Contact & Logistics Inquiries */}
-        <ContactSection />
+        <ContactSection prefilledHub={prefilledHub} />
       </main>
 
       {/* 10. Comprehensive Footer */}
