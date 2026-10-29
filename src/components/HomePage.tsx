@@ -1,36 +1,25 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+'use client';
 
 import React, { useState } from 'react';
-import { Product, ProductCategory, QuoteItem } from './types';
-import { PRODUCTS } from './data/products';
-import { TopBar } from './components/TopBar';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { ProductCatalog } from './components/ProductCatalog';
-import { OemSection } from './components/OemSection';
-import { QualityComplianceSection } from './components/QualityComplianceSection';
-import { FaqSection } from './components/FaqSection';
-import { SocialProof } from './components/SocialProof';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { RfqModal } from './components/RfqModal';
-import { SpecSheetModal } from './components/SpecSheetModal';
-import { ProductDetailModal } from './components/ProductDetailModal';
-import { ChatBot } from './components/ChatBot';
-import { Toast } from './components/Toast';
+import { Product, ProductCategory, QuoteItem } from '../types';
+import { TopBar } from './TopBar';
+import { Navbar } from './Navbar';
+import { Hero } from './Hero';
+import { ProductCatalog } from './ProductCatalog';
+import { OemSection } from './OemSection';
+import { QualityComplianceSection } from './QualityComplianceSection';
+import { FaqSection } from './FaqSection';
+import { SocialProof } from './SocialProof';
+import { ContactSection } from './ContactSection';
+import { Footer } from './Footer';
+import { RfqModal } from './RfqModal';
+import { SpecSheetModal } from './SpecSheetModal';
+import { ProductDetailModal } from './ProductDetailModal';
+import { ChatBot } from './ChatBot';
+import { Toast } from './Toast';
 
-export default function App() {
-  // Pre-populate with the 3-Ball Incentive Spirometer to showcase live RFQ badge
-  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([
-    {
-      product: PRODUCTS[0],
-      quantity: 500,
-      customNotes: 'Standard sterile packaging'
-    }
-  ]);
+export function HomePage() {
+  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
 
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory>('All');
   const [activeSpecSheet, setActiveSpecSheet] = useState<Product | null>(null);

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ClipboardList } from 'lucide-react';
 import { ProductCategory } from '../types';
 
 interface NavbarProps {
@@ -9,6 +11,8 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
+  onOpenRfq,
+  quoteCount = 0,
   onSelectCategory
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,16 +34,18 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between h-20 gap-4">
           
           {/* Brand Logo Zone with Official Logo */}
-          <a href="#" className="flex items-center group shrink-0">
+          <a href="#home" className="flex items-center group shrink-0" aria-label="Secure MediTech Global home">
             <img
-              src="/assets/aistudio/2026-10-24_7-15-55_PM_1fbce34f.png"
+              src="/logo.png"
               alt="Secure MediTech Global"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-10 sm:h-11 w-auto object-contain"
+              width={979}
+              height={271}
             />
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[15px] font-medium text-slate-700" aria-label="Primary">
             <a 
               href="#home" 
               className="hover:text-[#0B2F63] transition-colors py-2"
@@ -55,77 +61,79 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <button 
                 onClick={() => setCategoriesDropdownOpen(!categoriesDropdownOpen)}
-                className="flex items-center gap-1 hover:text-[#0B2F63] transition-colors py-2 focus:outline-none"
+                className="flex items-center gap-1 hover:text-[#0B2F63] transition-colors py-2"
+                aria-expanded={categoriesDropdownOpen}
+                aria-haspopup="true"
               >
                 <span>Categories</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${categoriesDropdownOpen ? 'rotate-180 text-[#38B6FF]' : 'text-slate-400'}`} />
               </button>
 
               {categoriesDropdownOpen && (
-                <div className="absolute top-full left-0 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                  <div className="px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 mb-1">
+                <div className="absolute top-full -left-4 w-80 bg-white rounded-2xl shadow-xl ring-1 ring-slate-900/5 p-2 z-50">
+                  <div className="px-3 pt-2 pb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
                     Clinical Divisions
                   </div>
                   <button
                     onClick={() => handleCategoryClick('Critical Care & Monitoring')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Critical Care & Monitoring</span>
-                    <span className="text-[10px] text-slate-400">CVP, Monitors</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">CVP, Monitors</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('Anesthesia & Airway Management')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Anesthesia & Airway</span>
-                    <span className="text-[10px] text-slate-400">ET Tubes, Needles</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">ET Tubes, Needles</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('IV & Infusion Supplies')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>IV & Infusion Supplies</span>
-                    <span className="text-[10px] text-slate-400">Cannula, IV Sets</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">Cannula, IV Sets</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('Respiratory Care')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Respiratory Care</span>
-                    <span className="text-[10px] text-slate-400">NIV, Suction</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">NIV, Suction</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('Urology & Catheters')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Urology & Catheters</span>
-                    <span className="text-[10px] text-slate-400">Foley Silicone</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">Foley Silicone</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('Dialysis Supplies')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Dialysis Supplies</span>
-                    <span className="text-[10px] text-slate-400">Dual/Triple Lumen</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">Dual/Triple Lumen</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('Surgical & OT Supplies')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Surgical & OT Supplies</span>
-                    <span className="text-[10px] text-slate-400">OT Combos, Gloves</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">OT Combos, Gloves</span>
                   </button>
                   <button
                     onClick={() => handleCategoryClick('Laboratory & Diagnostics')}
-                    className="w-full text-left px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0B2F63] transition-colors flex items-center justify-between gap-3"
                   >
                     <span>Laboratory & Diagnostics</span>
-                    <span className="text-[10px] text-slate-400">Analyzers, Reagents</span>
+                    <span className="text-xs text-slate-400 whitespace-nowrap">Analyzers, Reagents</span>
                   </button>
-                  <div className="border-t border-slate-100 mt-1 pt-1">
+                  <div className="border-t border-slate-100 mt-2 pt-2">
                     <button
                       onClick={() => handleCategoryClick('All')}
-                      className="w-full text-left px-4 py-2 text-xs font-semibold text-[#0B2F63] hover:bg-blue-50/50 transition-colors"
+                      className="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-[#0B2F63] hover:bg-sky-50 transition-colors"
                     >
                       View All Products →
                     </button>
@@ -163,12 +171,26 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           </nav>
 
-          {/* Mobile Menu Hamburger */}
-          <div className="flex items-center gap-2 lg:hidden">
+          {/* RFQ basket + mobile menu */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onOpenRfq}
+              className="relative inline-flex items-center gap-2 h-10 sm:h-11 px-3.5 sm:px-5 text-sm font-bold text-white bg-[#0B2F63] hover:bg-[#164082] rounded-xl transition-colors"
+              aria-label={`Open quotation request${quoteCount ? ` (${quoteCount} items)` : ''}`}
+            >
+              <ClipboardList className="w-4 h-4 text-[#38B6FF]" />
+              <span className="hidden sm:inline">Request Quote</span>
+              {quoteCount > 0 && (
+                <span className="min-w-5 h-5 px-1.5 rounded-full bg-[#38B6FF] text-[#071E40] text-xs font-bold leading-5 text-center tabular-nums">
+                  {quoteCount}
+                </span>
+              )}
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-[#0B2F63] hover:bg-slate-100 rounded-lg focus:outline-none"
+              className="lg:hidden p-2 text-slate-700 hover:text-[#0B2F63] hover:bg-slate-100 rounded-lg"
               aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -179,65 +201,65 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col space-y-3 text-sm font-medium text-slate-800">
+        <div className="lg:hidden bg-white border-t border-slate-100 px-4 pt-3 pb-6 shadow-xl max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="flex flex-col gap-1 text-base font-medium text-slate-800">
             <a 
               href="#home" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               Home
             </a>
 
-            <div className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <div className="px-3 pt-3 pb-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-400">
               Product Categories
             </div>
-            <div className="grid grid-cols-2 gap-2 pl-2">
+            <div className="grid grid-cols-2 gap-1 pb-2">
               <button
                 onClick={() => handleCategoryClick('Critical Care & Monitoring')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Critical Care
               </button>
               <button
                 onClick={() => handleCategoryClick('Anesthesia & Airway Management')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Anesthesia & Airway
               </button>
               <button
                 onClick={() => handleCategoryClick('IV & Infusion Supplies')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 IV & Infusion
               </button>
               <button
                 onClick={() => handleCategoryClick('Respiratory Care')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Respiratory Care
               </button>
               <button
                 onClick={() => handleCategoryClick('Urology & Catheters')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Urology & Catheters
               </button>
               <button
                 onClick={() => handleCategoryClick('Dialysis Supplies')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Dialysis Supplies
               </button>
               <button
                 onClick={() => handleCategoryClick('Surgical & OT Supplies')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Surgical & OT
               </button>
               <button
                 onClick={() => handleCategoryClick('Laboratory & Diagnostics')}
-                className="text-left px-3 py-1.5 text-xs text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded"
+                className="text-left px-3 py-2.5 text-sm text-slate-600 hover:text-[#0B2F63] hover:bg-slate-50 rounded-lg"
               >
                 Lab & Diagnostics
               </button>
@@ -246,7 +268,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a 
               href="#oem" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               OEM & Manufacturing
             </a>
@@ -254,7 +276,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a 
               href="#compliance" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               Quality & Compliance
             </a>
@@ -262,7 +284,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a 
               href="#faq" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               FAQ
             </a>
@@ -270,7 +292,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a 
               href="#contact" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               Contact Us
             </a>

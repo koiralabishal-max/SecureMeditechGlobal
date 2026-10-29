@@ -1,30 +1,6 @@
-import express, { Request, Response } from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { GoogleGenAI } from '@google/genai';
-import dotenv from 'dotenv';
+// Shared chat knowledge: system prompt for Gemini and an offline domain fallback.
 
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const app = express();
-const PORT = Number(process.env.PORT) || 3000;
-
-app.use(express.json());
-
-// Initialize GoogleGenAI with telemetry header
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  httpOptions: {
-    headers: {
-      'User-Agent': 'aistudio-build',
-    },
-  },
-});
-
-const SYSTEM_INSTRUCTION = `You are the Senior Medical Procurement & OEM Contract Manufacturing Technical Specialist at Secure MediTech Global.
+export const SYSTEM_INSTRUCTION = `You are the Senior Medical Procurement & OEM Contract Manufacturing Technical Specialist at Secure MediTech Global.
 Corporate Contact Details:
 - Address: 30 N Gould St Ste R, Sheridan, WY 82801, USA
 - Phone: +1 (307) 533-4504
@@ -67,7 +43,7 @@ Tone and Guidelines:
 - Offer to help them assemble an RFQ (Request for Quotation) or connect with the supply chain engineering team.
 - Never fabricate fake regulatory claims or non-existent warranties.`;
 
-function generateDomainFallback(userQuery: string): string {
+export function generateDomainFallback(userQuery: string): string {
   const q = userQuery.toLowerCase();
 
   if (q.includes('lead') || q.includes('time') || q.includes('turnaround') || q.includes('dispatch') || q.includes('deliver')) {
@@ -142,76 +118,3 @@ We provide end-to-end medical supply chain and contract manufacturing solutions 
 
 How can we assist with your facility's current requirements?`;
 }
-
-// Server-side API endpoint for Gemini multi-turn chat
-app.post('/api/chat', async (req: Request, res: Response) => {
-  try {
-    const { messages } = req.body;
-    if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      res.status(400).json({ error: 'Messages array is required' });
-      return;
-    }
-
-    const lastUserMessage = [...messages].reverse().find((m) => m.role === 'user')?.parts?.[0]?.text || '';
-
-    // If API key is missing, respond immediately with the domain specialist knowledge
-    if (!process.env.GEMINI_API_KEY) {
-      res.json({ text: generateDomainFallback(lastUserMessage) });
-      return;
-    }
-
-    // Call Gemini 3.8 Flash with a safety race timeout
-    try {
-      const generatePromise = ai.models.generateContent({
-        model: 'gemini-3.8-flash',
-        contents: messages,
-        config: {
-          systemInstruction: SYSTEM_INSTRUCTION,
-        },
-      });
-
-      const timeoutPromise = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('AI generation timeout after 6 seconds')), 6000)
-      );
-
-      const response = await Promise.race([generatePromise, timeoutPromise]);
-      if (response && response.text) {
-        res.json({ text: response.text });
-        return;
-      }
-    } catch (apiErr: any) {
-      console.warn('Live Gemini model call fell back to local domain specialist:', apiErr?.message || apiErr);
-      // Fallback seamlessly to the precision domain technical response
-      res.json({ text: generateDomainFallback(lastUserMessage) });
-      return;
-    }
-
-    res.json({ text: generateDomainFallback(lastUserMessage) });
-  } catch (error: any) {
-    console.error('Chat error:', error);
-    res.json({ text: generateDomainFallback('') });
-  }
-});
-
-// Full-stack Vite handling: dev server with vite.middlewares, production static serving
-async function startServer() {
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.resolve(__dirname, 'dist')));
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-    });
-  } else {
-    const { createServer } = await import('vite');
-    const vite = await createServer({
-      server: { middlewareMode: true },
-      appType: 'spa',
-    });
-    app.use(vite.middlewares);
-  }
-
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server listening on http://0.0.0.0:${PORT}`);
-  });
-}
-
-startServer();

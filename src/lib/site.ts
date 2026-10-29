@@ -1,0 +1,36 @@
+export const SITE = {
+  name: 'Secure MediTech Global',
+  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://securemeditechglobal.com').replace(/\/$/, ''),
+  title: 'Secure MediTech Global | Medical Supplies & OEM Contract Manufacturing',
+  description:
+    'International medical supplier and ISO 13485 OEM contract manufacturer of CVP kits, IV cannulas, endotracheal tubes, Foley & dialysis catheters, surgical OT packs and diagnostics. CE-marked, shipping to 65+ countries.',
+  keywords: [
+    'medical supplies wholesale',
+    'medical device OEM manufacturer',
+    'hospital consumables supplier',
+    'CVP kit',
+    'IV cannula',
+    'endotracheal tube',
+    'Foley catheter',
+    'hemodialysis catheter',
+    'closed suction catheter',
+    'surgical OT combo pack',
+    'ISO 13485 contract manufacturing',
+    'CE marked medical devices',
+  ],
+  ogImage: '/assets/images/hero_medical_logistics_1792848779603.jpg',
+  phone: '+1-307-533-4504',
+  email: 'info@securemeditechglobal.com',
+  address: {
+    streetAddress: '30 N Gould St Ste R',
+    addressLocality: 'Sheridan',
+    addressRegion: 'WY',
+    postalCode: '82801',
+    addressCountry: 'US',
+  },
+  social: [
+    'https://www.facebook.com/profile.php?id=61591817960540',
+    'https://www.linkedin.com/company/secure-meditech-global',
+    'https://www.instagram.com/securemeditechglobal',
+  ],
+};

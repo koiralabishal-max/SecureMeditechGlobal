@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { ShieldCheck, CheckCircle2, Award, FileSpreadsheet, Globe, ThermometerSnowflake, Anchor, Plane } from 'lucide-react';
 import { GlobalDistributionMap } from './GlobalDistributionMap';
+import { SectionHeader } from './SectionHeader';
 
 interface QualityComplianceSectionProps {
   onSelectHubForInquiry?: (hubName: string) => void;
@@ -56,42 +59,37 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
   ];
 
   return (
-    <section id="compliance" className="py-20 bg-[#F8FAFC]">
+    <section id="compliance" className="py-20 sm:py-24 bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#38B6FF] mb-2">
-            <Award className="w-4 h-4" />
-            <span>International Regulatory Rigor</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B2F63] tracking-tight">
-            Quality Assurance & Global Regulatory Compliance
-          </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
-            Secure MediTech Global adheres to world-class manufacturing, clinical safety, and documentation standards to ensure effortless hospital procurement and regulatory clearance.
-          </p>
-        </div>
+        <SectionHeader
+          align="center"
+          eyebrow="International Regulatory Rigor"
+          icon={<Award />}
+          title="Quality Assurance & Global Regulatory Compliance"
+          description="World-class manufacturing, clinical safety, and documentation standards for effortless hospital procurement and regulatory clearance."
+        />
 
         {/* 4-Column Certification Matrix */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {certificationsList.map((cert, index) => (
-            <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#38B6FF]/60 transition-all flex flex-col justify-between">
+            <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#38B6FF]/60 hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-blue-50 text-[#0B2F63] border border-blue-100">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-sky-50 text-[#0B2F63] border border-sky-100">
                     {cert.code}
                   </span>
                   <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
                 </div>
-                <h4 className="text-sm font-bold text-[#0B2F63] leading-snug">
+                <h3 className="text-base font-bold text-[#0B2F63] leading-snug">
                   {cert.title}
-                </h4>
-                <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                </h3>
+                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
                   {cert.description}
                 </p>
               </div>
-              <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+              <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Audited & Validated</span>
               </div>
@@ -100,32 +98,32 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
         </div>
 
         {/* Global Logistics Architecture Sub-Section */}
-        <div className="bg-[#0B2F63] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
+        <div className="bg-[#0B2F63] rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#38B6FF]/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 max-w-3xl mb-10">
-            <div className="flex items-center gap-2 text-xs font-bold text-[#38B6FF] tracking-wider uppercase mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#38B6FF] tracking-[0.12em] uppercase mb-3">
               <Globe className="w-4 h-4" />
               <span>International Medical Logistics Chain</span>
             </div>
-            <h3 className="text-xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-white">
               Resilient Delivery to 65+ Nations with Complete Cold-Chain Integrity
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed">
               Medical disposables, critical reagents, and hospital equipment require unbroken chain of custody. We provide comprehensive logistics, temperature monitoring, and incoterms (FOB, CIF, DDP, EXW) tailored to your healthcare network.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
             {logisticsFeatures.map((item, idx) => (
-              <div key={idx} className="bg-white/10 backdrop-blur-xs p-5 rounded-xl border border-white/15">
+              <div key={idx} className="bg-white/[0.07] p-5 rounded-2xl border border-white/10">
                 <div className="p-2 bg-white/10 rounded-lg w-fit mb-3">
                   {item.icon}
                 </div>
-                <h4 className="text-sm font-bold text-white mb-1">
+                <h4 className="text-base font-bold text-white mb-1.5 leading-snug">
                   {item.title}
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

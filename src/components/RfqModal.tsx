@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { QuoteItem, RfqFormData } from '../types';
 import { X, Trash2, Plus, Minus, Send, CheckCircle2, ShieldCheck, FileText, AlertCircle, Copy, Check } from 'lucide-react';
@@ -87,7 +89,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
             <FileText className="w-5 h-5 text-[#38B6FF]" />
             <div>
               <h3 className="text-base font-bold">Official Request For Bulk Quotation (RFQ)</h3>
-              <p className="text-[11px] text-slate-300">
+              <p className="text-xs text-slate-300">
                 Direct procurement pricing, freight estimation & technical file support
               </p>
             </div>
@@ -118,7 +120,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
 
             <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl max-w-sm mx-auto flex items-center justify-between">
               <div className="text-left">
-                <div className="text-[10px] text-slate-400 font-bold uppercase">Tracking Reference</div>
+                <div className="text-[11px] text-slate-400 font-bold uppercase">Tracking Reference</div>
                 <div className="font-mono text-base font-bold text-[#0B2F63]">{submittedRef}</div>
               </div>
               <button
@@ -158,7 +160,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                 {quoteItems.length > 0 && (
                   <button
                     onClick={onClearQuote}
-                    className="text-[11px] text-rose-500 hover:text-rose-700 font-semibold"
+                    className="text-xs text-rose-500 hover:text-rose-700 font-semibold"
                   >
                     Clear All
                   </button>
@@ -168,7 +170,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
               {quoteItems.length === 0 ? (
                 <div className="p-6 text-center bg-slate-50 rounded-xl border border-dashed border-slate-300 text-xs text-slate-500 space-y-2">
                   <p>Your quote basket is currently empty.</p>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-xs text-slate-400">
                     You can still submit a general RFQ or custom OEM request using the form on the right!
                   </p>
                 </div>
@@ -183,7 +185,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                         <div className="font-bold text-[#0B2F63] truncate" title={item.product.name}>
                           {item.product.name}
                         </div>
-                        <div className="font-mono text-[10px] text-slate-500">
+                        <div className="font-mono text-[11px] text-slate-500">
                           SKU: {item.product.sku}
                         </div>
                       </div>
@@ -220,7 +222,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
               )}
 
               {/* Trust Callout */}
-              <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-100 text-[11px] text-slate-600 space-y-1.5">
+              <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-slate-600 space-y-1.5">
                 <div className="font-bold text-[#0B2F63] flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-[#10B981]" />
                   <span>Wholesale Procurement Guarantee</span>
@@ -244,12 +246,12 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="e.g. Dr. Arthur Scott"
-                    className={`w-full px-3 py-2 text-xs rounded-lg border bg-white focus:outline-none focus:ring-1 ${
+                    className={`w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-1 ${
                       formErrors.fullName ? 'border-rose-400 focus:ring-rose-400' : 'border-slate-300 focus:ring-[#38B6FF]'
                     }`}
                   />
                   {formErrors.fullName && (
-                    <span className="text-[10px] text-rose-500 mt-0.5 flex items-center gap-1">
+                    <span className="text-[11px] text-rose-500 mt-0.5 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3" /> {formErrors.fullName}
                     </span>
                   )}
@@ -265,12 +267,12 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                     placeholder="e.g. St. Jude Regional Hospital"
-                    className={`w-full px-3 py-2 text-xs rounded-lg border bg-white focus:outline-none focus:ring-1 ${
+                    className={`w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-1 ${
                       formErrors.companyName ? 'border-rose-400 focus:ring-rose-400' : 'border-slate-300 focus:ring-[#38B6FF]'
                     }`}
                   />
                   {formErrors.companyName && (
-                    <span className="text-[10px] text-rose-500 mt-0.5 flex items-center gap-1">
+                    <span className="text-[11px] text-rose-500 mt-0.5 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3" /> {formErrors.companyName}
                     </span>
                   )}
@@ -284,7 +286,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                   <select
                     value={formData.businessType}
                     onChange={(e) => setFormData({ ...formData, businessType: e.target.value as any })}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                    className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
                   >
                     <option value="Hospital / Clinic Network">Hospital / Clinic Network</option>
                     <option value="Medical Equipment Distributor">Medical Equipment Distributor</option>
@@ -304,12 +306,12 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                     value={formData.workEmail}
                     onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
                     placeholder="purchasing@hospital.org"
-                    className={`w-full px-3 py-2 text-xs rounded-lg border bg-white focus:outline-none focus:ring-1 ${
+                    className={`w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-1 ${
                       formErrors.workEmail ? 'border-rose-400 focus:ring-rose-400' : 'border-slate-300 focus:ring-[#38B6FF]'
                     }`}
                   />
                   {formErrors.workEmail && (
-                    <span className="text-[10px] text-rose-500 mt-0.5 flex items-center gap-1">
+                    <span className="text-[11px] text-rose-500 mt-0.5 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3" /> {formErrors.workEmail}
                     </span>
                   )}
@@ -325,12 +327,12 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                     value={formData.phoneNumber}
                     onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                     placeholder="+1 (555) 019-2834"
-                    className={`w-full px-3 py-2 text-xs rounded-lg border bg-white focus:outline-none focus:ring-1 ${
+                    className={`w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-1 ${
                       formErrors.phoneNumber ? 'border-rose-400 focus:ring-rose-400' : 'border-slate-300 focus:ring-[#38B6FF]'
                     }`}
                   />
                   {formErrors.phoneNumber && (
-                    <span className="text-[10px] text-rose-500 mt-0.5 flex items-center gap-1">
+                    <span className="text-[11px] text-rose-500 mt-0.5 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3" /> {formErrors.phoneNumber}
                     </span>
                   )}
@@ -346,12 +348,12 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                     placeholder="e.g. United Kingdom, Germany, UAE"
-                    className={`w-full px-3 py-2 text-xs rounded-lg border bg-white focus:outline-none focus:ring-1 ${
+                    className={`w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-1 ${
                       formErrors.country ? 'border-rose-400 focus:ring-rose-400' : 'border-slate-300 focus:ring-[#38B6FF]'
                     }`}
                   />
                   {formErrors.country && (
-                    <span className="text-[10px] text-rose-500 mt-0.5 flex items-center gap-1">
+                    <span className="text-[11px] text-rose-500 mt-0.5 flex items-center gap-1">
                       <AlertCircle className="w-3 h-3" /> {formErrors.country}
                     </span>
                   )}
@@ -365,7 +367,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                   <select
                     value={formData.incoterm}
                     onChange={(e) => setFormData({ ...formData, incoterm: e.target.value as any })}
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                    className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
                   >
                     <option value="CIF">CIF (Cost, Insurance & Freight)</option>
                     <option value="FOB">FOB (Free On Board Port)</option>
@@ -384,7 +386,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                     value={formData.destinationPort}
                     onChange={(e) => setFormData({ ...formData, destinationPort: e.target.value })}
                     placeholder="e.g. Rotterdam / Hamburg / Dubai"
-                    className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                    className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
                   />
                 </div>
               </div>
@@ -399,7 +401,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                   value={formData.projectDetails}
                   onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
                   placeholder="Provide volume expectations, sterile packaging requests, private label needs, or target tender delivery schedule..."
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                  className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 bg-white focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
                 />
               </div>
 

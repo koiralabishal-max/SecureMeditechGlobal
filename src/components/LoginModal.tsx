@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { X, Lock, Building, CheckCircle2, Shield, User, ArrowRight } from 'lucide-react';
 
@@ -113,7 +115,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               {/* Official Brand Logo */}
               <div className="flex justify-center mb-5">
                 <img
-                  src="/assets/aistudio/2026-10-24_7-15-55_PM_1fbce34f.png"
+                  src="/logo.png"
                   alt="Secure MediTech Global"
                   className="h-10 w-auto object-contain"
                 />
@@ -168,7 +170,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       <label className="block text-xs font-semibold text-slate-700">
                         Password
                       </label>
-                      <a href="#" className="text-[11px] text-[#38B6FF] hover:underline">
+                      <a href="#" className="text-xs text-[#38B6FF] hover:underline">
                         Forgot Password?
                       </a>
                     </div>
@@ -219,7 +221,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       value={licenseNo}
                       onChange={(e) => setLicenseNo(e.target.value)}
                       placeholder="e.g. MD-DIST-2026-EU"
-                      className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                      className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
                     />
                   </div>
 
@@ -232,7 +234,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="contact@distributor.com"
-                      className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                      className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
                     />
                   </div>
 
@@ -246,7 +248,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 </form>
               )}
 
-              <div className="mt-6 pt-4 border-t border-slate-100 text-[11px] text-slate-400 text-center">
+              <div className="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-400 text-center">
                 Access restricted to authenticated healthcare professionals and authorized medical device resellers.
               </div>
             </div>

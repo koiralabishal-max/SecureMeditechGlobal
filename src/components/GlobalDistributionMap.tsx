@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as d3 from 'd3';
 import { 
@@ -488,7 +490,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         <text
                           y={isSelected ? -12 : -9}
                           textAnchor="middle"
-                          className="text-[9px] sm:text-[10px] font-bold select-none pointer-events-none"
+                          className="text-[10px] sm:text-[11px] font-bold select-none pointer-events-none"
                           fill={isSelected ? '#FFFFFF' : '#CBD5E1'}
                           style={{
                             textShadow: '0 1px 3px rgba(0,0,0,0.9), 0 0 6px #071E40',
@@ -510,29 +512,29 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
               <div className="absolute bottom-4 left-4 bg-slate-900/95 border border-slate-700/90 rounded-xl p-3 shadow-xl backdrop-blur-md pointer-events-none max-w-xs transition-opacity">
                 {hoveredHub ? (
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#38B6FF]">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#38B6FF]">
                       {hoveredHub.type}
                     </div>
                     <div className="text-xs font-bold text-white mt-0.5">
                       {hoveredHub.name} ({hoveredHub.city})
                     </div>
-                    <div className="text-[11px] text-slate-300 mt-1 flex items-center gap-1">
+                    <div className="text-xs text-slate-300 mt-1 flex items-center gap-1">
                       <Clock className="w-3 h-3 text-emerald-400" />
                       <span>Air: {hoveredHub.transitAir}</span>
                     </div>
                   </div>
                 ) : hoveredRoute ? (
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#10B981]">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#10B981]">
                       {hoveredRoute.mode} Corridor
                     </div>
                     <div className="text-xs font-bold text-white mt-0.5">
                       To {hoveredRoute.targetCity}, {hoveredRoute.targetCountry}
                     </div>
-                    <div className="text-[11px] text-slate-300 mt-1">
+                    <div className="text-xs text-slate-300 mt-1">
                       Lead Time: <span className="text-white font-medium">{hoveredRoute.transitDays}</span>
                     </div>
-                    <div className="text-[11px] text-slate-400">
+                    <div className="text-xs text-slate-400">
                       Frequency: {hoveredRoute.frequency}
                     </div>
                   </div>
@@ -542,7 +544,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
           </div>
 
           {/* Map Legend */}
-          <div className="mt-3 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-[11px] text-slate-400 gap-2">
+          <div className="mt-3 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
             <div className="flex flex-wrap items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-amber-400 border border-white inline-block"></span>
@@ -578,7 +580,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             
             {/* Hub Selector Pills */}
             <div className="mb-4">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+              <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
                 Select Strategic Logistics Hub:
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
@@ -601,11 +603,11 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             {/* Selected Hub Profile Card */}
             <div className="border-t border-slate-800 pt-4">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-900/60 text-[#38B6FF] border border-blue-700/60">
+                <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-900/60 text-[#38B6FF] border border-blue-700/60">
                   {selectedHub.type}
                 </span>
                 {selectedHub.isHQ && (
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                  <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
                     Global HQ
                   </span>
                 )}
@@ -621,7 +623,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
               {/* Transit & Warehouse Specs */}
               <div className="mt-4 space-y-3">
                 <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
-                  <div className="text-[11px] text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
+                  <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
                     <Plane className="w-3.5 h-3.5 text-[#38B6FF]" />
                     <span>Priority Air Lead Time</span>
                   </div>
@@ -631,14 +633,14 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 </div>
 
                 <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
-                  <div className="text-[11px] text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
+                  <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
                     <Warehouse className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Customs & Storage Infrastructure</span>
                   </div>
                   <div className="text-xs text-slate-200 leading-relaxed font-medium">
                     {selectedHub.customsFacility}
                   </div>
-                  <div className="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
+                  <div className="text-xs text-slate-400 mt-1 flex items-center gap-1">
                     <ThermometerSnowflake className="w-3 h-3 text-[#38B6FF]" />
                     <span>{selectedHub.tempStorage}</span>
                   </div>
@@ -647,14 +649,14 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
               {/* Certifications & Incoterms */}
               <div className="mt-4 pt-3 border-t border-slate-800">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
                   Compliance & Trade Terms:
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {selectedHub.certifications.map((cert, idx) => (
                     <span 
                       key={idx}
-                      className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 flex items-center gap-1"
+                      className="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/50 flex items-center gap-1"
                     >
                       <CheckCircle2 className="w-2.5 h-2.5" />
                       {cert}
@@ -663,7 +665,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   {selectedHub.keyIncoterms.map((term, idx) => (
                     <span 
                       key={idx}
-                      className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700"
+                      className="text-[11px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 border border-slate-700"
                     >
                       {term}
                     </span>
@@ -673,7 +675,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
               {/* Outbound Corridors from this Hub */}
               <div className="mt-4 pt-3 border-t border-slate-800">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-between">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-between">
                   <span>Direct Outbound Hospital Lanes:</span>
                   <span className="text-[#38B6FF] font-mono">{selectedHubRoutes.length} Lanes</span>
                 </div>
@@ -681,12 +683,12 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   {selectedHubRoutes.map((route) => (
                     <div 
                       key={route.id}
-                      className="flex items-center justify-between text-[11px] p-1.5 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/40"
+                      className="flex items-center justify-between text-xs p-1.5 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/40"
                     >
                       <span className="text-white font-medium truncate max-w-[140px]">
                         {route.targetCity}
                       </span>
-                      <span className="text-[10px] font-mono text-emerald-400">
+                      <span className="text-[11px] font-mono text-emerald-400">
                         {route.transitDays}
                       </span>
                     </div>
@@ -723,7 +725,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             <div className="text-xs font-bold text-white mt-0.5">
               {stat.label}
             </div>
-            <div className="text-[11px] text-slate-400 mt-1 leading-snug">
+            <div className="text-xs text-slate-400 mt-1 leading-snug">
               {stat.sub}
             </div>
           </div>

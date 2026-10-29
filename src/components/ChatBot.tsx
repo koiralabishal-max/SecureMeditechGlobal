@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   MessageSquare, 
@@ -222,7 +224,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
               <Sparkles className="w-5 h-5 text-[#38B6FF]" />
             </div>
             <div className="text-left hidden sm:block pr-1">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[#38B6FF]">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#38B6FF]">
                 AI Procurement
               </div>
               <div className="text-xs font-semibold text-white">
@@ -256,11 +258,11 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                   <h3 className="text-sm font-bold text-white tracking-tight">
                     AI Procurement Specialist
                   </h3>
-                  <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#38B6FF]/20 text-[#38B6FF] border border-[#38B6FF]/30">
+                  <span className="px-1.5 py-0.2 rounded text-[11px] font-bold bg-[#38B6FF]/20 text-[#38B6FF] border border-[#38B6FF]/30">
                     Flash 3.8
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-300 flex items-center gap-1">
+                <p className="text-xs text-slate-300 flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3 text-emerald-400" />
                   <span>ISO 13485 Knowledge Base</span>
                 </p>
@@ -330,7 +332,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                         )}
 
                         {/* Timestamp & Utilities */}
-                        <div className={`mt-2 flex items-center justify-between gap-3 text-[10px] ${
+                        <div className={`mt-2 flex items-center justify-between gap-3 text-[11px] ${
                           isUser ? 'text-blue-200' : 'text-slate-400'
                         }`}>
                           <span>{msg.timestamp}</span>
@@ -391,7 +393,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                       <button
                         key={i}
                         onClick={() => handleSendMessage(suggestion)}
-                        className="text-[11px] font-medium text-slate-700 bg-white hover:bg-blue-50 hover:text-[#0B2F63] hover:border-blue-200 px-3 py-1.5 rounded-full border border-slate-200 shadow-2xs whitespace-nowrap transition-colors flex items-center gap-1 shrink-0"
+                        className="text-xs font-medium text-slate-700 bg-white hover:bg-blue-50 hover:text-[#0B2F63] hover:border-blue-200 px-3 py-1.5 rounded-full border border-slate-200 shadow-2xs whitespace-nowrap transition-colors flex items-center gap-1 shrink-0"
                       >
                         <span>{suggestion}</span>
                         <ChevronRight className="w-3 h-3 text-slate-400" />
@@ -417,7 +419,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                     onChange={(e) => setInputText(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask about MOQs, lead times, or specs..."
-                    className="flex-1 max-h-24 p-2.5 text-xs sm:text-sm bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#38B6FF] focus:ring-2 focus:ring-[#38B6FF]/20 rounded-xl resize-none outline-none text-slate-800 placeholder-slate-400"
+                    className="flex-1 max-h-24 p-2.5 text-base sm:text-sm bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#38B6FF] focus:ring-2 focus:ring-[#38B6FF]/20 rounded-xl resize-none outline-none text-slate-800 placeholder-slate-400"
                   />
                   
                   <button
@@ -431,9 +433,9 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                 </form>
 
                 {/* Footer Assistive Strip */}
-                <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                   <span className="flex items-center gap-1 text-slate-400">
-                    Press <kbd className="px-1 py-0.2 bg-slate-100 border border-slate-200 rounded text-[9px]">Enter</kbd> to send
+                    Press <kbd className="px-1 py-0.2 bg-slate-100 border border-slate-200 rounded text-[10px]">Enter</kbd> to send
                   </span>
                   <button
                     onClick={onOpenRfq}

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Product } from '../types';
 import { X, Printer, Download, ShieldCheck, CheckCircle2, FileText } from 'lucide-react';
@@ -67,7 +69,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
             <FileText className="w-5 h-5 text-[#38B6FF]" />
             <div>
               <h3 className="text-sm font-bold tracking-tight">Engineering Specification Sheet</h3>
-              <p className="text-[11px] text-slate-300 font-mono">TDS Ref: SMT-{product.sku}-V4</p>
+              <p className="text-xs text-slate-300 font-mono">TDS Ref: SMT-{product.sku}-V4</p>
             </div>
           </div>
 
@@ -102,7 +104,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
             <div className="space-y-2">
               <img
-                src="/assets/aistudio/2026-10-24_7-15-55_PM_1fbce34f.png"
+                src="/logo.png"
                 alt="Secure MediTech Global"
                 className="h-9 w-auto object-contain"
               />
@@ -118,7 +120,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
 
             <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-xl text-right">
               <div>
-                <div className="text-[10px] text-slate-400 font-bold uppercase">Compliance Standard</div>
+                <div className="text-[11px] text-slate-400 font-bold uppercase">Compliance Standard</div>
                 <div className="text-xs font-bold text-[#0B2F63]">{product.certifications[0]}</div>
               </div>
               <ShieldCheck className="w-6 h-6 text-[#10B981] ml-1" />
@@ -191,7 +193,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
 
         {/* Modal Footer Actions */}
         <div className="bg-slate-50 px-6 py-4 border-t border-slate-200 flex items-center justify-between">
-          <span className="text-[11px] text-slate-500">
+          <span className="text-xs text-slate-500">
             Official technical dossier property of Secure MediTech Global.
           </span>
           <div className="flex items-center gap-3">

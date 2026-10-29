@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ArrowRight, ShieldCheck, CheckCircle2, Globe2, Truck, Award } from 'lucide-react';
 import { STATS } from '../data/products';
@@ -9,7 +11,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }) => {
   return (
-    <section id="home" className="relative bg-[#071E40] text-white overflow-hidden py-16 lg:py-24">
+    <section id="home" className="relative bg-[#071E40] text-white overflow-hidden pt-14 pb-16 sm:pt-20 lg:pt-24 lg:pb-20">
       {/* Background Subtle Tech Matrix & Supply Grid */}
       <div className="absolute inset-0 opacity-10 bg-pattern-grid pointer-events-none" />
       <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#38B6FF]/15 rounded-full blur-3xl pointer-events-none" />
@@ -19,32 +21,34 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Core Value Proposition */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
+          <div className="lg:col-span-7 flex flex-col justify-center gap-6">
             
             {/* Trust Kicker - Clean unboxed text */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#38B6FF] tracking-wide uppercase">
-              <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-              <span>International Medical Supplier & OEM Contract Manufacturer</span>
-              <span className="text-slate-500">·</span>
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-semibold text-[#38B6FF] tracking-[0.12em] uppercase">
+              <span className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#10B981] shrink-0" />
+                Medical Supplier & OEM Contract Manufacturer
+              </span>
+              <span className="text-slate-500" aria-hidden="true">·</span>
               <span className="text-slate-300">MDR 2017/745</span>
-            </div>
+            </p>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15] text-balance">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-white leading-[1.08] text-balance">
               Precision Healthcare Solutions & Resilient Global Supply Chains
             </h1>
 
             {/* Subheadline */}
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
               Leading international supplier and OEM contract manufacturer for hospital equipment, surgical supplies, and diagnostic systems. Engineered with rigorous clinical accuracy, certified regulatory compliance, and multi-hub logistics.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
               {/* Tech Blue CTA */}
               <button
                 onClick={onRequestBulkRfq}
-                className="px-6 py-3.5 text-sm font-bold text-white bg-[#38B6FF] hover:bg-[#209ee8] rounded-xl shadow-lg shadow-[#38B6FF]/25 hover:shadow-xl hover:shadow-[#38B6FF]/35 transition-all duration-200 active:scale-95 flex items-center gap-2"
+                className="h-12 px-6 text-[15px] font-bold text-[#071E40] bg-[#38B6FF] hover:bg-[#5cc4ff] rounded-xl shadow-lg shadow-[#38B6FF]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center justify-center gap-2"
               >
                 <span>Request Bulk Quotation</span>
                 <ArrowRight className="w-4 h-4" />
@@ -53,29 +57,29 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
               {/* Secondary CTA */}
               <button
                 onClick={onExploreCatalog}
-                className="px-6 py-3.5 text-sm font-semibold text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 rounded-xl border border-slate-600/60 transition-all duration-200 active:scale-95 flex items-center gap-2"
+                className="h-12 px-6 text-[15px] font-semibold text-white bg-white/5 hover:bg-white/10 rounded-xl border border-white/20 transition-all duration-200 active:scale-[0.98] inline-flex items-center justify-center gap-2"
               >
                 <span>Explore Product Catalog</span>
               </button>
             </div>
 
             {/* Badges Matrix */}
-            <div className="pt-6 border-t border-slate-700/60 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="mt-2 pt-6 border-t border-slate-700/60 flex flex-wrap gap-x-6 gap-y-3">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                <span className="text-xs font-medium text-slate-200">CE Certified</span>
+                <span className="text-sm font-medium text-slate-200">CE Certified</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#38B6FF] shrink-0" />
-                <span className="text-xs font-medium text-slate-200">ISO 13485:2016</span>
+                <span className="text-sm font-medium text-slate-200">ISO 13485:2016</span>
               </div>
               <div className="flex items-center gap-2">
                 <Truck className="w-4 h-4 text-[#38B6FF] shrink-0" />
-                <span className="text-xs font-medium text-slate-200">Global Shipping</span>
+                <span className="text-sm font-medium text-slate-200">Global Shipping</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#10B981] shrink-0" />
-                <span className="text-xs font-medium text-slate-200">100% Quality Assurance</span>
+                <span className="text-sm font-medium text-slate-200 whitespace-nowrap">100% Quality Assurance</span>
               </div>
             </div>
 
@@ -87,8 +91,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
               <img
                 src="/assets/images/hero_medical_logistics_1792848779603.jpg"
                 alt="Secure MediTech Global high-tech clinical manufacturing and global medical supply facility"
-                className="w-full h-80 sm:h-96 lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-72 sm:h-96 lg:h-[440px] object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="eager"
+                fetchPriority="high"
                 decoding="async"
                 width={600}
                 height={420}
@@ -96,17 +101,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
               <div className="absolute inset-0 bg-gradient-to-t from-[#071E40]/90 via-[#071E40]/30 to-transparent" />
 
               {/* Floating Live Dispatch Card */}
-              <div className="absolute bottom-4 left-4 right-4 bg-[#0B2F63]/90 backdrop-blur-md rounded-xl p-4 border border-slate-600/70 text-xs">
+              <div className="absolute bottom-4 left-4 right-4 bg-[#0B2F63]/90 backdrop-blur-md rounded-xl p-4 border border-slate-600/70 text-sm">
                 <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-700/80">
-                  <div className="flex items-center gap-2 text-white font-bold">
+                  <div className="flex items-center gap-2 text-white font-bold text-sm">
                     <Globe2 className="w-4 h-4 text-[#38B6FF]" />
                     <span>Global Distribution Hub Network</span>
                   </div>
-                  <span className="text-[10px] font-mono text-[#10B981] font-semibold bg-[#10B981]/15 px-2 py-0.5 rounded">
+                  <span className="text-[11px] font-mono text-[#10B981] font-semibold bg-[#10B981]/15 px-2 py-0.5 rounded">
                     ONLINE
                   </span>
                 </div>
-                <p className="text-slate-300 text-[11px] leading-relaxed">
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                   Consolidated containerized and express air shipments dispatching daily to Europe, the Americas, Asia-Pacific, and the Middle East.
                 </p>
               </div>
@@ -116,16 +121,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
         </div>
 
         {/* Full-Width 4-Column KPI Strip */}
-        <div className="mt-14 pt-8 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6 text-center sm:text-left">
+        <div className="mt-14 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {STATS.map((stat, idx) => (
-            <div key={idx} className="p-3 bg-slate-800/40 rounded-xl border border-slate-700/40">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#38B6FF] tracking-tight font-mono tabular-nums">
+            <div key={idx} className="p-4 sm:p-5 bg-white/[0.04] rounded-2xl border border-white/10">
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#38B6FF] tracking-tight tabular-nums">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm font-bold text-white mt-0.5">
+              <div className="text-sm font-bold text-white mt-1">
                 {stat.label}
               </div>
-              <div className="text-[11px] text-slate-400 mt-0.5">
+              <div className="text-xs text-slate-400 mt-1 leading-snug">
                 {stat.subtext}
               </div>
             </div>

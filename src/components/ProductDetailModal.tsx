@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Product } from '../types';
 import { X, ShieldCheck, Check, Plus, FileDown, Package, Clock, Globe, MessageSquare, Layers } from 'lucide-react';
@@ -79,7 +81,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {product.certifications.map((c, i) => (
-                  <span key={i} className="bg-white border border-slate-200 px-2 py-1 rounded text-slate-700 font-semibold text-[11px]">
+                  <span key={i} className="bg-white border border-slate-200 px-2 py-1 rounded text-slate-700 font-semibold text-xs">
                     {c}
                   </span>
                 ))}
@@ -164,7 +166,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center justify-between gap-3 text-xs">
               <div>
                 <div className="font-bold text-[#0B2F63]">Looking for Hospital Pricing or Custom OEM?</div>
-                <div className="text-[11px] text-slate-600 mt-0.5">
+                <div className="text-xs text-slate-600 mt-0.5">
                   Chat directly with our medical procurement officer on WhatsApp or add to your official RFQ tender.
                 </div>
               </div>
