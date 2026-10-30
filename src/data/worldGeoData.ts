@@ -271,12 +271,12 @@ export const SHIPPING_HUBS: ShippingHub[] = [
     keyIncoterms: ['CIF', 'FOB', 'DDP', 'CFR', 'DAP'],
     tempStorage: 'Insulated pharma-grade staging with 24/7 cold monitoring (2°C–8°C)',
     servedMarkets: [
-      'Nepal (Kathmandu Tribhuvan Corridor)',
-      'India (New Delhi & Mumbai Tertiary Centers)',
-      'Kenya (Nairobi & Mombasa East Africa Corridor)',
-      'Rwanda (Kigali King Faisal & RBC Supply Line)',
-      'Nigeria (Lagos & Abuja West Africa Hub)',
-      'GCC & Levant Regional Health Ministries'
+      'Nepal (Kathmandu & Regional Hubs)',
+      'India (New Delhi, Mumbai & Metropolitan Centers)',
+      'Kenya (Nairobi, Mombasa & East Africa)',
+      'Rwanda (Kigali & National Supply Chains)',
+      'Nigeria (Lagos, Abuja & West Africa)',
+      'GCC & Levant Regional Health Authorities'
     ],
     annualConsignments: '22,400+ Consignments'
   },
@@ -289,16 +289,16 @@ export const SHIPPING_HUBS: ShippingHub[] = [
     coordinates: [28.0473, -26.2041],
     type: 'Regional Distribution Gateway',
     customsFacility: 'O.R. Tambo (JNB) & Jomo Kenyatta (NBO) Bonded Medical Freight Depots',
-    transitAir: '12–36 Hours Regional Hospital Network Transit',
+    transitAir: '12–36 Hours Regional Healthcare Network Transit',
     transitOcean: 'Durban, Cape Town & Mombasa Deep-Water Maritime Terminals',
     certifications: ['SAHPRA Approved', 'Kenya PPB Compliant', 'Rwanda FDA Registered', 'NAFDAC Cleared', 'ISO 13485:2016'],
     keyIncoterms: ['DDP', 'CIF', 'FOB', 'DAP'],
     tempStorage: 'Pharma-grade 2°C–8°C cold stores with uninterrupted power generator back-up',
     servedMarkets: [
-      'South Africa (Netcare, Life Healthcare, Mediclinic, NHLS)',
-      'Kenya (Kenyatta National Hospital, Nairobi Hospital, MEDS)',
-      'Rwanda (King Faisal Hospital, Rwanda Biomedical Centre)',
-      'Nigeria (Lagos University Teaching Hospital, National Hospital Abuja)'
+      'South Africa (Johannesburg, Cape Town, Durban & Pretoria)',
+      'Kenya (Nairobi, Mombasa & Regional Healthcare Centers)',
+      'Rwanda (Kigali & Provincial Healthcare Facilities)',
+      'Nigeria (Lagos, Abuja, Port Harcourt & Kano)'
     ],
     annualConsignments: '16,200+ Consignments'
   },
@@ -333,7 +333,7 @@ export const SHIPPING_HUBS: ShippingHub[] = [
     certifications: ['ISO 13485:2016', 'Class 100,000 Cleanroom', 'EO & Gamma Sterilization'],
     keyIncoterms: ['FOB', 'CIF', 'EXW'],
     tempStorage: 'Raw material quarantine, automated sterile barrier pack storage',
-    servedMarkets: ['Worldwide Global Export & OEM Distribution', 'Tier-1 Hospital Brand Manufacturing'],
+    servedMarkets: ['Worldwide Global Export & OEM Distribution', 'Healthcare Brand Manufacturing'],
     annualConsignments: '120M+ Consumables Produced'
   },
   {
@@ -350,7 +350,7 @@ export const SHIPPING_HUBS: ShippingHub[] = [
     certifications: ['ANVISA Compliant', 'COFEPRIS Validated', 'ISO 13485'],
     keyIncoterms: ['CIF', 'FOB', 'DDP'],
     tempStorage: 'Temperature-monitored pharmaceutical staging facility',
-    servedMarkets: ['Brazil Hospital Federations', 'Colombia, Chile, Peru, Argentina Medical Distributors'],
+    servedMarkets: ['Brazil Healthcare Networks', 'Colombia, Chile, Peru, Argentina Medical Distributors'],
     annualConsignments: '11,200+ Pallets'
   }
 ];
@@ -437,11 +437,11 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     frequency: '3x Weekly Cold-Chain Flights'
   },
 
-  // 1. NEPAL CORRIDOR (Kathmandu / Tribhuvan)
+  // 1. NEPAL CORRIDOR (Kathmandu / Pokhara)
   {
     id: 'route-mena-nepal',
     sourceHubId: 'mena-hub',
-    targetCity: 'Kathmandu (Tribhuvan Medical Corridor)',
+    targetCity: 'Kathmandu',
     targetCountry: 'Nepal',
     targetCoordinates: [85.3240, 27.7172],
     mode: 'Cold-Chain Air',
@@ -465,7 +465,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   {
     id: 'route-mena-india-delhi',
     sourceHubId: 'mena-hub',
-    targetCity: 'New Delhi (AIIMS / North India)',
+    targetCity: 'New Delhi',
     targetCountry: 'India',
     targetCoordinates: [77.2090, 28.6139],
     mode: 'Air Priority',
@@ -476,7 +476,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   {
     id: 'route-apac-india-mumbai',
     sourceHubId: 'apac-hub',
-    targetCity: 'Mumbai / Apollo Network',
+    targetCity: 'Mumbai',
     targetCountry: 'India',
     targetCoordinates: [72.8777, 19.0760],
     mode: 'Air Priority',
@@ -500,20 +500,20 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   {
     id: 'route-africa-kenya',
     sourceHubId: 'africa-hub',
-    targetCity: 'Nairobi (Kenyatta National Hospital & MEDS)',
+    targetCity: 'Nairobi',
     targetCountry: 'Kenya',
     targetCoordinates: [36.8219, -1.2921],
     mode: 'Air Priority',
     transitDays: '12–18 Hours',
-    frequency: 'Daily Express Air Cargo & Customs Bonded Road',
+    frequency: 'Daily Express Air Cargo & Customs Bonded Transit',
     isPriorityDestination: true
   },
 
-  // 4. RWANDA CORRIDOR (Kigali / King Faisal & RBC)
+  // 4. RWANDA CORRIDOR (Kigali)
   {
     id: 'route-mena-rwanda',
     sourceHubId: 'mena-hub',
-    targetCity: 'Kigali (King Faisal & RBC Corridor)',
+    targetCity: 'Kigali',
     targetCountry: 'Rwanda',
     targetCoordinates: [30.0619, -1.9441],
     mode: 'Cold-Chain Air',
@@ -524,7 +524,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   {
     id: 'route-africa-rwanda',
     sourceHubId: 'africa-hub',
-    targetCity: 'Kigali (National Referral Hospitals)',
+    targetCity: 'Kigali',
     targetCountry: 'Rwanda',
     targetCoordinates: [30.0619, -1.9441],
     mode: 'Cold-Chain Air',
@@ -548,12 +548,12 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   {
     id: 'route-africa-southafrica-local',
     sourceHubId: 'africa-hub',
-    targetCity: 'Cape Town & Durban Health Networks',
+    targetCity: 'Cape Town / Durban',
     targetCountry: 'South Africa',
     targetCoordinates: [18.4241, -33.9249],
     mode: 'Air Priority',
     transitDays: '12–24 Hours Domestic Dispatch',
-    frequency: 'Daily Hospital Direct Feeder',
+    frequency: 'Daily Regional Feeder',
     isPriorityDestination: true
   },
 
@@ -572,7 +572,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   {
     id: 'route-africa-nigeria',
     sourceHubId: 'africa-hub',
-    targetCity: 'Lagos (Ikeja Medical Complex & LUTH)',
+    targetCity: 'Lagos',
     targetCountry: 'Nigeria',
     targetCoordinates: [3.3792, 6.5244],
     mode: 'Cold-Chain Air',
@@ -622,7 +622,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     targetCoordinates: [-0.1278, 51.5074],
     mode: 'Air Priority',
     transitDays: '24 Hours',
-    frequency: 'Daily NHS Hospital Supply'
+    frequency: 'Daily Health Authority Supply'
   },
   {
     id: 'route-eu-frankfurt',
@@ -745,7 +745,7 @@ export interface FeaturedDestination {
   leadTimeOcean?: string;
   coldChainReady: boolean;
   regulatoryBody: string;
-  keyInstitutions: string;
+  coverageZones: string;
   coordinates: [number, number];
   inquiryLabel: string;
 }
@@ -764,7 +764,7 @@ export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
     leadTimeOcean: '12–15 Days (Transit via Kolkata Port / Birgunj Dry Port)',
     coldChainReady: true,
     regulatoryBody: 'Nepal Department of Drug Administration (DDA) Compliant',
-    keyInstitutions: 'Tribhuvan University Teaching Hospital, BP Koirala Institute, Bir Hospital, Private Surgical Centers',
+    coverageZones: 'Kathmandu Valley, Gandaki, Koshi & Nationwide Medical Supply Networks',
     coordinates: [85.3240, 27.7172],
     inquiryLabel: 'Nepal Medical Supplies Corridor'
   },
@@ -781,7 +781,7 @@ export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
     leadTimeOcean: '10–14 Days Maritime Containerized Freight',
     coldChainReady: true,
     regulatoryBody: 'Pharmacy and Poisons Board (PPB) & Kenya Bureau of Standards (KEBS / PVoC)',
-    keyInstitutions: 'Kenyatta National Hospital, Nairobi Hospital, Aga Khan University Hospital, Mission for Essential Drugs (MEDS)',
+    coverageZones: 'Nairobi Metropolitan, Coast, Western & Rift Valley Health Hubs',
     coordinates: [36.8219, -1.2921],
     inquiryLabel: 'Kenya & East Africa Distribution'
   },
@@ -792,15 +792,15 @@ export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
     region: 'Africa',
     hubId: 'mena-hub',
     hubName: 'Dubai & African Regional Gateway',
-    cities: 'Kigali, Huye (Butare), Musanze, Rubavu',
+    cities: 'Kigali, Huye, Musanze, Rubavu',
     airportsPorts: 'Kigali International Airport (KGL Dedicated Cold-Chain Cargo)',
     leadTimeAir: '36–48 Hours Monitored Air Express',
     leadTimeOcean: '20–25 Days (Corridor via Mombasa/Dar es Salaam to Kigali Dry Port)',
     coldChainReady: true,
     regulatoryBody: 'Rwanda Food and Drugs Authority (Rwanda FDA / RFDA) Validated',
-    keyInstitutions: 'King Faisal Hospital Kigali, Rwanda Biomedical Centre (RBC), CHUK (Centre Hospitalier Universitaire de Kigali)',
+    coverageZones: 'Kigali Central, Northern, Southern & Western Provincial Health Corridors',
     coordinates: [30.0619, -1.9441],
-    inquiryLabel: 'Rwanda Hospital & Vaccine Supply'
+    inquiryLabel: 'Rwanda Medical Supplies Network'
   },
   {
     id: 'south-africa',
@@ -815,9 +815,9 @@ export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
     leadTimeOcean: '14–18 Days Deep-Sea Ocean Liners',
     coldChainReady: true,
     regulatoryBody: 'South African Health Products Regulatory Authority (SAHPRA) & SARS Customs',
-    keyInstitutions: 'Netcare Group, Life Healthcare, Mediclinic Southern Africa, National Health Laboratory Service (NHLS)',
+    coverageZones: 'Gauteng, Western Cape, KwaZulu-Natal & Eastern Cape Healthcare Networks',
     coordinates: [28.0473, -26.2041],
-    inquiryLabel: 'South Africa National Hospital Network'
+    inquiryLabel: 'South Africa Medical Distribution Network'
   },
   {
     id: 'nigeria',
@@ -832,7 +832,7 @@ export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
     leadTimeOcean: '16–22 Days Ocean Container Liners',
     coldChainReady: true,
     regulatoryBody: 'National Agency for Food & Drug Administration and Control (NAFDAC) Registered',
-    keyInstitutions: 'Lagos University Teaching Hospital (LUTH), National Hospital Abuja, University College Hospital Ibadan',
+    coverageZones: 'Lagos Commercial Center, Federal Capital Territory (Abuja), Niger Delta & Northern Region',
     coordinates: [3.3792, 6.5244],
     inquiryLabel: 'Nigeria & West Africa Medical Corridor'
   },
@@ -849,7 +849,7 @@ export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
     leadTimeOcean: '4–6 Days Maritime Feeder Line',
     coldChainReady: true,
     regulatoryBody: 'Central Drugs Standard Control Organisation (CDSCO) & Indian Customs ICEGATE',
-    keyInstitutions: 'AIIMS (All India Institute of Medical Sciences), Apollo Hospitals, Fortis Healthcare, Max Healthcare',
+    coverageZones: 'National Capital Region (NCR), Western, Southern & Eastern Tier-1 Healthcare Hubs',
     coordinates: [77.2090, 28.6139],
     inquiryLabel: 'India Tertiary Healthcare Supply'
   }

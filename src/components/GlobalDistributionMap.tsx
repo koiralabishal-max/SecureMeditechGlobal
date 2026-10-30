@@ -854,11 +854,11 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                     <div className="text-[11px] text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
-                      <Building2 className="w-3.5 h-3.5 text-[#38B6FF]" />
-                      <span>Supplied Hospital Networks & Institutional End-Users</span>
+                      <MapPin className="w-3.5 h-3.5 text-[#38B6FF]" />
+                      <span>Regional Healthcare Delivery Zones</span>
                     </div>
                     <div className="text-xs text-slate-300 leading-relaxed">
-                      {selectedDestination.keyInstitutions}
+                      {selectedDestination.coverageZones}
                     </div>
                   </div>
                 </div>
@@ -958,7 +958,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
                     <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                       <div className="text-[11px] text-slate-400 mb-1 font-semibold">
-                        Served Regional Hospital Markets:
+                        Served Regional Distribution Markets:
                       </div>
                       <ul className="text-xs text-slate-300 space-y-1">
                         {selectedHub.servedMarkets.map((mkt, idx) => (
@@ -984,7 +984,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 onClick={() => handleInquiryClick(`${selectedDestination.name} Medical Corridor (${selectedDestination.cities})`)}
                 className="w-full py-2.5 px-4 bg-[#10B981] hover:bg-[#059669] text-[#071E40] text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5"
               >
-                <span>Request {selectedDestination.name} Hospital Supply Quote</span>
+                <span>Request {selectedDestination.name} Distribution Quote</span>
                 <ArrowUpRight className="w-4 h-4" />
               </button>
             ) : (
@@ -1008,7 +1008,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] uppercase tracking-wider mb-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Direct Hospital Supply Network</span>
+              <span>Direct Healthcare Distribution Network</span>
             </div>
             <h4 className="text-lg sm:text-xl font-bold text-white">
               Dedicated Medical Supply Corridors: Nepal, Kenya, Rwanda, South Africa, Nigeria & India
@@ -1050,8 +1050,8 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                     <span className="leading-snug">{dest.regulatoryBody}</span>
                   </div>
                   <div className="flex items-start gap-1.5">
-                    <Building2 className="w-3 h-3 text-[#38B6FF] shrink-0 mt-0.5" />
-                    <span className="leading-snug text-slate-400 line-clamp-2">{dest.keyInstitutions}</span>
+                    <MapPin className="w-3 h-3 text-[#38B6FF] shrink-0 mt-0.5" />
+                    <span className="leading-snug text-slate-400 line-clamp-2">{dest.coverageZones}</span>
                   </div>
                 </div>
               </div>
