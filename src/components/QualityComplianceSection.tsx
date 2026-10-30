@@ -106,13 +106,13 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
           <div className="relative z-10 max-w-3xl mb-10">
             <div className="flex items-center gap-2 text-xs font-bold text-[#38B6FF] tracking-wider uppercase mb-2">
               <Globe className="w-4 h-4" />
-              <span>International Medical Logistics Chain</span>
+              <span>International Medical Supply & Logistics Network</span>
             </div>
             <h3 className="text-xl sm:text-3xl font-extrabold text-white">
-              Resilient Delivery to 65+ Nations with Complete Cold-Chain Integrity
+              Direct Hospital Distribution Across Nepal, Kenya, Rwanda, South Africa, Nigeria, India & 65+ Global Markets
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
-              Medical disposables, critical reagents, and hospital equipment require unbroken chain of custody. We provide comprehensive logistics, temperature monitoring, and incoterms (FOB, CIF, DDP, EXW) tailored to your healthcare network.
+              From our global gateways and African/South Asian transit corridors, we supply tertiary hospitals and ministries of health with active 2°C–8°C cold-chain verification, customs pre-clearance (SAHPRA, Kenya PPB, Rwanda FDA, NAFDAC, CDSCO, Nepal DDA), and guaranteed 24–48 hour priority air dispatch.
             </p>
           </div>
 

@@ -71,6 +71,13 @@ const FAQ_DATA: FaqItem[] = [
     answer: 'Every consignment is accompanied by a comprehensive regulatory pack: Commercial Invoice, Packing List with batch/lot numbers and expiration dates, Certificate of Origin (COO), Certificate of Analysis (CoA), and Batch Ethylene Oxide (EtO) / Gamma Sterilization Validation Certificates. We also provide consular legalization and embassy stamping when required.',
     highlights: ['Batch-specific Certificates of Analysis', 'Sterilization Validation Certificates', 'Full customs dossier provided ahead of arrival']
   },
+  {
+    id: 'shipping-regional-coverage',
+    category: 'International Shipping',
+    question: 'Do you provide direct hospital deliveries to Nepal, Kenya, Rwanda, South Africa, Nigeria, and India?',
+    answer: 'Yes. We operate dedicated medical supply corridors connecting our strategic logistics hubs to healthcare institutions in Nepal (Kathmandu Valley & regional centers), Kenya (Nairobi & Mombasa), Rwanda (Kigali King Faisal Hospital & RBC), South Africa (Johannesburg, Cape Town & Netcare networks), Nigeria (Lagos & Abuja referral hospitals), and India (New Delhi AIIMS & Apollo networks). Every consignment includes pre-cleared regulatory paperwork (Nepal DDA, Kenya PPB, Rwanda FDA, SAHPRA, NAFDAC, CDSCO), active 2°C–8°C cold-chain tracking, and bonded customs clearance with priority air dispatch in 24 to 48 hours.',
+    highlights: ['Direct corridors for Nepal, Kenya, Rwanda, South Africa, Nigeria & India', 'Local health authority compliance (SAHPRA, PPB, RFDA, NAFDAC, CDSCO, DDA)', 'Continuous 2°C–8°C temperature monitoring & bonded customs']
+  },
 
   // 3. OEM & Manufacturing Minimums
   {

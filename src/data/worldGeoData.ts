@@ -258,20 +258,49 @@ export const SHIPPING_HUBS: ShippingHub[] = [
   },
   {
     id: 'mena-hub',
-    name: 'MENA & African Transit Hub',
+    name: 'MENA, South Asia & Africa Transit Hub',
     city: 'Dubai (JAFZA)',
     country: 'United Arab Emirates',
-    region: 'Middle East & Africa',
+    region: 'Middle East, Africa & South Asia',
     coordinates: [55.2708, 25.2048],
     type: 'Regional Distribution Gateway',
-    customsFacility: 'Jebel Ali Freezone (JAFZA) Medical Bonded Logistics Park',
-    transitAir: '24–48 Hours Across GCC & East Africa',
-    transitOcean: '8–14 Days Regional Feeder Vessel Network',
-    certifications: ['UAE MOHAP Registered', 'Saudi SFDA Compliant', 'ISO 13485'],
-    keyIncoterms: ['CIF', 'FOB', 'DDP', 'CFR'],
-    tempStorage: 'Insulated pharma-grade staging with 24/7 cold monitoring',
-    servedMarkets: ['Saudi Arabia, UAE, Qatar, Oman', 'East & North Africa Ministries of Health', 'Levant Regional Hospitals'],
-    annualConsignments: '16,800+ Orders'
+    customsFacility: 'Jebel Ali Freezone (JAFZA) Medical Bonded Logistics Park & DWC Air Cargo Ramp',
+    transitAir: '18–36 Hours Across South Asia & East/Central Africa',
+    transitOcean: '6–12 Days Regional Feeder & Container Liners',
+    certifications: ['UAE MOHAP Registered', 'Saudi SFDA Compliant', 'ISO 13485:2016', 'WHO GDP Validated'],
+    keyIncoterms: ['CIF', 'FOB', 'DDP', 'CFR', 'DAP'],
+    tempStorage: 'Insulated pharma-grade staging with 24/7 cold monitoring (2°C–8°C)',
+    servedMarkets: [
+      'Nepal (Kathmandu Tribhuvan Corridor)',
+      'India (New Delhi & Mumbai Tertiary Centers)',
+      'Kenya (Nairobi & Mombasa East Africa Corridor)',
+      'Rwanda (Kigali King Faisal & RBC Supply Line)',
+      'Nigeria (Lagos & Abuja West Africa Hub)',
+      'GCC & Levant Regional Health Ministries'
+    ],
+    annualConsignments: '22,400+ Consignments'
+  },
+  {
+    id: 'africa-hub',
+    name: 'African Regional Logistics Gateway',
+    city: 'Johannesburg / Nairobi',
+    country: 'South Africa & Kenya',
+    region: 'Sub-Saharan Africa',
+    coordinates: [28.0473, -26.2041],
+    type: 'Regional Distribution Gateway',
+    customsFacility: 'O.R. Tambo (JNB) & Jomo Kenyatta (NBO) Bonded Medical Freight Depots',
+    transitAir: '12–36 Hours Regional Hospital Network Transit',
+    transitOcean: 'Durban, Cape Town & Mombasa Deep-Water Maritime Terminals',
+    certifications: ['SAHPRA Approved', 'Kenya PPB Compliant', 'Rwanda FDA Registered', 'NAFDAC Cleared', 'ISO 13485:2016'],
+    keyIncoterms: ['DDP', 'CIF', 'FOB', 'DAP'],
+    tempStorage: 'Pharma-grade 2°C–8°C cold stores with uninterrupted power generator back-up',
+    servedMarkets: [
+      'South Africa (Netcare, Life Healthcare, Mediclinic, NHLS)',
+      'Kenya (Kenyatta National Hospital, Nairobi Hospital, MEDS)',
+      'Rwanda (King Faisal Hospital, Rwanda Biomedical Centre)',
+      'Nigeria (Lagos University Teaching Hospital, National Hospital Abuja)'
+    ],
+    annualConsignments: '16,200+ Consignments'
   },
   {
     id: 'apac-hub',
@@ -282,12 +311,12 @@ export const SHIPPING_HUBS: ShippingHub[] = [
     coordinates: [103.8198, 1.3521],
     type: 'Maritime Consolidation Hub',
     customsFacility: 'Changi Airport Airfreight Centre (CAC) & PSA Seaport',
-    transitAir: '18–36 Hours Express ASEAN & Australasia',
+    transitAir: '18–36 Hours Express ASEAN, Australasia & South Asia',
     transitOcean: '6–10 Days Intra-Asia Feeder Lines',
     certifications: ['HSA GDP Certified', 'ISO 13485:2016', 'TGA Compliant'],
     keyIncoterms: ['FOB', 'CIF', 'EXW', 'DAP'],
     tempStorage: 'Chilled & ambient ISO 9001 certified medical distribution center',
-    servedMarkets: ['Australia, New Zealand', 'Japan, South Korea, Taiwan', 'Indonesia, Philippines, Malaysia'],
+    servedMarkets: ['India, Nepal & South Asia', 'Australia, New Zealand', 'Japan, South Korea, Taiwan', 'Indonesia, Philippines, Malaysia'],
     annualConsignments: '29,400+ Shipments'
   },
   {
@@ -299,7 +328,7 @@ export const SHIPPING_HUBS: ShippingHub[] = [
     coordinates: [114.0579, 22.5431],
     type: 'Manufacturing & QC Center',
     customsFacility: 'Direct Customs Export Terminal & Bonded Cleanroom Logistics',
-    transitAir: 'Daily Air Cargo Charters to US / EU / MENA',
+    transitAir: 'Daily Air Cargo Charters to US / EU / MENA / Africa',
     transitOcean: 'Direct FCL/LCL Container Terminal Loading',
     certifications: ['ISO 13485:2016', 'Class 100,000 Cleanroom', 'EO & Gamma Sterilization'],
     keyIncoterms: ['FOB', 'CIF', 'EXW'],
@@ -336,6 +365,7 @@ export interface ShippingRoute {
   mode: 'Air Priority' | 'Cold-Chain Air' | 'Ocean Container' | 'Inter-Hub Corridor';
   transitDays: string;
   frequency: string;
+  isPriorityDestination?: boolean;
 }
 
 export const SHIPPING_ROUTES: ShippingRoute[] = [
@@ -385,6 +415,17 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     frequency: 'Daily Shuttle Express'
   },
   {
+    id: 'route-mena-africa-trunk',
+    sourceHubId: 'mena-hub',
+    targetHubId: 'africa-hub',
+    targetCity: 'Johannesburg / Nairobi',
+    targetCountry: 'South Africa & Kenya',
+    targetCoordinates: [28.0473, -26.2041],
+    mode: 'Inter-Hub Corridor',
+    transitDays: '24 Hours Air Cargo',
+    frequency: 'Daily Scheduled Trunk Flights'
+  },
+  {
     id: 'route-usa-latam',
     sourceHubId: 'usa-hq',
     targetHubId: 'latam-hub',
@@ -395,6 +436,151 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     transitDays: '36–48 Hours',
     frequency: '3x Weekly Cold-Chain Flights'
   },
+
+  // 1. NEPAL CORRIDOR (Kathmandu / Tribhuvan)
+  {
+    id: 'route-mena-nepal',
+    sourceHubId: 'mena-hub',
+    targetCity: 'Kathmandu (Tribhuvan Medical Corridor)',
+    targetCountry: 'Nepal',
+    targetCoordinates: [85.3240, 27.7172],
+    mode: 'Cold-Chain Air',
+    transitDays: '24–48 Hours',
+    frequency: 'Daily Direct Air Cargo to Tribhuvan Int (KTM)',
+    isPriorityDestination: true
+  },
+  {
+    id: 'route-apac-nepal',
+    sourceHubId: 'apac-hub',
+    targetCity: 'Kathmandu / Pokhara',
+    targetCountry: 'Nepal',
+    targetCoordinates: [85.3240, 27.7172],
+    mode: 'Air Priority',
+    transitDays: '36 Hours',
+    frequency: 'Daily Scheduled Courier & Air Freight',
+    isPriorityDestination: true
+  },
+
+  // 2. INDIA CORRIDOR (New Delhi & Mumbai)
+  {
+    id: 'route-mena-india-delhi',
+    sourceHubId: 'mena-hub',
+    targetCity: 'New Delhi (AIIMS / North India)',
+    targetCountry: 'India',
+    targetCoordinates: [77.2090, 28.6139],
+    mode: 'Air Priority',
+    transitDays: '18–24 Hours',
+    frequency: 'Daily Dedicated Cargo Flights to IGI Airport (DEL)',
+    isPriorityDestination: true
+  },
+  {
+    id: 'route-apac-india-mumbai',
+    sourceHubId: 'apac-hub',
+    targetCity: 'Mumbai / Apollo Network',
+    targetCountry: 'India',
+    targetCoordinates: [72.8777, 19.0760],
+    mode: 'Air Priority',
+    transitDays: '24–36 Hours Air / 4 Days Ocean',
+    frequency: 'Daily Air Express & Direct Container Liners (JNPT)',
+    isPriorityDestination: true
+  },
+
+  // 3. KENYA CORRIDOR (Nairobi / Mombasa)
+  {
+    id: 'route-mena-kenya',
+    sourceHubId: 'mena-hub',
+    targetCity: 'Nairobi / Mombasa',
+    targetCountry: 'Kenya',
+    targetCoordinates: [36.8219, -1.2921],
+    mode: 'Cold-Chain Air',
+    transitDays: '24–36 Hours Air / 10 Days Ocean',
+    frequency: 'Daily Scheduled Flights to JKIA & Weekly Mombasa Maritime',
+    isPriorityDestination: true
+  },
+  {
+    id: 'route-africa-kenya',
+    sourceHubId: 'africa-hub',
+    targetCity: 'Nairobi (Kenyatta National Hospital & MEDS)',
+    targetCountry: 'Kenya',
+    targetCoordinates: [36.8219, -1.2921],
+    mode: 'Air Priority',
+    transitDays: '12–18 Hours',
+    frequency: 'Daily Express Air Cargo & Customs Bonded Road',
+    isPriorityDestination: true
+  },
+
+  // 4. RWANDA CORRIDOR (Kigali / King Faisal & RBC)
+  {
+    id: 'route-mena-rwanda',
+    sourceHubId: 'mena-hub',
+    targetCity: 'Kigali (King Faisal & RBC Corridor)',
+    targetCountry: 'Rwanda',
+    targetCoordinates: [30.0619, -1.9441],
+    mode: 'Cold-Chain Air',
+    transitDays: '36–48 Hours',
+    frequency: '3x Weekly Monitored Cold-Chain to Kigali Int (KGL)',
+    isPriorityDestination: true
+  },
+  {
+    id: 'route-africa-rwanda',
+    sourceHubId: 'africa-hub',
+    targetCity: 'Kigali (National Referral Hospitals)',
+    targetCountry: 'Rwanda',
+    targetCoordinates: [30.0619, -1.9441],
+    mode: 'Cold-Chain Air',
+    transitDays: '18–24 Hours',
+    frequency: 'Scheduled Regional Air Feeder',
+    isPriorityDestination: true
+  },
+
+  // 5. SOUTH AFRICA CORRIDOR (Johannesburg / Cape Town / Durban)
+  {
+    id: 'route-mena-southafrica',
+    sourceHubId: 'mena-hub',
+    targetCity: 'Johannesburg / Cape Town',
+    targetCountry: 'South Africa',
+    targetCoordinates: [28.0473, -26.2041],
+    mode: 'Air Priority',
+    transitDays: '36–48 Hours Air / 14–18 Days Ocean',
+    frequency: 'Daily Flights (O.R. Tambo) & Weekly Liners (Durban/Cape Town)',
+    isPriorityDestination: true
+  },
+  {
+    id: 'route-africa-southafrica-local',
+    sourceHubId: 'africa-hub',
+    targetCity: 'Cape Town & Durban Health Networks',
+    targetCountry: 'South Africa',
+    targetCoordinates: [18.4241, -33.9249],
+    mode: 'Air Priority',
+    transitDays: '12–24 Hours Domestic Dispatch',
+    frequency: 'Daily Hospital Direct Feeder',
+    isPriorityDestination: true
+  },
+
+  // 6. NIGERIA CORRIDOR (Lagos / Abuja)
+  {
+    id: 'route-mena-nigeria',
+    sourceHubId: 'mena-hub',
+    targetCity: 'Lagos / Abuja',
+    targetCountry: 'Nigeria',
+    targetCoordinates: [3.3792, 6.5244],
+    mode: 'Air Priority',
+    transitDays: '48 Hours Air / 18 Days Ocean',
+    frequency: '4x Weekly Air Cargo (LOS) & Bi-weekly to Apapa Port',
+    isPriorityDestination: true
+  },
+  {
+    id: 'route-africa-nigeria',
+    sourceHubId: 'africa-hub',
+    targetCity: 'Lagos (Ikeja Medical Complex & LUTH)',
+    targetCountry: 'Nigeria',
+    targetCoordinates: [3.3792, 6.5244],
+    mode: 'Cold-Chain Air',
+    transitDays: '24–36 Hours',
+    frequency: '3x Weekly Regional Air Flights',
+    isPriorityDestination: true
+  },
+
   // North America Regional Outward Routes
   {
     id: 'route-usa-ny',
@@ -426,6 +612,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     transitDays: '36 Hours',
     frequency: 'Daily Bonded Transit'
   },
+
   // European Regional Outward Routes
   {
     id: 'route-eu-london',
@@ -458,16 +645,6 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     frequency: 'Daily Express'
   },
   {
-    id: 'route-eu-madrid',
-    sourceHubId: 'eu-hub',
-    targetCity: 'Madrid / Barcelona',
-    targetCountry: 'Spain',
-    targetCoordinates: [-3.7038, 40.4168],
-    mode: 'Ocean Container',
-    transitDays: '48 Hours Express Road / 4 Days Ocean',
-    frequency: 'Weekly Multi-Container'
-  },
-  {
     id: 'route-eu-nordics',
     sourceHubId: 'eu-hub',
     targetCity: 'Stockholm / Copenhagen',
@@ -477,7 +654,8 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     transitDays: '24–36 Hours',
     frequency: 'Daily Monitored Flight'
   },
-  // MENA & African Routes
+
+  // Additional MENA Routes
   {
     id: 'route-mena-riyadh',
     sourceHubId: 'mena-hub',
@@ -498,27 +676,8 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     transitDays: '48 Hours Air / 5 Days Red Sea Feeder',
     frequency: 'Daily Air & Bi-weekly Sea'
   },
-  {
-    id: 'route-mena-nairobi',
-    sourceHubId: 'mena-hub',
-    targetCity: 'Nairobi',
-    targetCountry: 'Kenya / East Africa',
-    targetCoordinates: [36.8219, -1.2921],
-    mode: 'Cold-Chain Air',
-    transitDays: '36 Hours',
-    frequency: '3x Weekly Scheduled Cargo'
-  },
-  {
-    id: 'route-mena-joburg',
-    sourceHubId: 'mena-hub',
-    targetCity: 'Johannesburg / Cape Town',
-    targetCountry: 'South Africa',
-    targetCoordinates: [28.0473, -26.2041],
-    mode: 'Air Priority',
-    transitDays: '48 Hours',
-    frequency: '3x Weekly Dedicated Flights'
-  },
-  // APAC Regional Routes
+
+  // Additional APAC Routes
   {
     id: 'route-apac-sydney',
     sourceHubId: 'apac-hub',
@@ -549,16 +708,7 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
     transitDays: '24 Hours Air / 3 Days Seaport',
     frequency: 'Daily Feeder Services'
   },
-  {
-    id: 'route-apac-mumbai',
-    sourceHubId: 'apac-hub',
-    targetCity: 'Mumbai / New Delhi',
-    targetCountry: 'India',
-    targetCoordinates: [72.8777, 19.0760],
-    mode: 'Air Priority',
-    transitDays: '24–36 Hours',
-    frequency: 'Daily Scheduled Dispatch'
-  },
+
   // LATAM Regional Routes
   {
     id: 'route-latam-bogota',
@@ -582,9 +732,132 @@ export const SHIPPING_ROUTES: ShippingRoute[] = [
   }
 ];
 
+export interface FeaturedDestination {
+  id: string;
+  name: string;
+  flag: string;
+  region: 'Africa' | 'South Asia';
+  hubId: string;
+  hubName: string;
+  cities: string;
+  airportsPorts: string;
+  leadTimeAir: string;
+  leadTimeOcean?: string;
+  coldChainReady: boolean;
+  regulatoryBody: string;
+  keyInstitutions: string;
+  coordinates: [number, number];
+  inquiryLabel: string;
+}
+
+export const FEATURED_DISTRIBUTION_TARGETS: FeaturedDestination[] = [
+  {
+    id: 'nepal',
+    name: 'Nepal',
+    flag: '🇳🇵',
+    region: 'South Asia',
+    hubId: 'mena-hub',
+    hubName: 'Dubai & Regional Hubs',
+    cities: 'Kathmandu, Pokhara, Biratnagar, Lalitpur',
+    airportsPorts: 'Tribhuvan International Airport (KTM Cargo Terminal)',
+    leadTimeAir: '24–48 Hours Priority Air Freight',
+    leadTimeOcean: '12–15 Days (Transit via Kolkata Port / Birgunj Dry Port)',
+    coldChainReady: true,
+    regulatoryBody: 'Nepal Department of Drug Administration (DDA) Compliant',
+    keyInstitutions: 'Tribhuvan University Teaching Hospital, BP Koirala Institute, Bir Hospital, Private Surgical Centers',
+    coordinates: [85.3240, 27.7172],
+    inquiryLabel: 'Nepal Medical Supplies Corridor'
+  },
+  {
+    id: 'kenya',
+    name: 'Kenya',
+    flag: '🇰🇪',
+    region: 'Africa',
+    hubId: 'mena-hub',
+    hubName: 'Dubai & African Regional Gateway',
+    cities: 'Nairobi, Mombasa, Kisumu, Eldoret',
+    airportsPorts: 'Jomo Kenyatta Int Airport (NBO) & Port of Mombasa (Kilindini Harbour)',
+    leadTimeAir: '24–36 Hours Direct Air Cargo',
+    leadTimeOcean: '10–14 Days Maritime Containerized Freight',
+    coldChainReady: true,
+    regulatoryBody: 'Pharmacy and Poisons Board (PPB) & Kenya Bureau of Standards (KEBS / PVoC)',
+    keyInstitutions: 'Kenyatta National Hospital, Nairobi Hospital, Aga Khan University Hospital, Mission for Essential Drugs (MEDS)',
+    coordinates: [36.8219, -1.2921],
+    inquiryLabel: 'Kenya & East Africa Distribution'
+  },
+  {
+    id: 'rwanda',
+    name: 'Rwanda',
+    flag: '🇷🇼',
+    region: 'Africa',
+    hubId: 'mena-hub',
+    hubName: 'Dubai & African Regional Gateway',
+    cities: 'Kigali, Huye (Butare), Musanze, Rubavu',
+    airportsPorts: 'Kigali International Airport (KGL Dedicated Cold-Chain Cargo)',
+    leadTimeAir: '36–48 Hours Monitored Air Express',
+    leadTimeOcean: '20–25 Days (Corridor via Mombasa/Dar es Salaam to Kigali Dry Port)',
+    coldChainReady: true,
+    regulatoryBody: 'Rwanda Food and Drugs Authority (Rwanda FDA / RFDA) Validated',
+    keyInstitutions: 'King Faisal Hospital Kigali, Rwanda Biomedical Centre (RBC), CHUK (Centre Hospitalier Universitaire de Kigali)',
+    coordinates: [30.0619, -1.9441],
+    inquiryLabel: 'Rwanda Hospital & Vaccine Supply'
+  },
+  {
+    id: 'south-africa',
+    name: 'South Africa',
+    flag: '🇿🇦',
+    region: 'Africa',
+    hubId: 'africa-hub',
+    hubName: 'African Regional Gateway (Johannesburg)',
+    cities: 'Johannesburg, Cape Town, Durban, Pretoria, Gqeberha',
+    airportsPorts: 'O.R. Tambo Int Airport (JNB) & Ports of Durban & Cape Town',
+    leadTimeAir: '24–48 Hours Priority Air Freight',
+    leadTimeOcean: '14–18 Days Deep-Sea Ocean Liners',
+    coldChainReady: true,
+    regulatoryBody: 'South African Health Products Regulatory Authority (SAHPRA) & SARS Customs',
+    keyInstitutions: 'Netcare Group, Life Healthcare, Mediclinic Southern Africa, National Health Laboratory Service (NHLS)',
+    coordinates: [28.0473, -26.2041],
+    inquiryLabel: 'South Africa National Hospital Network'
+  },
+  {
+    id: 'nigeria',
+    name: 'Nigeria',
+    flag: '🇳🇬',
+    region: 'Africa',
+    hubId: 'mena-hub',
+    hubName: 'Dubai & African Regional Gateway',
+    cities: 'Lagos, Abuja, Port Harcourt, Ibadan, Kano',
+    airportsPorts: 'Murtala Muhammed Int Airport (LOS) & Lagos Apapa / Tin Can Island Ports',
+    leadTimeAir: '36–48 Hours Expedited Air Cargo',
+    leadTimeOcean: '16–22 Days Ocean Container Liners',
+    coldChainReady: true,
+    regulatoryBody: 'National Agency for Food & Drug Administration and Control (NAFDAC) Registered',
+    keyInstitutions: 'Lagos University Teaching Hospital (LUTH), National Hospital Abuja, University College Hospital Ibadan',
+    coordinates: [3.3792, 6.5244],
+    inquiryLabel: 'Nigeria & West Africa Medical Corridor'
+  },
+  {
+    id: 'india',
+    name: 'India',
+    flag: '🇮🇳',
+    region: 'South Asia',
+    hubId: 'mena-hub',
+    hubName: 'Dubai Hub & Singapore APAC Gateway',
+    cities: 'New Delhi, Mumbai, Bengaluru, Chennai, Hyderabad',
+    airportsPorts: 'Indira Gandhi Int Airport (DEL Cargo) & JNPT Port (Nhava Sheva Mumbai)',
+    leadTimeAir: '18–24 Hours Direct Air Cargo',
+    leadTimeOcean: '4–6 Days Maritime Feeder Line',
+    coldChainReady: true,
+    regulatoryBody: 'Central Drugs Standard Control Organisation (CDSCO) & Indian Customs ICEGATE',
+    keyInstitutions: 'AIIMS (All India Institute of Medical Sciences), Apollo Hospitals, Fortis Healthcare, Max Healthcare',
+    coordinates: [77.2090, 28.6139],
+    inquiryLabel: 'India Tertiary Healthcare Supply'
+  }
+];
+
 export const GLOBAL_COVERAGE_STATS = [
-  { value: '65+', label: 'Nations Served', sub: 'Direct hospital deliveries across 5 continents' },
-  { value: '6 Hubs', label: 'Strategic Gateways', sub: 'US HQ, EU, MENA, APAC, China & LATAM' },
-  { value: '< 48h', label: 'Emergency Air Dispatch', sub: 'Guaranteed Priority customs ramp departure' },
-  { value: '100%', label: 'Cold-Chain Traceability', sub: 'Calibrated dataloggers on every consignment' }
+  { value: '65+', label: 'Nations Served', sub: 'Direct hospital deliveries across Africa, South Asia, Americas & Europe' },
+  { value: '7 Gateways', label: 'Strategic Logistics Hubs', sub: 'US HQ, EU, MENA, Africa, APAC, China & LATAM' },
+  { value: '< 24–48h', label: 'Emergency Air Dispatch', sub: 'Priority customs ramp release to Nepal, Kenya, Rwanda, SA, Nigeria & India' },
+  { value: '100%', label: 'Cold-Chain Traceability', sub: 'Calibrated dataloggers on every consignment (2°C–8°C)' }
 ];
