@@ -79,7 +79,7 @@ export const TopBar: React.FC = () => {
 
           {/* Instagram */}
           <a 
-            href="https://www.instagram.com/securemeditechglobal" 
+            href="https://www.instagram.com/securedmeditech?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw==" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Secure MediTech Global Instagram"
