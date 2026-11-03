@@ -198,7 +198,7 @@ export const PRODUCTS: Product[] = [
     packaging: '1 pc/sterile peel pack, 10 pcs/box, 100 pcs/export carton',
     minOrderQty: '200 pcs',
     leadTime: '3-5 business days',
-    image: '/assets/images/product_endotracheal_tube_1792988225400.jpg',
+    image: '/assets/aistudio/image_1fee0fc7.png',
     featured: true
   },
 
