@@ -20,6 +20,7 @@ import { RfqModal } from './components/RfqModal';
 import { SpecSheetModal } from './components/SpecSheetModal';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { ChatBot } from './components/ChatBot';
+import { FloatingPriceCalculatorWidget } from './components/FloatingPriceCalculatorWidget';
 import { Toast } from './components/Toast';
 
 export default function App() {
@@ -112,6 +113,22 @@ export default function App() {
     }
   };
 
+  const handleTransferFromCalculator = (product: Product, quantity: number, notes: string) => {
+    setQuoteItems((prev) => {
+      const existing = prev.find((item) => item.product.id === product.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity, customNotes: notes }
+            : item
+        );
+      }
+      return [...prev, { product, quantity, customNotes: notes }];
+    });
+    setIsRfqModalOpen(true);
+    showToast(`Transferred ${quantity.toLocaleString()} units of ${product.name} to RFQ`);
+  };
+
   const quoteItemIds = quoteItems.map((item) => item.product.id);
 
   return (
@@ -164,10 +181,13 @@ export default function App() {
         <ContactSection prefilledHub={prefilledHub} />
       </main>
 
-      {/* 10. Comprehensive Footer */}
-      <Footer />
+      {/* 10. Comprehensive Footer with Built-in Wholesale Price Estimation Calculator */}
+      <Footer onTransferToRfq={handleTransferFromCalculator} />
 
-      {/* AI Procurement Specialist Multi-turn Chatbot */}
+      {/* Floating Quick Price Calculator Widget (Bottom-Left) */}
+      <FloatingPriceCalculatorWidget onTransferToRfq={handleTransferFromCalculator} />
+
+      {/* AI Procurement Specialist Multi-turn Chatbot (Bottom-Right) */}
       <ChatBot
         isOpen={isChatOpen}
         onToggle={() => setIsChatOpen((prev) => !prev)}

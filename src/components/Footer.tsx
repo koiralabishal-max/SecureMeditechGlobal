@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Mail, ArrowRight, CheckCircle2, Globe2 } from 'lucide-react';
+import { ShieldCheck, Mail, ArrowRight, CheckCircle2, Globe2, Calculator } from 'lucide-react';
+import { PriceEstimationCalculator } from './PriceEstimationCalculator';
+import { Product } from '../types';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onTransferToRfq?: (product: Product, quantity: number, notes: string) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
@@ -56,6 +62,31 @@ export const Footer: React.FC = () => {
               </form>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* B2B Wholesale Price Estimation Calculator Tool Section */}
+      <div id="price-calculator" className="border-b border-slate-800 py-12 bg-[#051730]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#38B6FF] mb-1">
+                <Calculator className="w-4 h-4" />
+                <span>Hospital & Institutional Procurement Tool</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                Budgetary Price & Volume Calculator
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+                Simulate bulk order volumes across clinical categories to estimate FOB, CIF, or DDP budgetary ranges and volume tier concessions before placing a formal RFQ.
+              </p>
+            </div>
+            <div className="text-xs text-slate-400 font-mono">
+              Incoterms 2020 · CE MDR & ISO 13485 Verified
+            </div>
+          </div>
+
+          <PriceEstimationCalculator onTransferToRfq={onTransferToRfq} />
         </div>
       </div>
 
@@ -245,6 +276,12 @@ export const Footer: React.FC = () => {
               <li>
                 <a href="#faq" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF]">
                   Procurement & Logistics FAQ
+                </a>
+              </li>
+              <li>
+                <a href="#price-calculator" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF] flex items-center gap-1 font-medium">
+                  <Calculator className="w-3.5 h-3.5" />
+                  <span>Wholesale Price Estimator</span>
                 </a>
               </li>
             </ul>
