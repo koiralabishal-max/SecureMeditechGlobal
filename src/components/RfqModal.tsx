@@ -45,9 +45,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
     const errors: { [key: string]: string } = {};
     if (!formData.fullName.trim()) errors.fullName = 'Contact name is required';
     if (!formData.companyName.trim()) errors.companyName = 'Company / Hospital name is required';
-    if (!formData.workEmail.trim()) {
-      errors.workEmail = 'Work email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail)) {
+    if (formData.workEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail)) {
       errors.workEmail = 'Please provide a valid work email';
     }
     if (!formData.phoneNumber.trim()) errors.phoneNumber = 'Phone / WhatsApp is required';
@@ -133,7 +131,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
             </div>
 
             <div className="text-xs text-slate-500 max-w-md mx-auto leading-relaxed border-t border-slate-100 pt-4">
-              A comprehensive pro-forma quotation including freight estimates, lot batch COA samples, and estimated arrival schedule will be emailed to <strong>{formData.workEmail}</strong> within 12–24 business hours.
+              A comprehensive pro-forma quotation including freight estimates, lot batch COA samples, and estimated arrival schedule will be {formData.workEmail ? <>emailed to <strong>{formData.workEmail}</strong></> : 'sent directly to your provided contact details'} within 12–24 business hours.
             </div>
 
             <div className="pt-2">
@@ -299,7 +297,7 @@ export const RfqModal: React.FC<RfqModalProps> = ({
                 {/* Work Email */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Institutional Email *
+                    Institutional Email <span className="text-slate-400 font-normal">(Optional)</span>
                   </label>
                   <input
                     type="email"

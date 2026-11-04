@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Product, ProductCategory, QuoteItem } from '../types';
+import { PRODUCTS } from '../data/products';
 import { TopBar } from './TopBar';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
@@ -16,6 +17,7 @@ import { RfqModal } from './RfqModal';
 import { SpecSheetModal } from './SpecSheetModal';
 import { ProductDetailModal } from './ProductDetailModal';
 import { ChatBot } from './ChatBot';
+import { FloatingPriceCalculatorWidget } from './FloatingPriceCalculatorWidget';
 import { Toast } from './Toast';
 
 export function HomePage() {
@@ -101,6 +103,22 @@ export function HomePage() {
     }
   };
 
+  const handleTransferFromCalculator = (product: Product, quantity: number, notes: string) => {
+    setQuoteItems((prev) => {
+      const existing = prev.find((item) => item.product.id === product.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity, customNotes: notes }
+            : item
+        );
+      }
+      return [...prev, { product, quantity, customNotes: notes }];
+    });
+    setIsRfqModalOpen(true);
+    showToast(`Transferred ${quantity.toLocaleString()} units of ${product.name} to RFQ`);
+  };
+
   const quoteItemIds = quoteItems.map((item) => item.product.id);
 
   return (
@@ -153,10 +171,13 @@ export function HomePage() {
         <ContactSection prefilledHub={prefilledHub} />
       </main>
 
-      {/* 10. Comprehensive Footer */}
-      <Footer />
+      {/* 10. Comprehensive Footer with Built-in Wholesale Price Estimation Calculator */}
+      <Footer onTransferToRfq={handleTransferFromCalculator} />
 
-      {/* AI Procurement Specialist Multi-turn Chatbot */}
+      {/* Floating Quick Price Calculator Widget (Bottom-Left) */}
+      <FloatingPriceCalculatorWidget onTransferToRfq={handleTransferFromCalculator} />
+
+      {/* AI Procurement Specialist Multi-turn Chatbot (Bottom-Right) */}
       <ChatBot
         isOpen={isChatOpen}
         onToggle={() => setIsChatOpen((prev) => !prev)}

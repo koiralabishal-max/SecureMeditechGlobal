@@ -30,7 +30,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledHub }) 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name || !formData.message) return;
     setSubmitted(true);
     setTimeout(() => {
       // kept in submitted state
@@ -177,12 +177,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledHub }) 
 
                     <div>
                       <label htmlFor="contact-email" className="block text-sm font-semibold text-slate-700 mb-1.5">
-                        Institutional Email *
+                        Institutional Email <span className="text-slate-400 font-normal">(Optional)</span>
                       </label>
                       <input
                         id="contact-email"
                         type="email"
-                        required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="procurement@hospital.org"
