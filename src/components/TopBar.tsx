@@ -66,7 +66,7 @@ export const TopBar: React.FC = () => {
 
           {/* LinkedIn */}
           <a 
-            href="https://www.linkedin.com/company/secure-meditech-global" 
+            href="https://www.linkedin.com/company/144075515/admin/dashboard/" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Secure MediTech Global LinkedIn"
