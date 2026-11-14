@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Product } from '../types';
-import { X, ShieldCheck, Check, Plus, FileDown, Package, Clock, Globe, MessageSquare, Layers } from 'lucide-react';
+import { X, ShieldCheck, Check, Plus, FileDown, Package, Clock, Globe, MessageSquare, Layers, ExternalLink } from 'lucide-react';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -59,7 +60,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               {!imgError ? (
                 <img
                   src={product.image}
-                  alt={product.name}
+                  alt={`${product.name} (${product.sku}) – ${product.category}`}
                   decoding="async"
                   width={480}
                   height={360}
@@ -123,10 +124,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {/* Available Sizes / Variants Section */}
             {product.sizes && product.sizes.length > 0 && (
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1.5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1.5">
                   <Layers className="w-3.5 h-3.5 text-[#38B6FF]" />
                   <span>Available Gauges, Lengths & Sizes</span>
-                </h4>
+                </h3>
                 <div className="bg-slate-50 rounded-xl p-3 border border-slate-200 space-y-1.5">
                   {product.sizes.map((size, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
@@ -140,9 +141,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
             {/* Parameter Table */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                 Technical Attributes & Materials
-              </h4>
+              </h3>
               <div className="rounded-xl border border-slate-200 overflow-hidden text-xs">
                 {Object.entries(product.specs).map(([key, value], idx) => (
                   <div 
@@ -214,6 +215,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 <FileDown className="w-4 h-4 text-[#38B6FF]" />
                 <span>View Full Spec Sheet</span>
               </button>
+
+              <Link
+                href={`/products/${product.id}`}
+                onClick={onClose}
+                className="py-3 px-4 rounded-xl text-xs font-bold text-[#0B2F63] bg-white border border-slate-200 hover:border-[#0B2F63] transition-colors flex items-center justify-center gap-1.5"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-[#38B6FF]" />
+                <span>Product Page</span>
+              </Link>
             </div>
 
           </div>

@@ -365,6 +365,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                 <div className="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 focus-within:border-[#0B2F63] focus-within:ring-2 focus-within:ring-[#0B2F63]/15">
                   <input
                     type="number"
+                    aria-label="Order volume quantity"
                     min={currentConfig.minOrderQty}
                     step={100}
                     value={volume}
@@ -372,7 +373,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                       const val = Math.max(0, parseInt(e.target.value) || 0);
                       setVolume(val);
                     }}
-                    className="w-24 text-right text-xs sm:text-sm font-bold font-mono tabular-nums text-slate-900 outline-none"
+                    className="w-24 text-right text-base sm:text-sm font-bold font-mono tabular-nums text-slate-900 outline-none"
                   />
                   <span className="text-xs font-medium text-slate-500">{currentConfig.unit}</span>
                 </div>

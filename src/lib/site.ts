@@ -1,9 +1,9 @@
 export const SITE = {
   name: 'Secure MediTech Global',
   url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://securemeditechglobal.com').replace(/\/$/, ''),
-  title: 'Secure MediTech Global | Medical Supplies & OEM Contract Manufacturing',
+  title: 'Secure MediTech Global | Medical Supplies & OEM Devices',
   description:
-    'International medical supplier and ISO 13485 OEM contract manufacturer of CVP kits, IV cannulas, endotracheal tubes, Foley & dialysis catheters, surgical OT packs and diagnostics. CE-marked, shipping to 65+ countries.',
+    'ISO 13485 medical supplier & OEM manufacturer of CVP kits, IV cannulas, ET tubes, catheters, surgical packs & diagnostics. CE-marked, shipping to 65+ countries.',
   keywords: [
     'medical supplies wholesale',
     'medical device OEM manufacturer',
@@ -30,7 +30,15 @@ export const SITE = {
   },
   social: [
     'https://www.facebook.com/profile.php?id=61591817960540',
-    'https://www.linkedin.com/company/secure-meditech-global',
-    'https://www.instagram.com/securemeditechglobal',
+    'https://www.linkedin.com/company/144075515/admin/dashboard/',
+    'https://www.instagram.com/securedmeditech/',
   ],
 };
+
+export function toCategorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/&/g, ' ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}

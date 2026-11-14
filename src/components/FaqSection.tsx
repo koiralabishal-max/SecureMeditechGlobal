@@ -192,30 +192,33 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                       : 'border-slate-200/90 hover:border-slate-300 shadow-2xs'
                   }`}
                 >
-                  <button
-                    onClick={() => toggleAccordion(faq.id)}
-                    className="w-full text-left p-4 sm:p-6 flex items-start justify-between gap-4"
-                    aria-expanded={isOpen}
-                  >
-                    <div className="flex items-start gap-3 flex-1">
-                      <div className="mt-0.5 p-1.5 rounded-lg bg-slate-50 border border-slate-100 shrink-0">
-                        {getCategoryIcon()}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                            {faq.category}
+                  <h3 className="m-0">
+                    <button
+                      type="button"
+                      onClick={() => toggleAccordion(faq.id)}
+                      className="w-full text-left p-4 sm:p-6 flex items-start justify-between gap-4"
+                      aria-expanded={isOpen}
+                    >
+                      <div className="flex items-start gap-3 flex-1">
+                        <div className="mt-0.5 p-1.5 rounded-lg bg-slate-50 border border-slate-100 shrink-0">
+                          {getCategoryIcon()}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                              {faq.category}
+                            </span>
+                          </div>
+                          <span className="block text-base sm:text-lg font-bold text-[#0B2F63] leading-snug">
+                            {faq.question}
                           </span>
                         </div>
-                        <h3 className="text-base sm:text-lg font-bold text-[#0B2F63] leading-snug">
-                          {faq.question}
-                        </h3>
                       </div>
-                    </div>
-                    <div className={`p-2 rounded-full bg-slate-50 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 bg-blue-50 text-[#0B2F63]' : 'text-slate-400'}`}>
-                      <ChevronDown className="w-5 h-5" />
-                    </div>
-                  </button>
+                      <div className={`p-2 rounded-full bg-slate-50 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 bg-blue-50 text-[#0B2F63]' : 'text-slate-400'}`}>
+                        <ChevronDown className="w-5 h-5" />
+                      </div>
+                    </button>
+                  </h3>
 
                   {isOpen && (
                     <div className="px-4 sm:px-6 pb-6 pt-4 text-slate-600 border-t border-slate-100 sm:pl-[4.25rem]">

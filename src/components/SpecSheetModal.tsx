@@ -45,7 +45,7 @@ PACKAGING & LOGISTICS:
 
 QUALITY & REGULATORY COMPLIANCE:
 All products are manufactured under ISO 13485:2016 Certified Quality Management Systems and comply with EU MDR 2017/745.
-Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R, Sheridan, WY 82801, USA | www.securemeditechglobal.com
+Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R, Sheridan, WY 82801, USA | https://securemeditechglobal.com
 ========================================================================`;
 
     const blob = new Blob([content], { type: 'text/plain' });
@@ -105,7 +105,9 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
             <div className="space-y-2">
               <img
                 src="/logo.png"
-                alt="Secure MediTech Global"
+                alt="Secure MediTech Global corporate logo"
+                width={979}
+                height={271}
                 className="h-9 w-auto object-contain"
               />
               <div>
@@ -129,9 +131,9 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
 
           {/* Product Overview & Clinical Profile */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
               Clinical Indications & Profile
-            </h4>
+            </h3>
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200/80">
               {product.description}
             </p>
@@ -139,9 +141,9 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
 
           {/* Technical Parameter Matrix */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
               Technical Parameter Specifications
-            </h4>
+            </h3>
             <div className="overflow-hidden border border-slate-200 rounded-xl">
               <table className="w-full text-left text-xs">
                 <thead className="bg-[#0B2F63]/5 text-[#0B2F63] font-bold border-b border-slate-200">
@@ -165,10 +167,10 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
           {/* Regulatory & Packaging Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
-              <h5 className="text-xs font-bold text-[#0B2F63] mb-2 flex items-center gap-1.5">
+              <h4 className="text-xs font-bold text-[#0B2F63] mb-2 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
                 <span>Applicable Standards</span>
-              </h5>
+              </h4>
               <ul className="text-xs text-slate-600 space-y-1">
                 {product.standards.map((st, i) => (
                   <li key={i} className="flex items-center gap-1.5">
@@ -180,7 +182,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
             </div>
 
             <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
-              <h5 className="text-xs font-bold text-[#0B2F63] mb-2">Packaging & Logistics</h5>
+              <h4 className="text-xs font-bold text-[#0B2F63] mb-2">Packaging & Logistics</h4>
               <div className="text-xs text-slate-600 space-y-1">
                 <p><strong className="text-slate-800">Export Packaging:</strong> {product.packaging}</p>
                 <p><strong className="text-slate-800">Minimum Order Qty:</strong> {product.minOrderQty}</p>

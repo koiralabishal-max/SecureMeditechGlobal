@@ -27,11 +27,9 @@ export const metadata: Metadata = {
   creator: SITE.name,
   publisher: SITE.name,
   category: 'Medical Devices',
-  alternates: { canonical: '/' },
   formatDetection: { telephone: false },
   openGraph: {
     type: 'website',
-    url: '/',
     siteName: SITE.name,
     title: SITE.title,
     description: SITE.description,

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Product } from '../types';
 import { FileDown, Plus, Check, Eye, Shield, Package, Clock, MessageSquare } from 'lucide-react';
 
@@ -94,13 +95,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </span>
           </div>
 
-          {/* Product Title */}
+          {/* Product Title - Crawlable link to dedicated product page */}
           <h3 
-            onClick={() => onOpenDetails(product)}
-            className="text-base font-bold text-[#0B2F63] group-hover:text-[#164082] transition-colors cursor-pointer leading-snug line-clamp-2 min-h-[2.75rem]"
+            className="text-base font-bold text-[#0B2F63] group-hover:text-[#164082] transition-colors leading-snug line-clamp-2 min-h-[2.75rem]"
             title={product.name}
           >
-            {product.name}
+            <Link href={`/products/${product.id}`} className="hover:underline focus-visible:underline">
+              {product.name}
+            </Link>
           </h3>
 
           {/* Tagline / Subtitle */}

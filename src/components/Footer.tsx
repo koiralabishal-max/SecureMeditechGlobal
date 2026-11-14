@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { ShieldCheck, Mail, ArrowRight, CheckCircle2, Globe2, Calculator } from 'lucide-react';
 import { PriceEstimationCalculator } from './PriceEstimationCalculator';
 import { Product } from '../types';
@@ -77,9 +78,9 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
                 <Calculator className="w-4 h-4" />
                 <span>Hospital & Institutional Procurement Tool</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                 Budgetary Price & Volume Calculator
-              </h3>
+              </h2>
               <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
                 Simulate bulk order volumes across clinical categories to estimate FOB, CIF, or DDP budgetary ranges and volume tier concessions before placing a formal RFQ.
               </p>
@@ -95,6 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
 
       {/* Main Navigation Links Grid */}
       <div className="py-14 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="sr-only">Corporate Information, Medical Divisions & Regulatory Directory</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           
           {/* Brand Info & Socials */}
@@ -102,7 +104,8 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             <div className="bg-white/95 p-3 rounded-xl border border-white/20 shadow-sm inline-block max-w-[260px]">
               <img
                 src="/logo.png"
-                alt="Secure MediTech Global"
+                alt="Secure MediTech Global corporate logo"
+                loading="lazy"
                 width={979}
                 height={271}
                 className="h-10 w-auto object-contain"
@@ -131,11 +134,11 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
 
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/company/secure-meditech-global"
+                href="https://www.linkedin.com/company/144075515/admin/dashboard/"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Connect on LinkedIn"
-                aria-label="LinkedIn"
+                title="Connect with Secure MediTech Global on LinkedIn"
+                aria-label="Secure MediTech Global LinkedIn"
                 className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#0077B5] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700/60"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -145,7 +148,7 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
 
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/securedmeditech?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw=="
+                href="https://www.instagram.com/securedmeditech/"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Follow Secure MediTech Global on Instagram"
@@ -157,17 +160,15 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
                 </svg>
               </a>
 
-              {/* Official Website */}
-              <a
-                href="https://securemeditechglobal.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Visit Official Web Portal"
-                aria-label="Website"
+              {/* Official Homepage */}
+              <Link
+                href="/"
+                title="Secure MediTech Global Home"
+                aria-label="Secure MediTech Global Home"
                 className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#38B6FF] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700/60"
               >
                 <Globe2 className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
 
             {/* Registered Address & Direct Contacts */}
@@ -190,29 +191,29 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <a href="#products" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products#anesthesia-airway-management" className="hover:text-[#38B6FF] transition-colors">
                   Anesthesia & Respiratory Care
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products#laboratory-diagnostics" className="hover:text-[#38B6FF] transition-colors">
                   Clinical Laboratory Diagnostics
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products#surgical-ot-supplies" className="hover:text-[#38B6FF] transition-colors">
                   Surgical & Operating Theater
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products#critical-care-monitoring" className="hover:text-[#38B6FF] transition-colors">
                   ICU & Hospital Ward Equipment
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-[#38B6FF] transition-colors">
-                  Sterile Barrier Disposables
-                </a>
+                <Link href="/products" className="hover:text-[#38B6FF] transition-colors font-medium text-slate-300">
+                  Full Medical Catalog →
+                </Link>
               </li>
             </ul>
           </div>
@@ -224,29 +225,29 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <a href="#oem" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
                   Class 7/8 Cleanroom Molding
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#oem" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
                   CAD Tooling & DFM Prototyping
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#oem" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
                   CE MDR 2017/745 Technical Files
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#oem" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
                   Private Label Medical Packaging
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#oem" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
                   Bonded Warehouse Freight Forwarding
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -258,40 +259,40 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <a href="#compliance" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
                   ISO 13485:2016 Certified
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#compliance" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
                   CE Notified Body Declaration
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#compliance" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
                   ISO 14971 Risk Management
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#compliance" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
                   AQL 0.65 Pinhole Testing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#compliance" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
                   Good Distribution Practice (GDP)
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#faq" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF]">
+                <Link href="/#faq" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF]">
                   Procurement & Logistics FAQ
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#price-calculator" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF] flex items-center gap-1 font-medium">
+                <Link href="/#price-calculator" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF] flex items-center gap-1 font-medium">
                   <Calculator className="w-3.5 h-3.5" />
                   <span>Wholesale Price Estimator</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -306,13 +307,13 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             © {new Date().getFullYear()} Secure MediTech Global. All rights reserved. Registered medical device manufacturer and global wholesale exporter.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-slate-400">
-            <a href="https://securemeditechglobal.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+            <Link href="/" className="hover:text-white">
               securemeditechglobal.com
-            </a>
+            </Link>
             <span>·</span>
-            <a href="#compliance" className="hover:text-white">Regulatory Disclosures</a>
+            <Link href="/#compliance" className="hover:text-white">Regulatory Disclosures</Link>
             <span>·</span>
-            <a href="#contact" className="hover:text-white">Privacy & Quality Pledge</a>
+            <Link href="/#contact" className="hover:text-white">Privacy & Quality Pledge</Link>
           </div>
         </div>
       </div>

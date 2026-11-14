@@ -35,7 +35,7 @@ export const OemSection: React.FC<OemSectionProps> = ({ onStartOemInquiry }) => 
         <div className="relative rounded-3xl overflow-hidden mb-14 border border-slate-200 shadow-lg">
           <img
             src="/assets/images/oem_cleanroom_facility_1792848782226.jpg"
-            alt="ISO Class 7 Medical Device Cleanroom Manufacturing Facility"
+            alt="ISO Class 7 HEPA-filtered medical device cleanroom manufacturing and automated injection molding facility"
             className="w-full h-[26rem] sm:h-80 lg:h-96 object-cover"
             loading="lazy"
             decoding="async"
