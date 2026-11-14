@@ -175,13 +175,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Link>
 
             <Link 
-              href="/#price-calculator" 
-              className="hover:text-[#0B2F63] text-[#0B2F63] font-semibold transition-colors py-2 whitespace-nowrap flex items-center gap-1"
-            >
-              <span>Price Calculator</span>
-            </Link>
-
-            <Link 
               href="/contact" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
@@ -327,14 +320,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               About Us
-            </Link>
-
-            <Link 
-              href="/#price-calculator" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg bg-blue-50/70 text-[#0B2F63] font-bold hover:bg-blue-100"
-            >
-              Wholesale Price Calculator
             </Link>
 
             <Link 
