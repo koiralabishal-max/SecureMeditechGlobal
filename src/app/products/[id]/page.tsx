@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   ArrowLeft,
+  ArrowRight,
   CheckCircle2,
   ChevronRight,
   Clock,
+  Factory,
   Globe,
   Layers,
   MessageSquare,
@@ -14,6 +16,8 @@ import {
 } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
 import { PRODUCTS } from '@/data/products';
+import { SERVICES } from '@/data/services';
+import { CATEGORY_BY_NAME, PRODUCT_SEO_MAP } from '@/lib/seo-strategy';
 import { SITE, toCategorySlug } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -56,11 +60,19 @@ export async function generateMetadata({
   const title = buildProductTitle(product.name);
   const description = buildProductDescription(product);
   const canonicalPath = `/products/${product.id}`;
+  const productSeo = PRODUCT_SEO_MAP[product.id];
 
   return {
     title: { absolute: title },
     description,
-    keywords: [product.name, product.sku, product.category, ...product.certifications, ...product.standards],
+    keywords: [
+      ...(productSeo ? [productSeo.primaryKeyword, ...productSeo.secondaryKeywords] : []),
+      product.name,
+      product.sku,
+      product.category,
+      ...product.certifications,
+      ...product.standards,
+    ],
     alternates: { canonical: canonicalPath },
     openGraph: {
       type: 'website',
@@ -79,7 +91,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.name} | ${SITE.name}`,
+      title,
       description,
       images: [product.image],
     },
@@ -97,6 +109,13 @@ export default async function ProductDetailPage({
   if (!product) {
     notFound();
   }
+
+  const categorySlug = toCategorySlug(product.category);
+  const categoryProfile = CATEGORY_BY_NAME[product.category];
+  const productSeo = PRODUCT_SEO_MAP[product.id];
+  const relatedServices = categoryProfile
+    ? SERVICES.filter((s) => categoryProfile.relatedServiceIds.includes(s.id)).slice(0, 2)
+    : SERVICES.slice(0, 2);
 
   const relatedProducts = PRODUCTS.filter(
     (p) => p.category === product.category && p.id !== product.id
@@ -149,7 +168,7 @@ export default async function ProductDetailPage({
             '@type': 'ListItem',
             position: 3,
             name: product.category,
-            item: `${SITE.url}/products#${toCategorySlug(product.category)}`,
+            item: `${SITE.url}/products/category/${categorySlug}`,
           },
           {
             '@type': 'ListItem',
@@ -182,7 +201,7 @@ export default async function ProductDetailPage({
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
             <Link
-              href={`/products#${toCategorySlug(product.category)}`}
+              href={`/products/category/${categorySlug}`}
               className="hover:text-[#38B6FF] transition-colors"
             >
               {product.category}
@@ -197,9 +216,12 @@ export default async function ProductDetailPage({
             <span className="text-xs font-mono bg-[#38B6FF] text-[#071E40] font-bold px-2.5 py-1 rounded-md">
               {product.sku}
             </span>
-            <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
+            <Link
+              href={`/products/category/${categorySlug}`}
+              className="text-xs font-semibold text-slate-300 hover:text-[#38B6FF] uppercase tracking-wider transition-colors"
+            >
               {product.category}
-            </span>
+            </Link>
           </div>
 
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white max-w-4xl">
@@ -214,7 +236,7 @@ export default async function ProductDetailPage({
       {/* Main Product Specification Body */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Image, Certifications, Logistics */}
+          {/* Left Column: Image, Certifications, Logistics, OEM */}
           <div className="lg:col-span-5 space-y-6">
             <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm aspect-[4/3]">
               <img
@@ -270,19 +292,53 @@ export default async function ProductDetailPage({
                 <span>Export Packaging: {product.packaging}</span>
               </div>
             </div>
+
+            {/* OEM & Private Label Callout */}
+            <div className="bg-sky-50/70 p-5 rounded-2xl border border-sky-200/80 space-y-2.5">
+              <h2 className="text-sm font-bold text-[#0B2F63] flex items-center gap-2">
+                <Factory className="w-4 h-4 text-[#38B6FF]" />
+                <span>OEM &amp; Private-Label Availability</span>
+              </h2>
+              <p className="text-xs text-slate-700 leading-relaxed">
+                Available for private-label packaging, custom pouch artwork, and tender dossier compilation under ISO 13485:2016.
+              </p>
+              <Link
+                href="/oem-manufacturing"
+                className="text-xs font-bold text-[#0B2F63] hover:text-sky-700 inline-flex items-center gap-1"
+              >
+                <span>Explore OEM Contract Manufacturing</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
 
-          {/* Right Column: Description, Sizes, Technical Specs, Actions */}
+          {/* Right Column: Description, Applications, Sizes, Technical Specs, Actions */}
           <div className="lg:col-span-7 space-y-8">
             <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-2xs space-y-6">
               <div>
                 <h2 className="text-lg font-bold text-[#0B2F63] mb-2">
-                  Clinical Overview &amp; Indications
+                  Clinical Overview &amp; Technical Profile
                 </h2>
                 <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                   {product.description}
                 </p>
               </div>
+
+              {productSeo?.applications && productSeo.applications.length > 0 && (
+                <div>
+                  <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3">
+                    Verified Clinical Applications
+                  </h2>
+                  <ul className="space-y-2 text-sm text-slate-700">
+                    {productSeo.applications.map((app) => (
+                      <li key={app} className="flex items-start gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                        <span>{app}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {product.sizes && product.sizes.length > 0 && (
                 <div>
@@ -337,7 +393,7 @@ export default async function ProductDetailPage({
                   <span>Enquire via WhatsApp Desk</span>
                 </a>
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="flex-1 h-12 px-5 bg-[#0B2F63] hover:bg-[#164082] text-white text-sm font-bold rounded-xl transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <span>Request Bulk RFQ / Dossier</span>
@@ -345,13 +401,13 @@ export default async function ProductDetailPage({
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <Link
-                href="/products"
+                href={`/products/category/${categorySlug}`}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-[#0B2F63] hover:text-[#38B6FF] transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>Back to All Medical Products</span>
+                <span>All {product.category} Supplies</span>
               </Link>
               <Link
                 href="/#price-calculator"
@@ -363,12 +419,42 @@ export default async function ProductDetailPage({
           </div>
         </div>
 
+        {/* Supporting Services Links */}
+        {relatedServices.length > 0 && (
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+            {relatedServices.map((svc) => (
+              <Link
+                key={svc.id}
+                href={`/services#${svc.slug}`}
+                className="bg-white rounded-2xl border border-slate-200 hover:border-[#38B6FF] p-5 flex items-center justify-between gap-4 transition-colors shadow-2xs"
+              >
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-sky-700">
+                    Supporting B2B Service
+                  </span>
+                  <h2 className="text-base font-bold text-[#0B2F63] mt-0.5">{svc.title}</h2>
+                  <p className="text-xs text-slate-600 mt-1 line-clamp-2">{svc.shortDescription}</p>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#0B2F63] shrink-0" />
+              </Link>
+            ))}
+          </div>
+        )}
+
         {/* Related Products in Category */}
         {relatedProducts.length > 0 && (
-          <div className="mt-16 pt-12 border-t border-slate-200">
-            <h2 className="text-2xl font-extrabold text-[#0B2F63] mb-6">
-              Related {product.category} Supplies
-            </h2>
+          <div className="mt-14 pt-12 border-t border-slate-200">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+              <h2 className="text-2xl font-extrabold text-[#0B2F63]">
+                Related {product.category} Supplies
+              </h2>
+              <Link
+                href={`/products/category/${categorySlug}`}
+                className="text-sm font-bold text-sky-700 hover:underline"
+              >
+                View Entire Division →
+              </Link>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedProducts.map((rel) => (
                 <Link

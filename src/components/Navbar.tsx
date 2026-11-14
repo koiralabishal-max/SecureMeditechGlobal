@@ -34,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (category === 'All') {
       router.push('/products');
     } else {
-      router.push(`/products#${toCategorySlug(category)}`);
+      router.push(`/products/category/${toCategorySlug(category)}`);
     }
   };
 
@@ -154,24 +154,24 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             <Link 
-              href="/#oem" 
+              href="/oem-manufacturing" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
-              OEM & Manufacturing
+              OEM Manufacturing
             </Link>
 
             <Link 
-              href="/#compliance" 
+              href="/services" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
-              Quality & Compliance
+              Services
             </Link>
 
             <Link 
-              href="/#faq" 
+              href="/about" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
-              FAQ
+              About Us
             </Link>
 
             <Link 
@@ -182,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Link>
 
             <Link 
-              href="/#contact" 
+              href="/contact" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
               Contact Us
@@ -306,27 +306,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             <Link 
-              href="/#oem" 
+              href="/oem-manufacturing" 
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
-              OEM & Manufacturing
+              OEM Manufacturing
             </Link>
 
             <Link 
-              href="/#compliance" 
+              href="/services" 
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
-              Quality & Compliance
+              Services
             </Link>
 
             <Link 
-              href="/#faq" 
+              href="/about" 
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
-              FAQ
+              About Us
             </Link>
 
             <Link 
@@ -338,7 +338,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Link>
 
             <Link 
-              href="/#contact" 
+              href="/contact" 
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >

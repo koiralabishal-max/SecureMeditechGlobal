@@ -191,28 +191,43 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/products#anesthesia-airway-management" className="hover:text-[#38B6FF] transition-colors">
-                  Anesthesia & Respiratory Care
+                <Link href="/products/category/critical-care-monitoring" className="hover:text-[#38B6FF] transition-colors">
+                  Critical Care &amp; Monitoring
                 </Link>
               </li>
               <li>
-                <Link href="/products#laboratory-diagnostics" className="hover:text-[#38B6FF] transition-colors">
-                  Clinical Laboratory Diagnostics
+                <Link href="/products/category/anesthesia-airway-management" className="hover:text-[#38B6FF] transition-colors">
+                  Anesthesia &amp; Airway Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/products#surgical-ot-supplies" className="hover:text-[#38B6FF] transition-colors">
-                  Surgical & Operating Theater
+                <Link href="/products/category/iv-infusion-supplies" className="hover:text-[#38B6FF] transition-colors">
+                  IV &amp; Infusion Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/products#critical-care-monitoring" className="hover:text-[#38B6FF] transition-colors">
-                  ICU & Hospital Ward Equipment
+                <Link href="/products/category/respiratory-care" className="hover:text-[#38B6FF] transition-colors">
+                  Respiratory Care Devices
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-[#38B6FF] transition-colors font-medium text-slate-300">
-                  Full Medical Catalog →
+                <Link href="/products/category/urology-catheters" className="hover:text-[#38B6FF] transition-colors">
+                  Urology &amp; Foley Catheters
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/category/dialysis-supplies" className="hover:text-[#38B6FF] transition-colors">
+                  Hemodialysis Catheter Kits
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/category/surgical-ot-supplies" className="hover:text-[#38B6FF] transition-colors">
+                  Surgical &amp; OT Supplies
+                </Link>
+              </li>
+              <li>
+                <Link href="/products/category/laboratory-diagnostics" className="hover:text-[#38B6FF] transition-colors">
+                  Laboratory &amp; Diagnostics
                 </Link>
               </li>
             </ul>
@@ -221,71 +236,71 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
           {/* OEM Solutions */}
           <div className="space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-[0.12em] text-white">
-              OEM & Manufacturing
+              OEM &amp; Services
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
-                  Class 7/8 Cleanroom Molding
+                <Link href="/oem-manufacturing" className="hover:text-[#38B6FF] transition-colors">
+                  OEM Medical Manufacturing
                 </Link>
               </li>
               <li>
-                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
-                  CAD Tooling & DFM Prototyping
+                <Link href="/services#cad-tooling-dfm" className="hover:text-[#38B6FF] transition-colors">
+                  CAD Tooling &amp; DFM Prototyping
                 </Link>
               </li>
               <li>
-                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services#regulatory-ce-mdr-dossier-support" className="hover:text-[#38B6FF] transition-colors">
                   CE MDR 2017/745 Technical Files
                 </Link>
               </li>
               <li>
-                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
-                  Private Label Medical Packaging
+                <Link href="/services#oem-contract-manufacturing" className="hover:text-[#38B6FF] transition-colors">
+                  Private Label Medical Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/#oem" className="hover:text-[#38B6FF] transition-colors">
-                  Bonded Warehouse Freight Forwarding
+                <Link href="/services#international-logistics-forwarding" className="hover:text-[#38B6FF] transition-colors">
+                  Global Cold-Chain Forwarding
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#biomedical-calibration-maintenance" className="hover:text-[#38B6FF] transition-colors">
+                  Biomedical Calibration Support
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Compliance & Legal */}
+          {/* Compliance & Company */}
           <div className="space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-[0.12em] text-white">
-              Accreditation & Standards
+              Company &amp; Standards
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
-                  ISO 13485:2016 Certified
+                <Link href="/about" className="hover:text-[#38B6FF] transition-colors">
+                  About Us &amp; ISO 13485 Facility
                 </Link>
               </li>
               <li>
-                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
-                  CE Notified Body Declaration
+                <Link href="/products" className="hover:text-[#38B6FF] transition-colors">
+                  Full Medical Supplies Catalog
                 </Link>
               </li>
               <li>
-                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
-                  ISO 14971 Risk Management
+                <Link href="/services" className="hover:text-[#38B6FF] transition-colors">
+                  All B2B Healthcare Services
                 </Link>
               </li>
               <li>
-                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
-                  AQL 0.65 Pinhole Testing
-                </Link>
-              </li>
-              <li>
-                <Link href="/#compliance" className="hover:text-[#38B6FF] transition-colors">
-                  Good Distribution Practice (GDP)
+                <Link href="/contact" className="hover:text-[#38B6FF] transition-colors">
+                  Contact &amp; Wholesale RFQ Desk
                 </Link>
               </li>
               <li>
                 <Link href="/#faq" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF]">
-                  Procurement & Logistics FAQ
+                  Procurement &amp; Logistics FAQ
                 </Link>
               </li>
               <li>
@@ -311,9 +326,9 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
               securemeditechglobal.com
             </Link>
             <span>·</span>
-            <Link href="/#compliance" className="hover:text-white">Regulatory Disclosures</Link>
+            <Link href="/about" className="hover:text-white">Regulatory Disclosures</Link>
             <span>·</span>
-            <Link href="/#contact" className="hover:text-white">Privacy & Quality Pledge</Link>
+            <Link href="/contact" className="hover:text-white">Privacy &amp; Quality Pledge</Link>
           </div>
         </div>
       </div>

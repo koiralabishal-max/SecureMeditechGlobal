@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { Product, ProductCategory } from '../types';
-import { PRODUCTS, CATEGORIES } from '../data/products';
+import { PRODUCTS } from '../data/products';
 import { ProductCard } from './ProductCard';
 import { SectionHeader } from './SectionHeader';
-import { Search, Layers } from 'lucide-react';
+import { toCategorySlug } from '../lib/site';
+import { Search, Layers, ArrowRight } from 'lucide-react';
 
 interface ProductCatalogProps {
   selectedCategory: ProductCategory;
@@ -62,10 +64,10 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
           <SectionHeader
-            eyebrow="Certified Medical Supplies"
+            eyebrow="Wholesale Medical & Surgical Supplies"
             icon={<Layers />}
-            title="Hospital Consumables & Medical Devices Catalog"
-            description="CVP kits, pressure monitoring sets, endotracheal tubes, IV cannulas, closed suction catheters, Foley & dialysis lines, and surgical OT consumables — ready for international supply."
+            title="Hospital Supplies & Medical Consumables Catalog"
+            description="Factory-direct CVP kits, pressure monitoring transducers, endotracheal tubes, IV cannulas, closed suction systems, Foley & dialysis catheters, surgical OT packs, and diagnostic analyzers."
           />
 
           {/* Search Box */}
@@ -157,6 +159,22 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
           </div>
         )}
 
+        {/* Dedicated Category Page Bridge (when a category filter is active) */}
+        {selectedCategory !== 'All' && (
+          <div className="mt-8 flex items-center justify-between bg-sky-50/70 border border-sky-200/80 rounded-xl px-5 py-3.5 text-sm">
+            <span className="text-slate-700 font-medium">
+              Viewing wholesale filter: <strong className="text-[#0B2F63]">{selectedCategory}</strong>
+            </span>
+            <Link
+              href={`/products/category/${toCategorySlug(selectedCategory)}`}
+              className="font-bold text-[#0B2F63] hover:text-sky-700 inline-flex items-center gap-1.5"
+            >
+              <span>Open Full {selectedCategory} Division Page</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
+
         {/* B2B Procurement Notice Banner */}
         <div className="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xs">
           <div className="flex items-start gap-4">
@@ -165,19 +183,27 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             </div>
             <div>
               <h3 className="text-base sm:text-lg font-bold text-[#0B2F63] leading-snug">
-                Need custom OEM labeling, a high-volume tender, or a regulatory dossier?
+                Need private-label medical packaging, custom OEM runs, or a regulatory dossier?
               </h3>
               <p className="text-sm text-slate-600 mt-1 leading-relaxed">
-                Our global regulatory affairs and contract manufacturing team provides full technical file compilation and private branding.
+                Explore our{' '}
+                <Link href="/oem-manufacturing" className="text-sky-700 font-semibold hover:underline">
+                  OEM manufacturing workflows
+                </Link>{' '}
+                and{' '}
+                <Link href="/products" className="text-sky-700 font-semibold hover:underline">
+                  full wholesale medical catalog
+                </Link>{' '}
+                with MOQs and lead times.
               </p>
             </div>
           </div>
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="shrink-0 inline-flex items-center justify-center h-11 px-5 text-sm font-bold text-[#0B2F63] hover:text-white hover:bg-[#0B2F63] border border-[#0B2F63] rounded-xl transition-colors whitespace-nowrap"
           >
             Inquire About Custom OEM Run
-          </a>
+          </Link>
         </div>
 
       </div>

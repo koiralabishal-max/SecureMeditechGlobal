@@ -7,25 +7,32 @@ import { SITE, toCategorySlug } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-const PAGE_TITLE = 'Medical Supplies & Devices Catalog';
+const PAGE_TITLE = 'Medical Consumables & Hospital Supplies | Secure MediTech';
 const PAGE_DESCRIPTION =
-  'Browse 18 ISO 13485 & CE-marked hospital consumables: CVP kits, IV cannulas, endotracheal tubes, Foley & dialysis catheters, OT packs & analyzers.';
+  'Wholesale medical consumables supplier & surgical equipment catalog: 18 ISO 13485 & CE-marked CVP kits, IV cannulas, ET tubes, catheters, OT packs & analyzers.';
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: PAGE_TITLE },
   description: PAGE_DESCRIPTION,
+  keywords: [
+    'medical consumables supplier',
+    'hospital supplies wholesale',
+    'wholesale medical supplies catalog',
+    'surgical equipment supplier',
+    'CE marked medical devices',
+  ],
   alternates: { canonical: '/products' },
   openGraph: {
     type: 'website',
     url: '/products',
     siteName: SITE.name,
-    title: `${PAGE_TITLE} | ${SITE.name}`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: [{ url: SITE.ogImage, width: 1376, height: 768, alt: 'Secure MediTech Global medical supplies catalog' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${PAGE_TITLE} | ${SITE.name}`,
+    title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
     images: [SITE.ogImage],
   },
@@ -38,7 +45,7 @@ const structuredData = {
       '@type': 'CollectionPage',
       '@id': `${SITE.url}/products#webpage`,
       url: `${SITE.url}/products`,
-      name: `${PAGE_TITLE} | ${SITE.name}`,
+      name: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
       isPartOf: { '@id': `${SITE.url}/#website` },
     },
@@ -89,22 +96,22 @@ export default function ProductsPage() {
             <span>8 Clinical Divisions · {PRODUCTS.length} Certified Products</span>
           </p>
           <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-            Hospital Consumables &amp; Medical Devices Catalog
+            Wholesale Medical Consumables &amp; Hospital Equipment Catalog
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
-            Direct factory-source medical consumables, critical care catheters, airway management tubes, surgical barrier packs, and clinical laboratory systems manufactured under ISO 13485:2016 and EU MDR 2017/745.
+            Direct factory-source medical consumables, surgical equipment, critical care catheters, airway management tubes, surgical OT barrier packs, and clinical laboratory systems manufactured under ISO 13485:2016 and EU MDR 2017/745.
           </p>
 
-          {/* Division Quick Jump Links */}
+          {/* Direct Links to Dedicated Category Pages */}
           <div className="mt-8 flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
-              <a
+              <Link
                 key={cat.name}
-                href={`#${toCategorySlug(cat.name)}`}
+                href={`/products/category/${toCategorySlug(cat.name)}`}
                 className="px-3.5 py-2 rounded-full bg-white/10 hover:bg-[#38B6FF] text-slate-200 hover:text-[#071E40] text-xs font-semibold transition-colors border border-white/15"
               >
                 {cat.name} ({cat.count})
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -121,13 +128,19 @@ export default function ProductsPage() {
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-5 border-b border-slate-200 mb-7">
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2F63] tracking-tight">
-                    {category.name}
+                    <Link href={`/products/category/${slug}`} className="hover:text-sky-700 transition-colors">
+                      {category.name}
+                    </Link>
                   </h2>
                   <p className="text-sm sm:text-base text-slate-600 mt-1">{category.desc}</p>
                 </div>
-                <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 border border-sky-200 px-3 py-1 rounded-full self-start sm:self-auto">
-                  {items.length} {items.length === 1 ? 'Product' : 'Products'}
-                </span>
+                <Link
+                  href={`/products/category/${slug}`}
+                  className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200 px-3.5 py-1.5 rounded-full self-start sm:self-auto inline-flex items-center gap-1.5 transition-colors"
+                >
+                  <span>Explore {items.length} {items.length === 1 ? 'Product' : 'Products'}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -197,6 +210,33 @@ export default function ProductsPage() {
             </section>
           );
         })}
+
+        {/* OEM & Wholesale Quotation Bridge */}
+        <section className="bg-[#0B2F63] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-2xl space-y-2">
+            <h2 className="text-2xl font-extrabold">
+              Require Private Label Packaging or Multi-SKU Hospital Quotations?
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300">
+              Our ISO 13485 OEM contract manufacturing division supports custom branding, CE MDR technical documentation, and consolidated container shipments across 65+ countries.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 shrink-0">
+            <Link
+              href="/oem-manufacturing"
+              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
+            >
+              <span>OEM &amp; Private Label</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="h-11 px-5 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-xl inline-flex items-center border border-white/20 transition-colors"
+            >
+              <span>Request Wholesale RFQ</span>
+            </Link>
+          </div>
+        </section>
       </div>
     </SubpageLayout>
   );

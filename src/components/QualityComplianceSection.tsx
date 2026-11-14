@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, CheckCircle2, Award, FileSpreadsheet, Globe, ThermometerSnowflake, Anchor, Plane } from 'lucide-react';
+import Link from 'next/link';
+import { ShieldCheck, CheckCircle2, Award, FileSpreadsheet, Globe, ThermometerSnowflake, Anchor, Plane, ArrowRight } from 'lucide-react';
 import { GlobalDistributionMap } from './GlobalDistributionMap';
 import { SectionHeader } from './SectionHeader';
 
@@ -112,6 +113,22 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
             <p className="text-sm sm:text-base text-slate-300 mt-3 leading-relaxed">
               From our global gateways and African/South Asian transit corridors, we supply tertiary hospitals and ministries of health with active 2°C–8°C cold-chain verification, customs pre-clearance (SAHPRA, Kenya PPB, Rwanda FDA, NAFDAC, CDSCO, Nepal DDA), and guaranteed 24–48 hour priority air dispatch.
             </p>
+            <div className="mt-5 flex flex-wrap items-center gap-4 text-sm">
+              <Link
+                href="/about"
+                className="text-[#38B6FF] font-bold hover:underline inline-flex items-center gap-1"
+              >
+                <span>About Our Quality &amp; Accreditations</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/services"
+                className="text-slate-200 font-semibold hover:text-[#38B6FF] hover:underline inline-flex items-center gap-1"
+              >
+                <span>Cold-Chain &amp; Regulatory Services</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">

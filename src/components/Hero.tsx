@@ -27,20 +27,20 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
             <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-semibold text-[#38B6FF] tracking-[0.12em] uppercase">
               <span className="inline-flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#10B981] shrink-0" />
-                Medical Supplier & OEM Contract Manufacturer
+                International Medical Equipment Supplier & OEM Manufacturer
               </span>
               <span className="text-slate-500" aria-hidden="true">·</span>
-              <span className="text-slate-300">MDR 2017/745</span>
+              <span className="text-slate-300">ISO 13485 & MDR 2017/745</span>
             </p>
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-white leading-[1.08] text-balance">
-              Precision Healthcare Solutions & Resilient Global Supply Chains
+              Wholesale Medical Supplies & Precision OEM Manufacturing
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-              Leading international supplier and OEM contract manufacturer for hospital equipment, surgical supplies, and diagnostic systems. Engineered with rigorous clinical accuracy, certified regulatory compliance, and multi-hub logistics.
+              Certified medical consumables supplier and surgical equipment manufacturer delivering wholesale hospital supplies, critical care catheters, diagnostic systems, and private-label medical products across 65+ countries.
             </p>
 
             {/* Primary Action Buttons */}

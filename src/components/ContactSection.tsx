@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { SectionHeader } from './SectionHeader';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle2, Globe2, Compass, ArrowUpRight } from 'lucide-react';
 
@@ -116,13 +117,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledHub }) 
                   <p className="text-sm text-slate-300 mt-1 leading-relaxed">
                     Check lead times, bonded warehouse facilities, and cold-chain corridors on our interactive D3 map.
                   </p>
-                  <a
-                    href="#distribution-map"
+                  <Link
+                    href="/#distribution-map"
                     className="text-sm text-[#38B6FF] font-semibold hover:underline inline-flex items-center gap-1 mt-2 group"
                   >
                     <span>View Interactive Distribution Map</span>
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

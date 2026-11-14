@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { OEM_STEPS } from '../data/products';
 import { SectionHeader } from './SectionHeader';
 import { CheckCircle2, ChevronRight, Cpu, ShieldCheck, FileCheck, Truck, ArrowRight } from 'lucide-react';
@@ -26,9 +27,9 @@ export const OemSection: React.FC<OemSectionProps> = ({ onStartOemInquiry }) => 
         {/* Section Header */}
         <SectionHeader
           className="mb-12"
-          eyebrow="OEM / ODM Contract Manufacturing"
-          title="Turnkey Medical Device OEM, from Prototype to Port Clearance"
-          description="Partner with an accredited manufacturer for custom tooling, ISO 13485 cleanroom injection molding, regulatory technical dossiers, and bonded supply chain distribution."
+          eyebrow="OEM Medical Device & Private Label Manufacturer"
+          title="Turnkey OEM Contract Manufacturing & Private Label Medical Supplies"
+          description="Partner with an ISO 13485 manufacturer for custom tooling, cleanroom injection molding, private-label packaging, regulatory technical dossiers, and bonded supply chain distribution."
         />
 
         {/* Cleanroom Facility Showcase Banner */}
@@ -53,7 +54,7 @@ export const OemSection: React.FC<OemSectionProps> = ({ onStartOemInquiry }) => 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                 Operating 24/7 HEPA-filtered cleanrooms equipped with automated multi-cavity injection molding, ultrasonic welding, laser marking, and robotic packaging.
               </p>
-              <div className="pt-2">
+              <div className="pt-2 flex flex-wrap items-center gap-3">
                 <button
                   onClick={onStartOemInquiry}
                   className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl shadow transition-colors inline-flex items-center gap-2"
@@ -61,6 +62,12 @@ export const OemSection: React.FC<OemSectionProps> = ({ onStartOemInquiry }) => 
                   <span>Request OEM Technical Consultation</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
+                <Link
+                  href="/oem-manufacturing"
+                  className="h-11 px-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 text-sm font-semibold rounded-xl transition-colors inline-flex items-center gap-1.5"
+                >
+                  <span>Explore OEM MOQs &amp; Specs</span>
+                </Link>
               </div>
             </div>
           </div>
