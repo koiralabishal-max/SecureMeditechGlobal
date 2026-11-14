@@ -16,6 +16,14 @@ import {
 import { SubpageLayout } from '@/components/SubpageLayout';
 import { OEM_STEPS } from '@/data/products';
 import { CATEGORY_SEO_PROFILES } from '@/lib/seo-strategy';
+import {
+  buildBreadcrumbSchema,
+  buildWebPageSchema,
+  ORGANIZATION_ID,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -83,29 +91,29 @@ const OEM_MOQ_TIERS = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
+    ORGANIZATION_SCHEMA,
+    WEBSITE_SCHEMA,
+    buildWebPageSchema({
+      path: '/oem-manufacturing',
+      name: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      mainEntityId: `${SITE.url}/oem-manufacturing#service`,
+    }),
     {
       '@type': 'Service',
       '@id': `${SITE.url}/oem-manufacturing#service`,
       name: PAGE_TITLE,
       serviceType: 'OEM & Private Label Medical Device Contract Manufacturing',
       description: PAGE_DESCRIPTION,
-      provider: { '@id': `${SITE.url}/#organization` },
+      provider: { '@id': ORGANIZATION_ID },
       areaServed: 'Worldwide',
       url: `${SITE.url}/oem-manufacturing`,
     },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE.url}/services` },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: 'OEM & Private Label Manufacturing',
-          item: `${SITE.url}/oem-manufacturing`,
-        },
-      ],
-    },
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+      { name: 'OEM & Private Label Manufacturing', path: '/oem-manufacturing' },
+    ]),
   ],
 };
 
@@ -126,7 +134,7 @@ export default function OemManufacturingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+          __html: serializeJsonLd(structuredData),
         }}
       />
 

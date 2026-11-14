@@ -18,6 +18,14 @@ import { SubpageLayout } from '@/components/SubpageLayout';
 import { PRODUCTS } from '@/data/products';
 import { SERVICES } from '@/data/services';
 import { CATEGORY_BY_NAME, PRODUCT_SEO_MAP } from '@/lib/seo-strategy';
+import {
+  buildBreadcrumbSchema,
+  buildProductSchema,
+  buildWebPageSchema,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE, toCategorySlug } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -125,59 +133,26 @@ export default async function ProductDetailPage({
     `Hello Secure MediTech Global, I am inquiring about specifications, sizes, and bulk pricing for ${product.name} (SKU: ${product.sku}).`
   )}`;
 
+  const productPath = `/products/${product.id}`;
   const productSchema = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Product',
-        '@id': `${SITE.url}/products/${product.id}#product`,
-        name: product.name,
-        sku: product.sku,
-        mpn: product.sku,
-        category: product.category,
-        description: product.description,
-        image: `${SITE.url}${product.image}`,
-        url: `${SITE.url}/products/${product.id}`,
-        brand: {
-          '@type': 'Brand',
-          name: SITE.name,
-        },
-        manufacturer: {
-          '@type': 'Organization',
-          '@id': `${SITE.url}/#organization`,
-          name: SITE.name,
-          url: `${SITE.url}/`,
-        },
-        additionalProperty: [
-          ...Object.entries(product.specs).map(([name, value]) => ({
-            '@type': 'PropertyValue',
-            name,
-            value,
-          })),
-          { '@type': 'PropertyValue', name: 'Minimum Order Quantity', value: product.minOrderQty },
-          { '@type': 'PropertyValue', name: 'Lead Time', value: product.leadTime },
-          { '@type': 'PropertyValue', name: 'Standards', value: product.standards.join(', ') },
-        ],
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-          { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE.url}/products` },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: product.category,
-            item: `${SITE.url}/products/category/${categorySlug}`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 4,
-            name: product.name,
-            item: `${SITE.url}/products/${product.id}`,
-          },
-        ],
-      },
+      ORGANIZATION_SCHEMA,
+      WEBSITE_SCHEMA,
+      buildWebPageSchema({
+        path: productPath,
+        name: buildProductTitle(product.name),
+        description: buildProductDescription(product),
+        type: 'ItemPage',
+        mainEntityId: `${SITE.url}${productPath}#product`,
+      }),
+      buildProductSchema(product),
+      buildBreadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Products', path: '/products' },
+        { name: product.category, path: `/products/category/${categorySlug}` },
+        { name: product.name, path: productPath },
+      ]),
     ],
   };
 
@@ -185,7 +160,7 @@ export default async function ProductDetailPage({
     <SubpageLayout>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(productSchema) }}
       />
 
       {/* Breadcrumb & Header Strip */}

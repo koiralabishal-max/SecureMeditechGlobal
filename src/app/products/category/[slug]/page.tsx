@@ -20,6 +20,13 @@ import {
   CATEGORY_BY_SLUG,
   CATEGORY_SEO_PROFILES,
 } from '@/lib/seo-strategy';
+import {
+  buildBreadcrumbSchema,
+  buildWebPageSchema,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -112,31 +119,23 @@ export default async function CategoryPage({
     `Hello Secure MediTech Global, I am looking for wholesale pricing, MOQs, and regulatory dossiers for ${profile.name}.`
   )}`;
 
+  const categoryPath = `/products/category/${profile.slug}`;
   const categorySchema = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'CollectionPage',
-        '@id': `${SITE.url}/products/category/${profile.slug}#webpage`,
-        url: `${SITE.url}/products/category/${profile.slug}`,
+      ORGANIZATION_SCHEMA,
+      WEBSITE_SCHEMA,
+      buildWebPageSchema({
+        path: categoryPath,
         name: profile.seoTitle,
         description: profile.metaDescription,
-        isPartOf: { '@id': `${SITE.url}/#website` },
-        about: profile.name,
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-          { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE.url}/products` },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: profile.name,
-            item: `${SITE.url}/products/category/${profile.slug}`,
-          },
-        ],
-      },
+        type: 'CollectionPage',
+      }),
+      buildBreadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Products', path: '/products' },
+        { name: profile.name, path: categoryPath },
+      ]),
       {
         '@type': 'ItemList',
         name: `${profile.name} Wholesale Catalog`,
@@ -156,7 +155,7 @@ export default async function CategoryPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(categorySchema).replace(/</g, '\\u003c'),
+          __html: serializeJsonLd(categorySchema),
         }}
       />
 

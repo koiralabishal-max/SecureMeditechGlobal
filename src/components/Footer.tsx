@@ -294,6 +294,16 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
                 </Link>
               </li>
               <li>
+                <Link href="/markets" className="hover:text-[#38B6FF] transition-colors">
+                  Global Export Markets (8 Corridors)
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-[#38B6FF] transition-colors">
+                  Procurement &amp; OEM Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="hover:text-[#38B6FF] transition-colors">
                   Contact &amp; Wholesale RFQ Desk
                 </Link>
@@ -312,6 +322,19 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </ul>
           </div>
 
+        </div>
+
+        {/* Regional Export Corridors Internal Links */}
+        <div className="mt-10 pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-400">
+          <span className="font-bold uppercase tracking-wider text-slate-300">Priority Export Markets:</span>
+          <Link href="/markets/nepal" className="hover:text-[#38B6FF] transition-colors">Nepal</Link>
+          <Link href="/markets/india" className="hover:text-[#38B6FF] transition-colors">India</Link>
+          <Link href="/markets/kenya" className="hover:text-[#38B6FF] transition-colors">Kenya</Link>
+          <Link href="/markets/rwanda" className="hover:text-[#38B6FF] transition-colors">Rwanda</Link>
+          <Link href="/markets/south-africa" className="hover:text-[#38B6FF] transition-colors">South Africa</Link>
+          <Link href="/markets/nigeria" className="hover:text-[#38B6FF] transition-colors">Nigeria</Link>
+          <Link href="/markets/united-kingdom" className="hover:text-[#38B6FF] transition-colors">United Kingdom</Link>
+          <Link href="/markets/united-states" className="hover:text-[#38B6FF] transition-colors">United States</Link>
         </div>
       </div>
 

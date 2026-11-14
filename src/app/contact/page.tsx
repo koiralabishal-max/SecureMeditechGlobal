@@ -3,6 +3,14 @@ import Link from 'next/link';
 import { ArrowRight, ChevronRight, FileText, Globe2, ShieldCheck } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
 import { ContactSection } from '@/components/ContactSection';
+import {
+  buildBreadcrumbSchema,
+  buildWebPageSchema,
+  ORGANIZATION_ID,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -55,22 +63,19 @@ const INCOTERMS = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'ContactPage',
-      '@id': `${SITE.url}/contact#webpage`,
-      url: `${SITE.url}/contact`,
+    ORGANIZATION_SCHEMA,
+    WEBSITE_SCHEMA,
+    buildWebPageSchema({
+      path: '/contact',
       name: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
-      isPartOf: { '@id': `${SITE.url}/#website` },
-      mainEntity: { '@id': `${SITE.url}/#organization` },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-        { '@type': 'ListItem', position: 2, name: 'Contact Us', item: `${SITE.url}/contact` },
-      ],
-    },
+      type: 'ContactPage',
+      mainEntityId: ORGANIZATION_ID,
+    }),
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Contact Us', path: '/contact' },
+    ]),
   ],
 };
 
@@ -80,7 +85,7 @@ export default function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+          __html: serializeJsonLd(structuredData),
         }}
       />
 

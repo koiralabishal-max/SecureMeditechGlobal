@@ -3,6 +3,13 @@ import Link from 'next/link';
 import { ArrowRight, ChevronRight, Layers, Package, ShieldCheck, Clock } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
 import { CATEGORIES, PRODUCTS } from '@/data/products';
+import {
+  buildBreadcrumbSchema,
+  buildWebPageSchema,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE, toCategorySlug } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -41,21 +48,18 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'CollectionPage',
-      '@id': `${SITE.url}/products#webpage`,
-      url: `${SITE.url}/products`,
+    ORGANIZATION_SCHEMA,
+    WEBSITE_SCHEMA,
+    buildWebPageSchema({
+      path: '/products',
       name: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
-      isPartOf: { '@id': `${SITE.url}/#website` },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-        { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE.url}/products` },
-      ],
-    },
+      type: 'CollectionPage',
+    }),
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Products', path: '/products' },
+    ]),
     {
       '@type': 'ItemList',
       name: 'Certified Medical Devices & Hospital Consumables',
@@ -75,7 +79,7 @@ export default function ProductsPage() {
     <SubpageLayout>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }}
       />
 
       {/* Page Hero */}

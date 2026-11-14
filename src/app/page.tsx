@@ -2,6 +2,13 @@ import type { Metadata } from 'next';
 import { HomePage } from '@/components/HomePage';
 import { FAQ_DATA } from '@/data/faqs';
 import { PRODUCTS } from '@/data/products';
+import {
+  buildWebPageSchema,
+  ORGANIZATION_ID,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -27,36 +34,17 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
+    ORGANIZATION_SCHEMA,
+    WEBSITE_SCHEMA,
     {
-      '@type': 'Organization',
-      '@id': `${SITE.url}/#organization`,
-      name: SITE.name,
-      url: `${SITE.url}/`,
-      logo: `${SITE.url}/logo.png`,
-      email: SITE.email,
-      telephone: SITE.phone,
-      description: SITE.description,
-      address: { '@type': 'PostalAddress', ...SITE.address },
-      sameAs: SITE.social,
-      contactPoint: [
-        {
-          '@type': 'ContactPoint',
-          telephone: SITE.phone,
-          email: SITE.email,
-          contactType: 'sales',
-          areaServed: 'Worldwide',
-          availableLanguage: ['English'],
-        },
-      ],
-      knowsAbout: Array.from(new Set(PRODUCTS.map((p) => p.category))),
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE.url}/#website`,
-      url: `${SITE.url}/`,
-      name: SITE.name,
-      publisher: { '@id': `${SITE.url}/#organization` },
-      inLanguage: 'en',
+      ...buildWebPageSchema({
+        path: '/',
+        name: SITE.title,
+        description: SITE.description,
+        aboutId: ORGANIZATION_ID,
+        mainEntityId: `${SITE.url}/#catalog`,
+      }),
+      breadcrumb: undefined,
     },
     {
       '@type': 'ItemList',
@@ -87,7 +75,7 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }}
       />
       <HomePage />
     </>

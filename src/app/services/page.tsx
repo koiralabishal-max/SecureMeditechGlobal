@@ -13,6 +13,13 @@ import {
 } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
 import { SERVICES } from '@/data/services';
+import {
+  buildBreadcrumbSchema,
+  buildWebPageSchema,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -69,21 +76,18 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'CollectionPage',
-      '@id': `${SITE.url}/services#webpage`,
-      url: `${SITE.url}/services`,
+    ORGANIZATION_SCHEMA,
+    WEBSITE_SCHEMA,
+    buildWebPageSchema({
+      path: '/services',
       name: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
-      isPartOf: { '@id': `${SITE.url}/#website` },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE.url}/services` },
-      ],
-    },
+      type: 'CollectionPage',
+    }),
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+    ]),
     {
       '@type': 'ItemList',
       name: 'Secure MediTech Global B2B Services',
@@ -104,7 +108,7 @@ export default function ServicesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+          __html: serializeJsonLd(structuredData),
         }}
       />
 

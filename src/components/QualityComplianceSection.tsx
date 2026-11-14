@@ -115,17 +115,24 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4 text-sm">
               <Link
-                href="/about"
+                href="/markets"
                 className="text-[#38B6FF] font-bold hover:underline inline-flex items-center gap-1"
+              >
+                <span>Explore All 8 Country Corridors</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/about"
+                className="text-slate-200 font-semibold hover:text-[#38B6FF] hover:underline inline-flex items-center gap-1"
               >
                 <span>About Our Quality &amp; Accreditations</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/services"
+                href="/blog"
                 className="text-slate-200 font-semibold hover:text-[#38B6FF] hover:underline inline-flex items-center gap-1"
               >
-                <span>Cold-Chain &amp; Regulatory Services</span>
+                <span>Procurement &amp; Regulatory Guides</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

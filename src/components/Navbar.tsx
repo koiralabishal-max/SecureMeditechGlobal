@@ -175,6 +175,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Link>
 
             <Link 
+              href="/blog" 
+              className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
+            >
+              Blog
+            </Link>
+
+            <Link 
               href="/contact" 
               className="hover:text-[#0B2F63] transition-colors py-2 whitespace-nowrap"
             >
@@ -320,6 +327,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
             >
               About Us
+            </Link>
+
+            <Link 
+              href="/blog" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+            >
+              Procurement Blog
+            </Link>
+
+            <Link 
+              href="/markets" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-3 rounded-lg hover:bg-slate-50 hover:text-[#0B2F63]"
+            >
+              Global Export Markets
             </Link>
 
             <Link 

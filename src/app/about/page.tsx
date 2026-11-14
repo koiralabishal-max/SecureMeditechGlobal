@@ -14,6 +14,14 @@ import { SubpageLayout } from '@/components/SubpageLayout';
 import { STATS } from '@/data/products';
 import { BRANDS } from '@/data/brands';
 import { PROJECTS } from '@/data/projects';
+import {
+  buildBreadcrumbSchema,
+  buildWebPageSchema,
+  ORGANIZATION_ID,
+  ORGANIZATION_SCHEMA,
+  serializeJsonLd,
+  WEBSITE_SCHEMA,
+} from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -86,22 +94,19 @@ const CERTIFICATIONS = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'AboutPage',
-      '@id': `${SITE.url}/about#webpage`,
-      url: `${SITE.url}/about`,
+    ORGANIZATION_SCHEMA,
+    WEBSITE_SCHEMA,
+    buildWebPageSchema({
+      path: '/about',
       name: PAGE_TITLE,
       description: PAGE_DESCRIPTION,
-      isPartOf: { '@id': `${SITE.url}/#website` },
-      about: { '@id': `${SITE.url}/#organization` },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-        { '@type': 'ListItem', position: 2, name: 'About Us', item: `${SITE.url}/about` },
-      ],
-    },
+      type: 'AboutPage',
+      aboutId: ORGANIZATION_ID,
+    }),
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'About Us', path: '/about' },
+    ]),
   ],
 };
 
@@ -111,7 +116,7 @@ export default function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+          __html: serializeJsonLd(structuredData),
         }}
       />
 
@@ -205,12 +210,25 @@ export default function AboutPage() {
         {/* Global Corridors & Regional Supply Footprint */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-2xs space-y-4">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] flex items-center gap-2">
-              <Globe2 className="w-5 h-5 text-[#38B6FF]" />
-              <span>Dedicated International Distribution Corridors</span>
-            </h2>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] flex items-center gap-2">
+                <Globe2 className="w-5 h-5 text-[#38B6FF]" />
+                <span>Dedicated International Distribution Corridors</span>
+              </h2>
+              <Link href="/markets" className="text-xs font-bold text-sky-700 hover:underline">
+                View 8 Country Guides →
+              </Link>
+            </div>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-              We operate direct medical supply corridors to Europe, the Americas, Asia-Pacific, and Africa—including established clearance workflows for Nepal (DDA), Kenya (PPB), Rwanda (RFDA), South Africa (SAHPRA), Nigeria (NAFDAC), and India (CDSCO).
+              We operate direct medical supply corridors to Europe, the Americas, Asia-Pacific, and Africa—including established clearance workflows for{' '}
+              <Link href="/markets/nepal" className="text-[#0B2F63] font-semibold hover:underline">Nepal (DDA)</Link>,{' '}
+              <Link href="/markets/kenya" className="text-[#0B2F63] font-semibold hover:underline">Kenya (PPB)</Link>,{' '}
+              <Link href="/markets/rwanda" className="text-[#0B2F63] font-semibold hover:underline">Rwanda (RFDA)</Link>,{' '}
+              <Link href="/markets/south-africa" className="text-[#0B2F63] font-semibold hover:underline">South Africa (SAHPRA)</Link>,{' '}
+              <Link href="/markets/nigeria" className="text-[#0B2F63] font-semibold hover:underline">Nigeria (NAFDAC)</Link>,{' '}
+              <Link href="/markets/india" className="text-[#0B2F63] font-semibold hover:underline">India (CDSCO)</Link>,{' '}
+              <Link href="/markets/united-kingdom" className="text-[#0B2F63] font-semibold hover:underline">United Kingdom (MHRA)</Link>, and{' '}
+              <Link href="/markets/united-states" className="text-[#0B2F63] font-semibold hover:underline">United States</Link>.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {PROJECTS.slice(0, 4).map((proj) => (
