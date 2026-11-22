@@ -36,7 +36,7 @@ export const PROJECTS: HospitalProject[] = [
       'Direct-Access Arterial Pressure Monitoring Kits (3,500 sets)',
       'Disposable ECG Monitoring Electrodes (50,000 units)'
     ],
-    image: '/assets/aistudio/image_ff91983b.png'
+    image: '/assets/webp/image_ff91983b.webp'
   },
   {
     id: 'nairobi-teaching-icu-upgrade',
@@ -60,7 +60,7 @@ export const PROJECTS: HospitalProject[] = [
       'Normal Endotracheal Tubes Cuffed & Uncuffed (12,000 units)',
       'ICU Combo Consumable Bundles (1,200 kits)'
     ],
-    image: '/assets/aistudio/image_c5072168.png'
+    image: '/assets/webp/image_c5072168.webp'
   },
   {
     id: 'kigali-dialysis-network',
@@ -83,7 +83,7 @@ export const PROJECTS: HospitalProject[] = [
       'Foley 100% Silicone Balloon Catheters (6,000 units)',
       'Sterile Powder-Free Latex Surgical Gloves (25,000 pairs)'
     ],
-    image: '/assets/aistudio/image_d84fe53c.png'
+    image: '/assets/webp/image_d84fe53c.webp'
   },
   {
     id: 'lagos-surgical-ot-packs',
@@ -106,7 +106,7 @@ export const PROJECTS: HospitalProject[] = [
       'Sterile Powder-Free Latex Surgical Gloves (120,000 pairs)',
       'Echogenic Ultrasound Nerve Block Needles (3,500 units)'
     ],
-    image: '/assets/aistudio/image_4aa64575.png'
+    image: '/assets/webp/image_4aa64575.webp'
   },
   {
     id: 'delhi-critical-care-diagnostic',
@@ -129,7 +129,7 @@ export const PROJECTS: HospitalProject[] = [
       'Photometric clinical chemistry reagents & calibrators (12-month supply)',
       'Laboratory precision consumables & sampling tips (100,000 pcs)'
     ],
-    image: '/assets/images/product_biochemistry_analyzer_1792848780691.jpg'
+    image: '/assets/webp/product_biochemistry_analyzer_1792848780691.webp'
   },
   {
     id: 'southern-africa-infusion-resilience',
@@ -152,6 +152,6 @@ export const PROJECTS: HospitalProject[] = [
       'Gravity IV Infusion Sets with 15µm Filter (500,000 units)',
       '3-Ball Incentive Respiratory Spirometers (20,000 units)'
     ],
-    image: '/assets/images/product_iv_cannula_set_1792988226730.jpg'
+    image: '/assets/webp/product_iv_cannula_set_1792988226730.webp'
   }
 ];

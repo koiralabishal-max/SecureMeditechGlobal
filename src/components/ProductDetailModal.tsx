@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '../types';
+import { trackProductView, trackWhatsAppInquiry } from '@/lib/analytics';
 import { X, ShieldCheck, Check, Plus, FileDown, Package, Clock, Globe, MessageSquare, Layers, ExternalLink } from 'lucide-react';
 
 interface ProductDetailModalProps {
@@ -23,7 +25,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const [imgError, setImgError] = React.useState(false);
   React.useEffect(() => {
     setImgError(false);
-  }, [product?.id]);
+    if (product) {
+      trackProductView({
+        id: product.id,
+        sku: product.sku,
+        name: product.name,
+        category: product.category,
+      });
+    }
+  }, [product]);
 
   if (!product) return null;
 
@@ -33,18 +43,25 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${product.name} product specifications`}
+        className="relative bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+      >
         
         {/* Header Bar */}
-        <div className="bg-[#0B2F63] text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-[#223752] text-white px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono bg-[#38B6FF] text-[#071E40] font-bold px-2 py-0.5 rounded">
+            <span className="text-xs font-mono bg-[#DCE7F2] text-[#19293F] font-bold px-2 py-0.5 rounded">
               {product.sku}
             </span>
             <span className="text-xs text-slate-300">· {product.category}</span>
           </div>
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Close product specification dialog"
             className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
@@ -58,12 +75,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="md:col-span-5 space-y-4">
             <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-4/3 shadow-2xs">
               {!imgError ? (
-                <img
+                <Image
                   src={product.image}
                   alt={`${product.name} (${product.sku}) – ${product.category}`}
-                  decoding="async"
-                  width={480}
-                  height={360}
+                  sizes="(max-width: 768px) 100vw, 480px"
+                  width={640}
+                  height={480}
+                  referrerPolicy="no-referrer"
                   onError={() => setImgError(true)}
                   className="w-full h-full object-cover"
                 />
@@ -76,8 +94,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
-              <div className="font-bold text-[#0B2F63] flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+              <div className="font-bold text-[#223752] flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#3F7D6B]" />
                 <span>Regulatory Credentials</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -90,7 +108,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs text-slate-600">
-              <div className="font-bold text-[#0B2F63]">Procurement Profile</div>
+              <div className="font-bold text-[#223752]">Procurement Profile</div>
               <p className="flex items-center gap-2">
                 <Package className="w-3.5 h-3.5 text-slate-400" />
                 <span>MOQ: <strong>{product.minOrderQty}</strong></span>
@@ -109,10 +127,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           {/* Right Column: Descriptions, Sizes, Technical Specs & Enquiries */}
           <div className="md:col-span-7 space-y-5">
             <div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63]">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752]">
                 {product.name}
               </h2>
-              <p className="text-xs sm:text-sm text-[#38B6FF] font-semibold mt-1">
+              <p className="text-xs sm:text-sm text-[#3B6B91] font-semibold mt-1">
                 {product.tagline}
               </p>
             </div>
@@ -125,13 +143,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {product.sizes && product.sizes.length > 0 && (
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-[#38B6FF]" />
+                  <Layers className="w-3.5 h-3.5 text-[#3B6B91]" />
                   <span>Available Gauges, Lengths & Sizes</span>
                 </h3>
                 <div className="bg-slate-50 rounded-xl p-3 border border-slate-200 space-y-1.5">
                   {product.sizes.map((size, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#38B6FF]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#4C7A9C]" />
                       <span className="font-medium">{size}</span>
                     </div>
                   ))}
@@ -158,15 +176,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Packaging Specification */}
-            <div className="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100 text-xs text-slate-700">
-              <span className="font-bold text-[#0B2F63]">Packaging Standard: </span>
+            <div className="p-3.5 rounded-xl bg-[#F1F5F8] border border-[#DCE4EC] text-xs text-slate-700">
+              <span className="font-bold text-[#223752]">Packaging Standard: </span>
               {product.packaging}
             </div>
 
             {/* Enquiry & Procurement Callout */}
-            <div className="p-3.5 rounded-xl bg-emerald-50/60 border border-emerald-100 flex items-center justify-between gap-3 text-xs">
+            <div className="p-3.5 rounded-xl bg-[#EFF5F3] border border-[#D3E3DD] flex items-center justify-between gap-3 text-xs">
               <div>
-                <div className="font-bold text-[#0B2F63]">Looking for Hospital Pricing or Custom OEM?</div>
+                <div className="font-bold text-[#223752]">Looking for Hospital Pricing or Custom OEM?</div>
                 <div className="text-xs text-slate-600 mt-0.5">
                   Chat directly with our medical procurement officer on WhatsApp or add to your official RFQ tender.
                 </div>
@@ -175,7 +193,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-2 bg-[#10B981] hover:bg-[#059669] text-white font-bold rounded-lg shrink-0 flex items-center gap-1.5 transition-colors shadow-2xs"
+                onClick={() =>
+                  trackWhatsAppInquiry({
+                    source: 'product_detail_modal',
+                    sku: product.sku,
+                    productName: product.name,
+                    category: product.category,
+                  })
+                }
+                className="px-3.5 py-2 bg-[#3F7D6B] hover:bg-[#336859] text-white font-bold rounded-lg shrink-0 flex items-center gap-1.5 transition-colors shadow-2xs"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>WhatsApp Enquire</span>
@@ -188,13 +214,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 onClick={() => onAddToQuote(product)}
                 className={`flex-1 py-3 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                   isInQuote 
-                    ? 'bg-[#0B2F63] text-white hover:bg-[#164082]' 
-                    : 'bg-[#38B6FF] hover:bg-[#209ee8] text-white shadow-md'
+                    ? 'bg-[#223752] text-white hover:bg-[#2E496B]' 
+                    : 'bg-[#356386] hover:bg-[#2A5170] text-white shadow-md'
                 }`}
               >
                 {isInQuote ? (
                   <>
-                    <Check className="w-4 h-4 text-[#10B981]" />
+                    <Check className="w-4 h-4 text-[#7DB5A4]" />
                     <span>In Quote Request</span>
                   </>
                 ) : (
@@ -210,18 +236,18 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   onClose();
                   onOpenSpecSheet(product);
                 }}
-                className="py-3 px-4 rounded-xl text-xs font-bold text-[#0B2F63] bg-slate-100 hover:bg-slate-200 transition-colors flex items-center justify-center gap-1.5"
+                className="py-3 px-4 rounded-xl text-xs font-bold text-[#223752] bg-slate-100 hover:bg-slate-200 transition-colors flex items-center justify-center gap-1.5"
               >
-                <FileDown className="w-4 h-4 text-[#38B6FF]" />
+                <FileDown className="w-4 h-4 text-[#3B6B91]" />
                 <span>View Full Spec Sheet</span>
               </button>
 
               <Link
                 href={`/products/${product.id}`}
                 onClick={onClose}
-                className="py-3 px-4 rounded-xl text-xs font-bold text-[#0B2F63] bg-white border border-slate-200 hover:border-[#0B2F63] transition-colors flex items-center justify-center gap-1.5"
+                className="py-3 px-4 rounded-xl text-xs font-bold text-[#223752] bg-white border border-slate-200 hover:border-[#223752] transition-colors flex items-center justify-center gap-1.5"
               >
-                <ExternalLink className="w-3.5 h-3.5 text-[#38B6FF]" />
+                <ExternalLink className="w-3.5 h-3.5 text-[#3B6B91]" />
                 <span>Product Page</span>
               </Link>
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -65,12 +66,12 @@ export const metadata: Metadata = {
 };
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  Factory: <Factory className="w-5 h-5 text-[#38B6FF]" />,
-  PenTool: <PenTool className="w-5 h-5 text-[#38B6FF]" />,
-  Truck: <Truck className="w-5 h-5 text-[#10B981]" />,
-  Building2: <Building2 className="w-5 h-5 text-[#38B6FF]" />,
-  Wrench: <Wrench className="w-5 h-5 text-[#10B981]" />,
-  ShieldCheck: <ShieldCheck className="w-5 h-5 text-[#38B6FF]" />,
+  Factory: <Factory className="w-5 h-5 text-[#3B6B91]" />,
+  PenTool: <PenTool className="w-5 h-5 text-[#3B6B91]" />,
+  Truck: <Truck className="w-5 h-5 text-[#3F7D6B]" />,
+  Building2: <Building2 className="w-5 h-5 text-[#3B6B91]" />,
+  Wrench: <Wrench className="w-5 h-5 text-[#3F7D6B]" />,
+  ShieldCheck: <ShieldCheck className="w-5 h-5 text-[#3B6B91]" />,
 };
 
 const structuredData = {
@@ -113,13 +114,13 @@ export default function ServicesPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -128,7 +129,7 @@ export default function ServicesPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Wrench className="w-4 h-4" />
             <span>End-to-End Cleanroom, Regulatory &amp; Freight Execution</span>
           </p>
@@ -144,7 +145,7 @@ export default function ServicesPage() {
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
               href="/oem-manufacturing"
-              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl transition-colors inline-flex items-center gap-2"
+              className="h-11 px-5 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-sm font-bold rounded-xl transition-colors inline-flex items-center gap-2"
             >
               <span>Explore OEM Workflow &amp; MOQs</span>
               <ArrowRight className="w-4 h-4" />
@@ -168,13 +169,15 @@ export default function ServicesPage() {
             className="scroll-mt-24 bg-white rounded-3xl border border-slate-200 shadow-2xs overflow-hidden grid grid-cols-1 lg:grid-cols-12"
           >
             <div className="lg:col-span-5 relative min-h-[240px] bg-slate-100">
-              <img
+              <Image
                 src={svc.image}
                 alt={`${svc.title} – ${SITE.name}`}
+                priority={index === 0}
                 loading={index === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-                width={600}
-                height={420}
+                sizes="(max-width: 1024px) 100vw, 520px"
+                width={800}
+                height={560}
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -182,8 +185,8 @@ export default function ServicesPage() {
             <div className="lg:col-span-7 p-6 sm:p-8 space-y-5">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <span className="p-2 rounded-xl bg-sky-50 border border-sky-100">
-                    {ICON_MAP[svc.iconName] || <ShieldCheck className="w-5 h-5 text-[#38B6FF]" />}
+                  <span className="p-2 rounded-xl bg-[#F1F5F8] border border-[#DCE4EC]">
+                    {ICON_MAP[svc.iconName] || <ShieldCheck className="w-5 h-5 text-[#3B6B91]" />}
                   </span>
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                     {svc.targetAudience}
@@ -191,7 +194,7 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              <h2 className="text-2xl font-extrabold text-[#0B2F63] tracking-tight">
+              <h2 className="text-2xl font-extrabold text-[#223752] tracking-tight">
                 {svc.title}
               </h2>
 
@@ -207,7 +210,7 @@ export default function ServicesPage() {
                   <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
                     {svc.capabilities.map((cap) => (
                       <li key={cap} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#38B6FF] shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#3B6B91] shrink-0 mt-0.5" />
                         <span>{cap}</span>
                       </li>
                     ))}
@@ -221,7 +224,7 @@ export default function ServicesPage() {
                   <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
                     {svc.keyBenefits.map((ben) => (
                       <li key={ben} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0 mt-0.5" />
                         <span>{ben}</span>
                       </li>
                     ))}
@@ -234,7 +237,7 @@ export default function ServicesPage() {
                   {svc.standards.map((std) => (
                     <span
                       key={std}
-                      className="text-xs font-semibold bg-slate-100 text-[#0B2F63] px-2.5 py-1 rounded-md"
+                      className="text-xs font-semibold bg-slate-100 text-[#223752] px-2.5 py-1 rounded-md"
                     >
                       {std}
                     </span>
@@ -242,7 +245,7 @@ export default function ServicesPage() {
                 </div>
                 <Link
                   href="/contact"
-                  className="text-sm font-bold text-[#0B2F63] hover:text-[#38B6FF] inline-flex items-center gap-1.5"
+                  className="text-sm font-bold text-[#223752] hover:text-[#3B6B91] inline-flex items-center gap-1.5"
                 >
                   <span>Inquire for This Service</span>
                   <ArrowRight className="w-4 h-4" />
@@ -253,7 +256,7 @@ export default function ServicesPage() {
         ))}
 
         {/* Bottom Navigation Bridge */}
-        <section className="bg-[#0B2F63] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <section className="bg-[#223752] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl space-y-2">
             <h2 className="text-2xl font-extrabold">
               Ready to Source Wholesale Hospital Supplies or Launch an OEM Line?
@@ -265,7 +268,7 @@ export default function ServicesPage() {
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link
               href="/products"
-              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
+              className="h-11 px-5 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
             >
               <span>Browse Medical Catalog</span>
               <ArrowRight className="w-4 h-4" />

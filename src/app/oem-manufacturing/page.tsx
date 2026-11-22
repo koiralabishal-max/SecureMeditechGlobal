@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -8,12 +9,12 @@ import {
   Factory,
   FileCheck,
   Layers,
-  MessageSquare,
   PackageCheck,
   ShieldCheck,
   Truck,
 } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
+import { CategoryConversionButtons } from '@/components/CategoryConversionButtons';
 import { OEM_STEPS } from '@/data/products';
 import { CATEGORY_SEO_PROFILES } from '@/lib/seo-strategy';
 import {
@@ -119,10 +120,10 @@ const structuredData = {
 
 export default function OemManufacturingPage() {
   const stepIcons = [
-    <Cpu key="0" className="w-5 h-5 text-[#38B6FF]" />,
-    <ShieldCheck key="1" className="w-5 h-5 text-[#10B981]" />,
-    <FileCheck key="2" className="w-5 h-5 text-[#38B6FF]" />,
-    <Truck key="3" className="w-5 h-5 text-[#10B981]" />,
+    <Cpu key="0" className="w-5 h-5 text-[#3B6B91]" />,
+    <ShieldCheck key="1" className="w-5 h-5 text-[#3F7D6B]" />,
+    <FileCheck key="2" className="w-5 h-5 text-[#3B6B91]" />,
+    <Truck key="3" className="w-5 h-5 text-[#3F7D6B]" />,
   ];
 
   const whatsAppUrl = `https://wa.me/13075334504?text=${encodeURIComponent(
@@ -139,17 +140,17 @@ export default function OemManufacturingPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex flex-wrap items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
-            <Link href="/services" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/services" className="hover:text-[#8CB3D4] transition-colors">
               Services
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -158,7 +159,7 @@ export default function OemManufacturingPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Factory className="w-4 h-4" />
             <span>ISO 13485:2016 · ISO Class 7 &amp; Class 8 Cleanrooms</span>
           </p>
@@ -172,22 +173,13 @@ export default function OemManufacturingPage() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Link
-              href="/contact"
-              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl transition-colors inline-flex items-center gap-2"
-            >
-              <span>Request OEM Technical Consultation</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href={whatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-11 px-5 bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm font-semibold rounded-xl transition-colors inline-flex items-center gap-2"
-            >
-              <MessageSquare className="w-4 h-4 text-[#10B981]" />
-              <span>Discuss Private Label MOQs</span>
-            </a>
+            <CategoryConversionButtons
+              primaryLabel="Request OEM Technical Consultation"
+              whatsAppLabel="Discuss Private Label MOQs"
+              whatsAppUrl={whatsAppUrl}
+              source="oem_manufacturing_hero"
+              isOem
+            />
           </div>
         </div>
       </section>
@@ -196,7 +188,7 @@ export default function OemManufacturingPage() {
         {/* Cleanroom Facility Overview */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-2xs">
           <div className="lg:col-span-6 space-y-4">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2F63] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#223752] tracking-tight">
               Turnkey Contract Manufacturing from Prototype to Port Clearance
             </h2>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
@@ -204,26 +196,29 @@ export default function OemManufacturingPage() {
             </p>
             <ul className="space-y-2.5 text-sm text-slate-700 pt-2">
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0 mt-0.5" />
                 <span>Multi-cavity medical-grade USP Class VI polymer injection molding &amp; spiral catheter extrusion</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0 mt-0.5" />
                 <span>Custom Tyvek® sterile blister trays, dual-language IFUs &amp; GS1 barcode serialization</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0 mt-0.5" />
                 <span>Pre-production clinical evaluation samples (5–10 units) shipped globally via courier</span>
               </li>
             </ul>
           </div>
           <div className="lg:col-span-6">
             <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm aspect-[16/10]">
-              <img
-                src="/assets/images/oem_cleanroom_facility_1792848782226.jpg"
+              <Image
+                src="/assets/webp/oem_cleanroom_facility_1792848782226.webp"
                 alt="Secure MediTech Global ISO Class 7 and Class 8 cleanroom medical device contract manufacturing facility"
+                priority
+                sizes="(max-width: 1024px) 100vw, 600px"
                 width={800}
                 height={500}
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -233,7 +228,7 @@ export default function OemManufacturingPage() {
         {/* 4-Stage OEM Lifecycle */}
         <section>
           <div className="mb-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2F63] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#223752] tracking-tight">
               4-Stage OEM &amp; ODM Production Workflow
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-1.5 max-w-3xl">
@@ -249,11 +244,11 @@ export default function OemManufacturingPage() {
               >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#0B2F63] text-[#38B6FF] font-extrabold text-sm flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#223752] text-[#DCE7F2] font-extrabold text-sm flex items-center justify-center">
                       {item.step}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-[#0B2F63]">{item.title}</h3>
+                      <h3 className="text-lg font-bold text-[#223752]">{item.title}</h3>
                       <p className="text-xs text-slate-500 font-medium">{item.subtitle}</p>
                     </div>
                   </div>
@@ -270,7 +265,7 @@ export default function OemManufacturingPage() {
                       key={deliv}
                       className="flex items-center gap-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50 px-3 py-2 rounded-lg border border-slate-100"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0" />
                       <span>{deliv}</span>
                     </li>
                   ))}
@@ -284,8 +279,8 @@ export default function OemManufacturingPage() {
         <section className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-2xs space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] flex items-center gap-2">
-                <PackageCheck className="w-5 h-5 text-[#38B6FF]" />
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752] flex items-center gap-2">
+                <PackageCheck className="w-5 h-5 text-[#3B6B91]" />
                 <span>Private Label Minimum Order Quantities (MOQs)</span>
               </h2>
               <p className="text-sm text-slate-600 mt-1">
@@ -293,8 +288,8 @@ export default function OemManufacturingPage() {
               </p>
             </div>
             <Link
-              href="/#price-calculator"
-              className="text-sm font-bold text-sky-700 hover:underline shrink-0"
+              href="/price-calculator"
+              className="text-sm font-bold text-[#3B6B91] hover:underline shrink-0"
             >
               Open Wholesale Price Estimator →
             </Link>
@@ -302,7 +297,7 @@ export default function OemManufacturingPage() {
 
           <div className="overflow-x-auto rounded-xl border border-slate-200">
             <table className="w-full text-left text-sm">
-              <thead className="bg-[#0B2F63]/5 text-[#0B2F63] border-b border-slate-200">
+              <thead className="bg-[#223752]/5 text-[#223752] border-b border-slate-200">
                 <tr>
                   <th className="py-3 px-4 font-semibold">OEM Product Group</th>
                   <th className="py-3 px-4 font-semibold">Verified Product Lines</th>
@@ -313,13 +308,13 @@ export default function OemManufacturingPage() {
               <tbody className="divide-y divide-slate-100">
                 {OEM_MOQ_TIERS.map((tier) => (
                   <tr key={tier.group} className="bg-white">
-                    <td className="py-3.5 px-4 font-bold text-[#0B2F63]">{tier.group}</td>
+                    <td className="py-3.5 px-4 font-bold text-[#223752]">{tier.group}</td>
                     <td className="py-3.5 px-4 text-slate-600">{tier.examples}</td>
-                    <td className="py-3.5 px-4 font-semibold text-emerald-700">{tier.moq}</td>
+                    <td className="py-3.5 px-4 font-semibold text-[#2F6153]">{tier.moq}</td>
                     <td className="py-3.5 px-4 text-right">
                       <Link
                         href={`/products/category/${tier.categorySlug}`}
-                        className="text-sky-700 font-semibold hover:underline inline-flex items-center gap-1"
+                        className="text-[#3B6B91] font-semibold hover:underline inline-flex items-center gap-1"
                       >
                         <span>View Division</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -335,11 +330,11 @@ export default function OemManufacturingPage() {
         {/* Cross-Links to Product Divisions & Services */}
         <section className="space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] flex items-center gap-2">
-              <Layers className="w-5 h-5 text-[#38B6FF]" />
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752] flex items-center gap-2">
+              <Layers className="w-5 h-5 text-[#3B6B91]" />
               <span>OEM-Eligible Clinical Divisions</span>
             </h2>
-            <Link href="/services" className="text-sm font-bold text-sky-700 hover:underline">
+            <Link href="/services" className="text-sm font-bold text-[#3B6B91] hover:underline">
               Explore All 6 Medical Supply Services →
             </Link>
           </div>
@@ -348,10 +343,10 @@ export default function OemManufacturingPage() {
               <Link
                 key={cat.slug}
                 href={`/products/category/${cat.slug}`}
-                className="bg-white rounded-xl border border-slate-200 hover:border-[#38B6FF] p-4 transition-all shadow-2xs hover:shadow-md flex flex-col justify-between gap-2"
+                className="bg-white rounded-xl border border-slate-200 hover:border-[#94B3CE] p-4 transition-all shadow-2xs hover:shadow-md flex flex-col justify-between gap-2"
               >
-                <h3 className="text-sm font-bold text-[#0B2F63]">{cat.name}</h3>
-                <span className="text-xs text-sky-700 font-semibold inline-flex items-center gap-1">
+                <h3 className="text-sm font-bold text-[#223752]">{cat.name}</h3>
+                <span className="text-xs text-[#3B6B91] font-semibold inline-flex items-center gap-1">
                   <span>View Division Specs</span>
                   <ArrowRight className="w-3 h-3" />
                 </span>

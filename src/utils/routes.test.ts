@@ -126,3 +126,96 @@ test('Structured data builders enforce Schema.org integrity and omit unverified 
   });
   assert.strictEqual(artSchema['@type'], 'Article');
 });
+
+test('Day 4 inquiry validation normalizes RFQ, Contact, and OEM submissions cleanly', async () => {
+  const { validateInquiryPayload } = await import('../lib/inquiry');
+
+  const badContact = validateInquiryPayload({ type: 'contact', fullName: '', message: '' });
+  assert.strictEqual(badContact.valid, false);
+  assert.ok(badContact.errors.fullName);
+  assert.ok(badContact.errors.message);
+
+  const validRfq = validateInquiryPayload({
+    type: 'rfq',
+    fullName: 'Dr. Jane Doe',
+    companyName: 'Kathmandu Surgical Center',
+    businessType: 'OEM / Brand Partner',
+    email: 'procurement@hospital.org',
+    phoneNumber: '+9779800000000',
+    country: 'Nepal',
+    incoterm: 'CIF',
+    message: 'Need private label OEM surgical packs.',
+    items: [{ sku: 'SMT-CVP-01', name: 'Central Venous Catheter Kit', quantity: 500 }],
+  });
+  assert.strictEqual(validRfq.valid, true);
+  assert.ok(validRfq.normalized);
+  assert.ok(validRfq.normalized.referenceId.startsWith('RFQ-SMT-'));
+  assert.strictEqual(validRfq.normalized.isOem, true);
+  assert.strictEqual(validRfq.normalized.totalUnits, 500);
+});
+
+test('Day 4 organic search attribution detects search referrers and UTM organic parameters', async () => {
+  const { detectTrafficAttribution } = await import('../lib/analytics');
+
+  const fromGoogle = detectTrafficAttribution(
+    'https://www.google.com/search?q=wholesale+medical+supplies',
+    '',
+    '/products'
+  );
+  assert.strictEqual(fromGoogle.traffic_channel, 'organic_search');
+  assert.strictEqual(fromGoogle.referring_engine, 'google');
+
+  const fromUtm = detectTrafficAttribution('', '?utm_medium=organic&utm_source=bing', '/markets/kenya');
+  assert.strictEqual(fromUtm.traffic_channel, 'organic_search');
+  assert.strictEqual(fromUtm.referring_engine, 'bing');
+
+  const direct = detectTrafficAttribution('', '', '/');
+  assert.strictEqual(direct.traffic_channel, 'direct');
+});
+
+test('Full-site navbar search finds products, services, and blog guides accurately', async () => {
+  const { searchSite } = await import('../lib/search');
+
+  const productRes = searchSite('SMT-CCM-CVP01');
+  assert.ok(productRes.totalCount >= 1, 'Should match product by SKU');
+  assert.strictEqual(productRes.items[0].href, '/products/cvp-catheter-kit');
+
+  const serviceRes = searchSite('CAD tooling');
+  assert.ok(
+    serviceRes.items.some((item) => item.href === '/services#cad-tooling-dfm'),
+    'Should match CAD tooling service section'
+  );
+
+  const blogRes = searchSite('essential ICU consumables');
+  assert.ok(
+    blogRes.items.some((item) => item.href === '/blog/essential-icu-consumables-for-modern-hospitals'),
+    'Should match ICU consumables blog guide'
+  );
+
+  const emptyRes = searchSite('   ');
+  assert.strictEqual(emptyRes.totalCount, 0);
+  assert.strictEqual(emptyRes.items.length, 0);
+
+  const calcRes = searchSite('price calculator');
+  assert.ok(
+    calcRes.items.some((item) => item.href === '/price-calculator'),
+    'Should match dedicated /price-calculator page'
+  );
+
+  const faqRes = searchSite('OEM FAQ');
+  assert.ok(
+    faqRes.items.some((item) => item.href === '/faq'),
+    'Should match dedicated /faq page'
+  );
+});
+
+test('Featured homepage catalog selects one unique product per clinical division', async () => {
+  const { getFeaturedCatalogProducts, CLINICAL_DIVISIONS } = await import('../lib/catalog');
+  const featured = getFeaturedCatalogProducts(PRODUCTS, 8);
+  assert.strictEqual(featured.length, 8, 'Homepage featured showcase should select 8 items');
+
+  const categories = new Set(featured.map((p) => p.category));
+  for (const division of CLINICAL_DIVISIONS) {
+    assert.ok(categories.has(division), `Featured showcase missing division: ${division}`);
+  }
+});

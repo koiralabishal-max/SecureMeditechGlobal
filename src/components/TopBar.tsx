@@ -2,19 +2,20 @@
 
 import React from 'react';
 import { Phone, Mail, Globe, MessageSquare } from 'lucide-react';
+import { trackWhatsAppInquiry } from '@/lib/analytics';
 
 export const TopBar: React.FC = () => {
   return (
-    <div className="bg-[#071E40] text-slate-300 text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-slate-700/50">
+    <div className="bg-[#19293F] text-slate-300 text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-slate-700/50">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2">
         {/* Left: Contact Info */}
         <div className="flex items-center gap-4 sm:gap-6">
           <a 
             href="tel:+13075334504" 
-            className="flex items-center gap-1.5 hover:text-[#38B6FF] transition-colors whitespace-nowrap"
+            className="flex items-center gap-1.5 hover:text-[#8CB3D4] transition-colors whitespace-nowrap"
             title="Direct Corporate Hotline"
           >
-            <Phone className="w-3.5 h-3.5 text-[#38B6FF]" />
+            <Phone className="w-3.5 h-3.5 text-[#8CB3D4]" />
             <span className="font-medium">+1 (307) 533-4504</span>
           </a>
 
@@ -22,26 +23,27 @@ export const TopBar: React.FC = () => {
             href="https://wa.me/13075334504" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 hover:text-[#10B981] transition-colors whitespace-nowrap"
+            onClick={() => trackWhatsAppInquiry({ source: 'topbar' })}
+            className="flex items-center gap-1.5 hover:text-[#7DB5A4] transition-colors whitespace-nowrap"
             title="Direct WhatsApp Inquiries"
           >
-            <MessageSquare className="w-3.5 h-3.5 text-[#10B981]" />
+            <MessageSquare className="w-3.5 h-3.5 text-[#7DB5A4]" />
             <span>WhatsApp Direct</span>
           </a>
 
           <a 
             href="mailto:info@securemeditechglobal.com" 
-            className="hidden sm:flex items-center gap-1.5 hover:text-[#38B6FF] transition-colors whitespace-nowrap"
+            className="hidden sm:flex items-center gap-1.5 hover:text-[#8CB3D4] transition-colors whitespace-nowrap"
             title="Email Medical Information Team"
           >
-            <Mail className="w-3.5 h-3.5 text-[#38B6FF]" />
+            <Mail className="w-3.5 h-3.5 text-[#8CB3D4]" />
             <span>info@securemeditechglobal.com</span>
           </a>
         </div>
 
         {/* Center: Global Status indicator */}
         <div className="hidden lg:flex items-center gap-2 text-slate-400">
-          <Globe className="w-3.5 h-3.5 text-[#38B6FF]" />
+          <Globe className="w-3.5 h-3.5 text-[#8CB3D4]" />
           <span>Global Air & Ocean Freight Active · Supplying 65+ Countries</span>
         </div>
 
@@ -55,7 +57,7 @@ export const TopBar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer" 
             aria-label="Secure MediTech Global Facebook Page"
-            className="text-slate-300 hover:text-[#38B6FF] transition-colors flex items-center gap-1"
+            className="text-slate-300 hover:text-[#8CB3D4] transition-colors flex items-center gap-1"
             title="Visit our Facebook Page"
           >
             <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -70,7 +72,7 @@ export const TopBar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Secure MediTech Global LinkedIn"
-            className="text-slate-300 hover:text-[#38B6FF] transition-colors flex items-center gap-1"
+            className="text-slate-300 hover:text-[#8CB3D4] transition-colors flex items-center gap-1"
             title="LinkedIn Corporate Profile"
           >
             <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -85,7 +87,7 @@ export const TopBar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="Secure MediTech Global Instagram"
-            className="text-slate-300 hover:text-[#38B6FF] transition-colors flex items-center gap-1"
+            className="text-slate-300 hover:text-[#8CB3D4] transition-colors flex items-center gap-1"
             title="Instagram Media Stream"
           >
             <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">

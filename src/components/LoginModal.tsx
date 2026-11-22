@@ -51,9 +51,9 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
       <div className="relative bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="bg-[#0B2F63] text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-[#223752] text-white px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Shield className="w-5 h-5 text-[#38B6FF]" />
+            <Shield className="w-5 h-5 text-[#8CB3D4]" />
             <h3 className="text-sm font-bold tracking-tight">
               {loggedInUser ? 'B2B Client Dashboard' : 'B2B Procurement & Distributor Portal'}
             </h3>
@@ -70,11 +70,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         <div className="p-6">
           {loggedInUser ? (
             <div className="text-center py-4 space-y-4">
-              <div className="w-12 h-12 bg-blue-50 text-[#0B2F63] rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-6 h-6 text-[#10B981]" />
+              <div className="w-12 h-12 bg-[#EFF5F3] text-[#223752] rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-6 h-6 text-[#3F7D6B]" />
               </div>
               <div>
-                <h4 className="text-base font-bold text-[#0B2F63]">Welcome, {loggedInUser}</h4>
+                <h4 className="text-base font-bold text-[#223752]">Welcome, {loggedInUser}</h4>
                 <p className="text-xs text-slate-500 mt-1">
                   Active Wholesale Procurement Account · Tier 1 Preferred Partner
                 </p>
@@ -83,7 +83,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-left space-y-2">
                 <div className="flex justify-between">
                   <span className="text-slate-500">Account Status:</span>
-                  <span className="font-bold text-emerald-600">Active · ISO 13485 Verified</span>
+                  <span className="font-bold text-[#2F6153]">Active · ISO 13485 Verified</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Contract Credit:</span>
@@ -98,7 +98,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               <div className="pt-2 flex gap-3">
                 <button
                   onClick={onClose}
-                  className="flex-1 py-2 text-xs font-bold text-white bg-[#0B2F63] hover:bg-[#164082] rounded-lg"
+                  className="flex-1 py-2 text-xs font-bold text-white bg-[#223752] hover:bg-[#2E496B] rounded-lg"
                 >
                   Return to Catalog
                 </button>
@@ -126,7 +126,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 <button
                   onClick={() => { setMode('login'); setErrorMessage(''); }}
                   className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${
-                    mode === 'login' ? 'bg-white text-[#0B2F63] shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                    mode === 'login' ? 'bg-white text-[#223752] shadow-xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Authorized Sign In
@@ -134,7 +134,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 <button
                   onClick={() => { setMode('register'); setErrorMessage(''); }}
                   className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${
-                    mode === 'register' ? 'bg-white text-[#0B2F63] shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                    mode === 'register' ? 'bg-white text-[#223752] shadow-xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Apply for Distributor Account
@@ -160,7 +160,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="procurement@healthcare-system.org"
-                        className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                        className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#5C89AD]"
                       />
                     </div>
                   </div>
@@ -170,7 +170,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       <label className="block text-xs font-semibold text-slate-700">
                         Password
                       </label>
-                      <a href="#" className="text-xs text-[#38B6FF] hover:underline">
+                      <a href="#" className="text-xs text-[#3B6B91] hover:underline">
                         Forgot Password?
                       </a>
                     </div>
@@ -181,14 +181,14 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••••••"
-                        className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                        className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#5C89AD]"
                       />
                     </div>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-2.5 bg-[#0B2F63] hover:bg-[#164082] text-white text-xs font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-2.5 bg-[#223752] hover:bg-[#2E496B] text-white text-xs font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2"
                   >
                     <span>Sign In to Hospital Portal</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -207,7 +207,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
                         placeholder="e.g. Apex Medical Wholesale GmbH"
-                        className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                        className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#5C89AD]"
                       />
                     </div>
                   </div>
@@ -221,7 +221,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       value={licenseNo}
                       onChange={(e) => setLicenseNo(e.target.value)}
                       placeholder="e.g. MD-DIST-2026-EU"
-                      className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                      className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#5C89AD]"
                     />
                   </div>
 
@@ -234,13 +234,13 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="contact@distributor.com"
-                      className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#38B6FF]"
+                      className="w-full px-3 py-2.5 text-base sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-1 focus:ring-[#5C89AD]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-2.5 bg-[#38B6FF] hover:bg-[#209ee8] text-white text-xs font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-2.5 bg-[#356386] hover:bg-[#2A5170] text-white text-xs font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2"
                   >
                     <span>Submit Distributor Accreditation Application</span>
                     <ArrowRight className="w-3.5 h-3.5" />

@@ -90,13 +90,13 @@ export default function ContactPage() {
       />
 
       {/* Hero Strip */}
-      <section className="bg-[#071E40] text-white py-12 sm:py-14 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-12 sm:py-14 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -105,7 +105,7 @@ export default function ContactPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Globe2 className="w-4 h-4" />
             <span>24/7 Global Tender &amp; Distributor Support · 12-Hour Response SLA</span>
           </p>
@@ -127,8 +127,8 @@ export default function ContactPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-2xs grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-4">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] flex items-center gap-2">
-              <FileText className="w-5 h-5 text-[#38B6FF]" />
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752] flex items-center gap-2">
+              <FileText className="w-5 h-5 text-[#3B6B91]" />
               <span>Supported Incoterms 2020 &amp; Export Clearance Packs</span>
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
@@ -140,39 +140,39 @@ export default function ContactPage() {
                   key={term.code}
                   className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs sm:text-sm"
                 >
-                  <span className="font-bold text-[#0B2F63]">{term.code}: </span>
+                  <span className="font-bold text-[#223752]">{term.code}: </span>
                   <span className="text-slate-600">{term.label}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-[#F8FAFC] rounded-2xl border border-slate-200 p-6 space-y-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-700">
+          <div className="lg:col-span-5 bg-[#F7F8FA] rounded-2xl border border-slate-200 p-6 space-y-4">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#2F6153]">
               <ShieldCheck className="w-4 h-4" />
               <span>Self-Service Procurement Resources</span>
             </div>
-            <h3 className="text-lg font-bold text-[#0B2F63]">
+            <h3 className="text-lg font-bold text-[#223752]">
               Need a quick budget check before submitting an RFQ?
             </h3>
             <div className="space-y-2.5">
               <Link
-                href="/#price-calculator"
-                className="w-full h-11 px-4 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center justify-between transition-colors"
+                href="/price-calculator"
+                className="w-full h-11 px-4 bg-[#223752] hover:bg-[#19293F] text-white text-sm font-bold rounded-xl inline-flex items-center justify-between transition-colors"
               >
                 <span>Open Wholesale Price Estimator</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#8CB3D4]" />
               </Link>
               <Link
                 href="/products"
-                className="w-full h-11 px-4 bg-white hover:bg-slate-100 text-[#0B2F63] border border-slate-200 text-sm font-semibold rounded-xl inline-flex items-center justify-between transition-colors"
+                className="w-full h-11 px-4 bg-white hover:bg-slate-100 text-[#223752] border border-slate-200 text-sm font-semibold rounded-xl inline-flex items-center justify-between transition-colors"
               >
                 <span>Browse All 18 Certified Products</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/oem-manufacturing"
-                className="w-full h-11 px-4 bg-white hover:bg-slate-100 text-[#0B2F63] border border-slate-200 text-sm font-semibold rounded-xl inline-flex items-center justify-between transition-colors"
+                className="w-full h-11 px-4 bg-white hover:bg-slate-100 text-[#223752] border border-slate-200 text-sm font-semibold rounded-xl inline-flex items-center justify-between transition-colors"
               >
                 <span>Review OEM &amp; Private Label MOQs</span>
                 <ArrowRight className="w-4 h-4" />

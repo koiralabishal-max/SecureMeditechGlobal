@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, ShieldCheck, CheckCircle2, Globe2, Truck, Award } from 'lucide-react';
 import { STATS } from '../data/products';
+import { trackBulkQuoteRequest } from '@/lib/analytics';
 
 interface HeroProps {
   onExploreCatalog: () => void;
@@ -11,11 +13,9 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }) => {
   return (
-    <section id="home" className="relative bg-[#071E40] text-white overflow-hidden pt-14 pb-16 sm:pt-20 lg:pt-24 lg:pb-20">
-      {/* Background Subtle Tech Matrix & Supply Grid */}
-      <div className="absolute inset-0 opacity-10 bg-pattern-grid pointer-events-none" />
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#38B6FF]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="home" className="relative bg-[#19293F] text-white overflow-hidden pt-10 pb-12 sm:pt-14 lg:pt-16 lg:pb-14">
+      {/* Subtle architectural grid */}
+      <div className="absolute inset-0 opacity-[0.07] bg-pattern-grid pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -24,18 +24,15 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
           <div className="lg:col-span-7 flex flex-col justify-center gap-6">
             
             {/* Trust Kicker - Clean unboxed text */}
-            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-semibold text-[#38B6FF] tracking-[0.12em] uppercase">
-              <span className="inline-flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#10B981] shrink-0" />
-                International Medical Equipment Supplier & OEM Manufacturer
-              </span>
+            <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-semibold text-[#8CB3D4] tracking-[0.1em] uppercase">
+              <span>International Medical Equipment Supplier &amp; OEM Manufacturer</span>
               <span className="text-slate-500" aria-hidden="true">·</span>
-              <span className="text-slate-300">ISO 13485 & MDR 2017/745</span>
+              <span className="text-slate-300">ISO 13485 &amp; MDR 2017/745</span>
             </p>
 
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold tracking-tight text-white leading-[1.08] text-balance">
-              Wholesale Medical Supplies & Precision OEM Manufacturing
+              Wholesale Medical Supplies &amp; Precision OEM Manufacturing
             </h1>
 
             {/* Subheadline */}
@@ -45,19 +42,20 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
 
             {/* Primary Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
-              {/* Tech Blue CTA */}
               <button
-                onClick={onRequestBulkRfq}
-                className="h-12 px-6 text-[15px] font-bold text-[#071E40] bg-[#38B6FF] hover:bg-[#5cc4ff] rounded-xl shadow-lg shadow-[#38B6FF]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center justify-center gap-2"
+                onClick={() => {
+                  trackBulkQuoteRequest({ stage: 'open' });
+                  onRequestBulkRfq();
+                }}
+                className="h-12 px-6 text-[15px] font-bold text-[#19293F] bg-[#DCE7F2] hover:bg-[#CBDCEB] rounded-xl shadow-sm transition-colors duration-200 active:scale-[0.98] inline-flex items-center justify-center gap-2"
               >
                 <span>Request Bulk Quotation</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              {/* Secondary CTA */}
               <button
                 onClick={onExploreCatalog}
-                className="h-12 px-6 text-[15px] font-semibold text-white bg-white/5 hover:bg-white/10 rounded-xl border border-white/20 transition-all duration-200 active:scale-[0.98] inline-flex items-center justify-center gap-2"
+                className="h-12 px-6 text-[15px] font-semibold text-white bg-white/[0.06] hover:bg-white/[0.12] rounded-xl border border-white/20 transition-colors duration-200 active:scale-[0.98] inline-flex items-center justify-center gap-2"
               >
                 <span>Explore Product Catalog</span>
               </button>
@@ -66,52 +64,53 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
             {/* Badges Matrix */}
             <div className="mt-2 pt-6 border-t border-slate-700/60 flex flex-wrap gap-x-6 gap-y-3">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#7DB5A4] shrink-0" />
                 <span className="text-sm font-medium text-slate-200">CE Certified</span>
               </div>
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#38B6FF] shrink-0" />
+                <ShieldCheck className="w-4 h-4 text-[#8CB3D4] shrink-0" />
                 <span className="text-sm font-medium text-slate-200">ISO 13485:2016</span>
               </div>
               <div className="flex items-center gap-2">
-                <Truck className="w-4 h-4 text-[#38B6FF] shrink-0" />
+                <Truck className="w-4 h-4 text-[#8CB3D4] shrink-0" />
                 <span className="text-sm font-medium text-slate-200">Global Shipping</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#10B981] shrink-0" />
+                <Award className="w-4 h-4 text-[#7DB5A4] shrink-0" />
                 <span className="text-sm font-medium text-slate-200 whitespace-nowrap">100% Quality Assurance</span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Visual Focal Carrier with Overlay Data Badge */}
+          {/* Right Column: Visual Focal Carrier with Overlay Data Card */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900 group">
-              <img
-                src="/assets/images/hero_medical_logistics_1792848779603.jpg"
+            <div className="relative rounded-2xl overflow-hidden border border-slate-700/60 shadow-xl bg-[#152336] group">
+              <Image
+                src="/assets/webp/hero_medical_logistics_1792848779603.webp"
                 alt="Secure MediTech Global high-tech clinical manufacturing and global medical supply facility"
-                className="w-full h-72 sm:h-96 lg:h-[440px] object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager"
+                className="w-full h-64 sm:h-80 lg:h-[380px] object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
                 fetchPriority="high"
-                decoding="async"
-                width={600}
-                height={420}
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                width={1200}
+                height={840}
+                referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#071E40]/90 via-[#071E40]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#19293F]/85 via-[#19293F]/25 to-transparent" />
 
-              {/* Floating Live Dispatch Card */}
-              <div className="absolute bottom-4 left-4 right-4 bg-[#0B2F63]/90 backdrop-blur-md rounded-xl p-4 border border-slate-600/70 text-sm">
-                <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-700/80">
+              {/* Floating Dispatch Info Card */}
+              <div className="absolute bottom-4 left-4 right-4 bg-[#19293F]/90 backdrop-blur-md rounded-xl p-4 border border-white/15 text-sm">
+                <div className="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
                   <div className="flex items-center gap-2 text-white font-bold text-sm">
-                    <Globe2 className="w-4 h-4 text-[#38B6FF]" />
+                    <Globe2 className="w-4 h-4 text-[#8CB3D4]" />
                     <span>Global Distribution Hub Network</span>
                   </div>
-                  <span className="text-[11px] font-mono text-[#10B981] font-semibold bg-[#10B981]/15 px-2 py-0.5 rounded">
-                    ONLINE
+                  <span className="text-[11px] font-medium text-[#9AC6B8]">
+                    65+ Countries
                   </span>
                 </div>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
                   Consolidated containerized and express air shipments dispatching daily to Europe, the Americas, Asia-Pacific, and the Middle East.
                 </p>
               </div>
@@ -121,16 +120,16 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onRequestBulkRfq }
         </div>
 
         {/* Full-Width 4-Column KPI Strip */}
-        <div className="mt-14 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <div className="mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {STATS.map((stat, idx) => (
             <div key={idx} className="p-4 sm:p-5 bg-white/[0.04] rounded-2xl border border-white/10">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#38B6FF] tracking-tight tabular-nums">
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#9DC0DE] tracking-tight tabular-nums">
                 {stat.value}
               </div>
               <div className="text-sm font-bold text-white mt-1">
                 {stat.label}
               </div>
-              <div className="text-xs text-slate-400 mt-1 leading-snug">
+              <div className="text-xs text-slate-300 mt-1 leading-snug">
                 {stat.subtext}
               </div>
             </div>

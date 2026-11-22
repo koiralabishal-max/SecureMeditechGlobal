@@ -13,8 +13,8 @@ export const Toast: React.FC<ToastProps> = ({ message, onClose }) => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 animate-in fade-in slide-in-from-bottom-5 duration-300">
-      <div className="bg-[#0B2F63] text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700/80 flex items-center gap-3 max-w-md">
-        <CheckCircle2 className="w-5 h-5 text-[#10B981] shrink-0" />
+      <div className="bg-[#223752] text-white px-4 py-3 rounded-xl shadow-xl border border-slate-700/80 flex items-center gap-3 max-w-md">
+        <CheckCircle2 className="w-5 h-5 text-[#7DB5A4] shrink-0" />
         <span className="text-xs font-semibold">{message}</span>
         <button
           onClick={onClose}

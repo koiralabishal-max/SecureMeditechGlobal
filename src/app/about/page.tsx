@@ -121,13 +121,13 @@ export default function AboutPage() {
       />
 
       {/* Hero */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -136,7 +136,7 @@ export default function AboutPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Award className="w-4 h-4" />
             <span>Global Medical Manufacturing &amp; Quality Assurance</span>
           </p>
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 key={stat.label}
                 className="p-4 rounded-2xl bg-white/[0.05] border border-white/10"
               >
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#38B6FF]">
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#8CB3D4]">
                   {stat.value}
                 </div>
                 <div className="text-sm font-bold text-white mt-1">{stat.label}</div>
@@ -170,7 +170,7 @@ export default function AboutPage() {
         {/* Quality Certifications Matrix */}
         <section>
           <div className="mb-8">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2F63] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#223752] tracking-tight">
               Regulatory Accreditations &amp; Cleanroom Standards
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-1.5 max-w-3xl">
@@ -186,19 +186,19 @@ export default function AboutPage() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-sky-50 text-[#0B2F63] border border-sky-100">
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F1F5F8] text-[#223752] border border-[#DCE4EC]">
                       {cert.code}
                     </span>
-                    <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
+                    <CheckCircle2 className="w-4 h-4 text-[#3F7D6B]" />
                   </div>
-                  <h3 className="text-base font-bold text-[#0B2F63] leading-snug">
+                  <h3 className="text-base font-bold text-[#223752] leading-snug">
                     {cert.title}
                   </h3>
                   <p className="text-sm text-slate-600 mt-2 leading-relaxed">
                     {cert.description}
                   </p>
                 </div>
-                <div className="mt-5 pt-3 border-t border-slate-100 text-xs text-emerald-700 font-semibold flex items-center gap-1.5">
+                <div className="mt-5 pt-3 border-t border-slate-100 text-xs text-[#2F6153] font-semibold flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>Audited &amp; Validated</span>
                 </div>
@@ -211,24 +211,24 @@ export default function AboutPage() {
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-2xs space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] flex items-center gap-2">
-                <Globe2 className="w-5 h-5 text-[#38B6FF]" />
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752] flex items-center gap-2">
+                <Globe2 className="w-5 h-5 text-[#3B6B91]" />
                 <span>Dedicated International Distribution Corridors</span>
               </h2>
-              <Link href="/markets" className="text-xs font-bold text-sky-700 hover:underline">
+              <Link href="/markets" className="text-xs font-bold text-[#3B6B91] hover:underline">
                 View 8 Country Guides →
               </Link>
             </div>
             <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
               We operate direct medical supply corridors to Europe, the Americas, Asia-Pacific, and Africa—including established clearance workflows for{' '}
-              <Link href="/markets/nepal" className="text-[#0B2F63] font-semibold hover:underline">Nepal (DDA)</Link>,{' '}
-              <Link href="/markets/kenya" className="text-[#0B2F63] font-semibold hover:underline">Kenya (PPB)</Link>,{' '}
-              <Link href="/markets/rwanda" className="text-[#0B2F63] font-semibold hover:underline">Rwanda (RFDA)</Link>,{' '}
-              <Link href="/markets/south-africa" className="text-[#0B2F63] font-semibold hover:underline">South Africa (SAHPRA)</Link>,{' '}
-              <Link href="/markets/nigeria" className="text-[#0B2F63] font-semibold hover:underline">Nigeria (NAFDAC)</Link>,{' '}
-              <Link href="/markets/india" className="text-[#0B2F63] font-semibold hover:underline">India (CDSCO)</Link>,{' '}
-              <Link href="/markets/united-kingdom" className="text-[#0B2F63] font-semibold hover:underline">United Kingdom (MHRA)</Link>, and{' '}
-              <Link href="/markets/united-states" className="text-[#0B2F63] font-semibold hover:underline">United States</Link>.
+              <Link href="/markets/nepal" className="text-[#223752] font-semibold hover:underline">Nepal (DDA)</Link>,{' '}
+              <Link href="/markets/kenya" className="text-[#223752] font-semibold hover:underline">Kenya (PPB)</Link>,{' '}
+              <Link href="/markets/rwanda" className="text-[#223752] font-semibold hover:underline">Rwanda (RFDA)</Link>,{' '}
+              <Link href="/markets/south-africa" className="text-[#223752] font-semibold hover:underline">South Africa (SAHPRA)</Link>,{' '}
+              <Link href="/markets/nigeria" className="text-[#223752] font-semibold hover:underline">Nigeria (NAFDAC)</Link>,{' '}
+              <Link href="/markets/india" className="text-[#223752] font-semibold hover:underline">India (CDSCO)</Link>,{' '}
+              <Link href="/markets/united-kingdom" className="text-[#223752] font-semibold hover:underline">United Kingdom (MHRA)</Link>, and{' '}
+              <Link href="/markets/united-states" className="text-[#223752] font-semibold hover:underline">United States</Link>.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {PROJECTS.slice(0, 4).map((proj) => (
@@ -236,10 +236,10 @@ export default function AboutPage() {
                   key={proj.id}
                   className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5"
                 >
-                  <div className="text-xs font-bold uppercase tracking-wider text-sky-700">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#3B6B91]">
                     {proj.location}, {proj.country} · {proj.category}
                   </div>
-                  <h3 className="text-sm font-bold text-[#0B2F63] leading-snug">
+                  <h3 className="text-sm font-bold text-[#223752] leading-snug">
                     {proj.title}
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
@@ -250,14 +250,14 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-[#0B2F63] text-white rounded-2xl p-6 sm:p-8 space-y-5">
+          <div className="lg:col-span-5 bg-[#223752] text-white rounded-2xl p-6 sm:p-8 space-y-5">
             <h2 className="text-xl font-extrabold flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-[#38B6FF]" />
+              <MapPin className="w-5 h-5 text-[#8CB3D4]" />
               <span>Corporate Registration &amp; Dispatch</span>
             </h2>
             <div className="space-y-3 text-sm text-slate-200">
               <div>
-                <div className="text-xs uppercase tracking-wider text-[#38B6FF] font-bold">
+                <div className="text-xs uppercase tracking-wider text-[#8CB3D4] font-bold">
                   Registered US Headquarters
                 </div>
                 <p className="mt-1 font-medium">
@@ -265,14 +265,14 @@ export default function AboutPage() {
                 </p>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-[#38B6FF] font-bold">
+                <div className="text-xs uppercase tracking-wider text-[#8CB3D4] font-bold">
                   Logistics &amp; Customs Terms
                 </div>
                 <p className="mt-1">
                   Incoterms 2020: EXW, FOB, CIF, CFR, DAP, and DDP door-to-door with Certificate of Origin (COO), CoA, and FSC documentation.
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-emerald-300 text-xs font-semibold pt-1">
+              <div className="flex items-center gap-2 text-[#9DC5B8] text-xs font-semibold pt-1">
                 <Truck className="w-4 h-4 shrink-0" />
                 <span>24–48 hour emergency air dispatch · 2°C–8°C cold-chain logging</span>
               </div>
@@ -280,7 +280,7 @@ export default function AboutPage() {
             <div className="pt-3 flex flex-col sm:flex-row gap-3">
               <Link
                 href="/contact"
-                className="flex-1 h-11 px-4 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center justify-center gap-1.5 transition-colors"
+                className="flex-1 h-11 px-4 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-sm font-bold rounded-xl inline-flex items-center justify-center gap-1.5 transition-colors"
               >
                 <span>Contact Procurement Desk</span>
                 <ArrowRight className="w-4 h-4" />
@@ -299,14 +299,14 @@ export default function AboutPage() {
         <section className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <div>
-              <h2 className="text-2xl font-extrabold text-[#0B2F63]">
+              <h2 className="text-2xl font-extrabold text-[#223752]">
                 Manufacturing Divisions &amp; Technology Alliances
               </h2>
               <p className="text-sm text-slate-600 mt-1">
                 Proprietary OEM lines and specialized global technology partnerships supporting our 8 clinical divisions.
               </p>
             </div>
-            <Link href="/products" className="text-sm font-bold text-sky-700 hover:underline">
+            <Link href="/products" className="text-sm font-bold text-[#3B6B91] hover:underline">
               Explore Full Product Catalog →
             </Link>
           </div>
@@ -319,14 +319,14 @@ export default function AboutPage() {
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-bold text-[#0B2F63] bg-slate-100 px-2.5 py-1 rounded">
+                    <span className="font-mono text-xs font-bold text-[#223752] bg-slate-100 px-2.5 py-1 rounded">
                       {brand.logoText}
                     </span>
-                    <span className="text-xs font-semibold text-emerald-700">
+                    <span className="text-xs font-semibold text-[#2F6153]">
                       Est. {brand.establishedYear}
                     </span>
                   </div>
-                  <h3 className="text-base font-bold text-[#0B2F63]">{brand.name}</h3>
+                  <h3 className="text-base font-bold text-[#223752]">{brand.name}</h3>
                   <p className="text-xs text-slate-500 font-medium">{brand.origin}</p>
                   <p className="text-sm text-slate-600 leading-relaxed">
                     {brand.description}
@@ -336,7 +336,7 @@ export default function AboutPage() {
                   {brand.certifications.map((c) => (
                     <span
                       key={c}
-                      className="text-[11px] font-semibold bg-sky-50 text-[#0B2F63] px-2 py-0.5 rounded"
+                      className="text-[11px] font-semibold bg-[#F1F5F8] text-[#223752] px-2 py-0.5 rounded"
                     >
                       {c}
                     </span>

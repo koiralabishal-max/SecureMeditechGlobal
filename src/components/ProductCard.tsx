@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '../types';
+import { trackWhatsAppInquiry } from '@/lib/analytics';
 import { FileDown, Plus, Check, Eye, Shield, Package, Clock, MessageSquare } from 'lucide-react';
 
 interface ProductCardProps {
@@ -35,7 +37,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   )}`;
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200/90 hover:border-[#38B6FF]/60 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden">
+    <div className="group bg-white rounded-2xl border border-slate-200/90 hover:border-[#94B3CE] shadow-2xs hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden">
       
       {/* Product Image Area with quick-action hover */}
       <div 
@@ -43,13 +45,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         onClick={() => onOpenDetails(product)}
       >
         {!imgError ? (
-          <img
+          <Image
             src={product.image}
             alt={`${product.name} – ${product.tagline}`}
             loading="lazy"
-            decoding="async"
-            width={400}
-            height={300}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            width={600}
+            height={450}
+            referrerPolicy="no-referrer"
             onError={() => setImgError(true)}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           />
@@ -62,17 +65,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Top Badges: CE / Regulatory Indicator & Category */}
         <div className="absolute top-3 left-3 flex items-center pointer-events-none">
-          <div className="flex items-center gap-1.5 bg-[#0B2F63]/90 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow-xs">
-            <Shield className="w-3 h-3 text-[#38B6FF]" />
+          <div className="flex items-center gap-1.5 bg-[#19293F]/88 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-1 rounded-md shadow-xs">
+            <Shield className="w-3 h-3 text-[#8CB3D4]" />
             <span>{product.certifications[0]}</span>
           </div>
-
         </div>
 
         {/* Hover Quick View Overlay */}
-        <div className="absolute inset-0 bg-[#0B2F63]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
-          <span className="bg-white text-[#0B2F63] text-sm font-bold py-2 px-4 rounded-lg shadow-md flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
-            <Eye className="w-3.5 h-3.5 text-[#38B6FF]" />
+        <div className="absolute inset-0 bg-[#19293F]/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+          <span className="bg-white text-[#223752] text-sm font-bold py-2 px-4 rounded-lg shadow-md flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+            <Eye className="w-3.5 h-3.5 text-[#3B6B91]" />
             View Details
           </span>
         </div>
@@ -82,22 +84,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           {/* SKU & Category Kicker */}
-          <p className="text-xs font-semibold uppercase tracking-wider text-sky-600 mb-2 line-clamp-1">
+          <p className="text-xs font-semibold uppercase tracking-wider text-[#3B6B91] mb-2 line-clamp-1">
             {product.category}
           </p>
           <div className="flex items-center justify-between gap-2 mb-2">
             <span className="font-mono text-slate-500 text-xs">
               {product.sku}
             </span>
-            <span className="text-xs font-medium text-emerald-600 flex items-center gap-1 whitespace-nowrap">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="text-xs font-medium text-[#3F7D6B] whitespace-nowrap">
               ISO 13485
             </span>
           </div>
 
           {/* Product Title - Crawlable link to dedicated product page */}
           <h3 
-            className="text-base font-bold text-[#0B2F63] group-hover:text-[#164082] transition-colors leading-snug line-clamp-2 min-h-[2.75rem]"
+            className="text-base font-bold text-[#223752] group-hover:text-[#2E496B] transition-colors leading-snug line-clamp-2 min-h-[2.75rem]"
             title={product.name}
           >
             <Link href={`/products/${product.id}`} className="hover:underline focus-visible:underline">
@@ -147,10 +148,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => onOpenDetails(product)}
-              className="h-10 px-2.5 text-sm font-semibold text-[#0B2F63] hover:text-[#164082] bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200/80 transition-colors flex items-center justify-center gap-1.5"
+              className="h-10 px-2.5 text-sm font-semibold text-[#223752] hover:text-[#2E496B] bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200/80 transition-colors flex items-center justify-center gap-1.5"
               title="View complete specifications, packaging, and sizing"
             >
-              <Eye className="w-4 h-4 text-sky-500" />
+              <Eye className="w-4 h-4 text-[#4C7A9C]" />
               <span className="whitespace-nowrap">Details</span>
             </button>
 
@@ -158,10 +159,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               onClick={handleAddClick}
               className={`h-10 px-3 text-sm font-bold rounded-lg whitespace-nowrap transition-all flex items-center justify-center gap-1.5 ${
                 justAdded 
-                  ? 'bg-[#10B981] text-white' 
+                  ? 'bg-[#3F7D6B] text-white' 
                   : isItemInQuote 
-                    ? 'bg-[#0B2F63] text-white hover:bg-[#164082]' 
-                    : 'bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] shadow-xs'
+                    ? 'bg-[#223752] text-white hover:bg-[#2E496B]' 
+                    : 'bg-[#356386] hover:bg-[#2A5170] text-white shadow-2xs'
               }`}
             >
               {justAdded ? (
@@ -171,7 +172,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 </>
               ) : isItemInQuote ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-[#10B981]" />
+                  <Check className="w-3.5 h-3.5 text-[#7DB5A4]" />
                   <span>In Quote</span>
                 </>
               ) : (
@@ -189,7 +190,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               href={whatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
+              onClick={() =>
+                trackWhatsAppInquiry({
+                  source: 'product_card',
+                  sku: product.sku,
+                  productName: product.name,
+                  category: product.category,
+                })
+              }
+              className="inline-flex items-center gap-1 text-[#3F7D6B] hover:text-[#2F6153] font-semibold transition-colors"
               title="Instant WhatsApp Product Enquiry"
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -198,10 +207,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             <button
               onClick={() => onOpenSpecSheet(product)}
-              className="inline-flex items-center gap-1 text-slate-500 hover:text-[#0B2F63] transition-colors"
+              className="inline-flex items-center gap-1 text-slate-500 hover:text-[#223752] transition-colors"
               title="Download Engineering Spec Sheet"
             >
-              <FileDown className="w-3.5 h-3.5 text-sky-500" />
+              <FileDown className="w-3.5 h-3.5 text-[#4C7A9C]" />
               <span>Spec Sheet</span>
             </button>
           </div>

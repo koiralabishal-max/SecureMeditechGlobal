@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
@@ -8,12 +9,12 @@ import {
   ChevronRight,
   Clock,
   Layers,
-  MessageSquare,
   Package,
   ShieldCheck,
   Wrench,
 } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
+import { CategoryConversionButtons } from '@/components/CategoryConversionButtons';
 import { PRODUCTS } from '@/data/products';
 import { SERVICES } from '@/data/services';
 import {
@@ -160,17 +161,17 @@ export default async function CategoryPage({
       />
 
       {/* Category Hero */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex flex-wrap items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
-            <Link href="/products" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/products" className="hover:text-[#8CB3D4] transition-colors">
               Products
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -179,7 +180,7 @@ export default async function CategoryPage({
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Layers className="w-4 h-4" />
             <span>
               {profile.heroEyebrow} · {categoryProducts.length}{' '}
@@ -196,25 +197,15 @@ export default async function CategoryPage({
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
+            <CategoryConversionButtons
+              primaryLabel="Request Category Bulk Quote"
+              whatsAppLabel="WhatsApp Wholesale Desk"
+              whatsAppUrl={whatsAppUrl}
+              source={`category_${profile.slug}`}
+            />
             <Link
-              href="/contact"
-              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl transition-colors inline-flex items-center gap-2"
-            >
-              <span>Request Category Bulk Quote</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href={whatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-11 px-5 bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm font-semibold rounded-xl transition-colors inline-flex items-center gap-2"
-            >
-              <MessageSquare className="w-4 h-4 text-[#10B981]" />
-              <span>WhatsApp Wholesale Desk</span>
-            </a>
-            <Link
-              href="/#price-calculator"
-              className="h-11 px-5 text-sm font-semibold text-[#38B6FF] hover:underline inline-flex items-center"
+              href="/price-calculator"
+              className="h-11 px-5 text-sm font-semibold text-[#8CB3D4] hover:underline inline-flex items-center"
             >
               Estimate Volume Pricing →
             </Link>
@@ -230,7 +221,7 @@ export default async function CategoryPage({
             <div>
               <h2
                 id="category-products-heading"
-                className="text-2xl sm:text-3xl font-extrabold text-[#0B2F63] tracking-tight"
+                className="text-2xl sm:text-3xl font-extrabold text-[#223752] tracking-tight"
               >
                 {profile.name} Product Catalog
               </h2>
@@ -240,7 +231,7 @@ export default async function CategoryPage({
             </div>
             <Link
               href="/products"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B2F63] hover:text-[#38B6FF] shrink-0"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#223752] hover:text-[#3B6B91] shrink-0"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>All 8 Clinical Divisions</span>
@@ -251,22 +242,23 @@ export default async function CategoryPage({
             {categoryProducts.map((product) => (
               <article
                 key={product.id}
-                className="group bg-white rounded-2xl border border-slate-200 hover:border-[#38B6FF]/70 shadow-xs hover:shadow-lg transition-all flex flex-col overflow-hidden"
+                className="group bg-white rounded-2xl border border-slate-200 hover:border-[#94B3CE] shadow-xs hover:shadow-lg transition-all flex flex-col overflow-hidden"
               >
                 <Link
                   href={`/products/${product.id}`}
                   className="relative aspect-[4/3] bg-slate-100 overflow-hidden block"
                 >
-                  <img
+                  <Image
                     src={product.image}
                     alt={`${product.name} (${product.sku}) – ${product.category}`}
                     loading="lazy"
-                    decoding="async"
-                    width={400}
-                    height={300}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    width={600}
+                    height={450}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
-                  <span className="absolute top-3 left-3 bg-[#0B2F63]/90 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+                  <span className="absolute top-3 left-3 bg-[#223752]/90 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
                     {product.certifications[0]}
                   </span>
                 </Link>
@@ -275,13 +267,13 @@ export default async function CategoryPage({
                   <div>
                     <div className="flex items-center justify-between gap-2 text-xs mb-2">
                       <span className="font-mono text-slate-500">{product.sku}</span>
-                      <span className="font-medium text-emerald-700 flex items-center gap-1">
+                      <span className="font-medium text-[#2F6153] flex items-center gap-1">
                         <ShieldCheck className="w-3.5 h-3.5" />
                         ISO 13485
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-[#0B2F63] leading-snug">
+                    <h3 className="text-lg font-bold text-[#223752] leading-snug">
                       <Link href={`/products/${product.id}`} className="hover:underline">
                         {product.name}
                       </Link>
@@ -319,10 +311,10 @@ export default async function CategoryPage({
 
                     <Link
                       href={`/products/${product.id}`}
-                      className="w-full h-10 px-4 text-sm font-bold text-white bg-[#0B2F63] hover:bg-[#164082] rounded-xl transition-colors flex items-center justify-center gap-2"
+                      className="w-full h-10 px-4 text-sm font-bold text-white bg-[#223752] hover:bg-[#2E496B] rounded-xl transition-colors flex items-center justify-center gap-2"
                     >
                       <span>Specifications &amp; Quote</span>
-                      <ArrowRight className="w-4 h-4 text-[#38B6FF]" />
+                      <ArrowRight className="w-4 h-4 text-[#8CB3D4]" />
                     </Link>
                   </div>
                 </div>
@@ -334,13 +326,13 @@ export default async function CategoryPage({
         {/* Clinical Applications & Standards */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-2xs space-y-4">
-            <h2 className="text-xl font-extrabold text-[#0B2F63]">
+            <h2 className="text-xl font-extrabold text-[#223752]">
               Hospital &amp; Clinical Applications
             </h2>
             <ul className="space-y-3 text-sm sm:text-base text-slate-700">
               {profile.clinicalApplications.map((app) => (
                 <li key={app} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-1" />
+                  <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0 mt-1" />
                   <span>{app}</span>
                 </li>
               ))}
@@ -348,14 +340,14 @@ export default async function CategoryPage({
           </div>
 
           <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-2xs space-y-4">
-            <h2 className="text-xl font-extrabold text-[#0B2F63]">
+            <h2 className="text-xl font-extrabold text-[#223752]">
               Verified Division Compliance
             </h2>
             <div className="flex flex-wrap gap-2">
               {allCertifications.map((cert) => (
                 <span
                   key={cert}
-                  className="bg-sky-50 text-[#0B2F63] border border-sky-200 px-3 py-1 rounded-lg text-xs font-bold"
+                  className="bg-[#F1F5F8] text-[#223752] border border-[#DCE4EC] px-3 py-1 rounded-lg text-xs font-bold"
                 >
                   {cert}
                 </span>
@@ -364,7 +356,7 @@ export default async function CategoryPage({
             <ul className="pt-3 border-t border-slate-100 space-y-2 text-xs sm:text-sm text-slate-600">
               {allStandards.map((std) => (
                 <li key={std} className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#10B981] shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-[#3F7D6B] shrink-0" />
                   <span>{std}</span>
                 </li>
               ))}
@@ -372,7 +364,7 @@ export default async function CategoryPage({
             <div className="pt-3 border-t border-slate-100">
               <Link
                 href="/oem-manufacturing"
-                className="text-sm font-bold text-[#0B2F63] hover:text-[#38B6FF] inline-flex items-center gap-1.5"
+                className="text-sm font-bold text-[#223752] hover:text-[#3B6B91] inline-flex items-center gap-1.5"
               >
                 <span>Need private label or custom OEM packaging?</span>
                 <ArrowRight className="w-4 h-4" />
@@ -384,8 +376,8 @@ export default async function CategoryPage({
         {/* Related Services & Sibling Divisions */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-4">
-            <h2 className="text-lg font-extrabold text-[#0B2F63] flex items-center gap-2">
-              <Wrench className="w-5 h-5 text-[#38B6FF]" />
+            <h2 className="text-lg font-extrabold text-[#223752] flex items-center gap-2">
+              <Wrench className="w-5 h-5 text-[#3B6B91]" />
               <span>Supporting OEM &amp; Logistics Services</span>
             </h2>
             <div className="space-y-3">
@@ -393,9 +385,9 @@ export default async function CategoryPage({
                 <Link
                   key={svc.id}
                   href={`/services#${svc.slug}`}
-                  className="block p-4 rounded-xl border border-slate-200 hover:border-[#38B6FF] hover:bg-sky-50/40 transition-colors"
+                  className="block p-4 rounded-xl border border-slate-200 hover:border-[#94B3CE] hover:bg-[#F1F5F8]/60 transition-colors"
                 >
-                  <h3 className="text-sm font-bold text-[#0B2F63]">{svc.title}</h3>
+                  <h3 className="text-sm font-bold text-[#223752]">{svc.title}</h3>
                   <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                     {svc.shortDescription}
                   </p>
@@ -405,8 +397,8 @@ export default async function CategoryPage({
           </div>
 
           <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-4">
-            <h2 className="text-lg font-extrabold text-[#0B2F63] flex items-center gap-2">
-              <Layers className="w-5 h-5 text-[#38B6FF]" />
+            <h2 className="text-lg font-extrabold text-[#223752] flex items-center gap-2">
+              <Layers className="w-5 h-5 text-[#3B6B91]" />
               <span>Related Clinical Product Divisions</span>
             </h2>
             <div className="space-y-3">
@@ -414,15 +406,15 @@ export default async function CategoryPage({
                 <Link
                   key={rel.slug}
                   href={`/products/category/${rel.slug}`}
-                  className="flex items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 hover:border-[#38B6FF] hover:bg-sky-50/40 transition-colors"
+                  className="flex items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 hover:border-[#94B3CE] hover:bg-[#F1F5F8]/60 transition-colors"
                 >
                   <div>
-                    <h3 className="text-sm font-bold text-[#0B2F63]">{rel.name}</h3>
+                    <h3 className="text-sm font-bold text-[#223752]">{rel.name}</h3>
                     <p className="text-xs text-slate-600 mt-0.5 line-clamp-1">
                       {rel.metaDescription}
                     </p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-[#0B2F63] shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-[#223752] shrink-0" />
                 </Link>
               ))}
             </div>

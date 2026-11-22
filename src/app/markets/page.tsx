@@ -10,6 +10,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
+import { MarketsMapSection } from '@/components/MarketsMapSection';
 import { COUNTRY_MARKETS } from '@/data/markets';
 import {
   buildBreadcrumbSchema,
@@ -98,13 +99,13 @@ export default function MarketsHubPage() {
       />
 
       {/* Hero */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -113,7 +114,7 @@ export default function MarketsHubPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Globe2 className="w-4 h-4" />
             <span>Direct Export Corridors · Incoterms 2020 · 65+ Countries Served</span>
           </p>
@@ -134,20 +135,20 @@ export default function MarketsHubPage() {
           {COUNTRY_MARKETS.map((market) => (
             <article
               key={market.slug}
-              className="bg-white rounded-2xl border border-slate-200 hover:border-[#38B6FF]/80 shadow-2xs hover:shadow-lg transition-all p-6 flex flex-col justify-between gap-5"
+              className="bg-white rounded-2xl border border-slate-200 hover:border-[#94B3CE] shadow-2xs hover:shadow-lg transition-all p-6 flex flex-col justify-between gap-5"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 border border-sky-100 px-2.5 py-1 rounded-md">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#3B6B91] bg-[#F1F5F8] border border-[#DCE4EC] px-2.5 py-1 rounded-md">
                     {market.regionLabel}
                   </span>
-                  <span className="text-xs font-semibold text-emerald-700">
+                  <span className="text-xs font-semibold text-[#2F6153]">
                     {market.regulatoryAuthority.acronym}
                   </span>
                 </div>
 
-                <h2 className="text-xl font-extrabold text-[#0B2F63] tracking-tight">
-                  <Link href={`/markets/${market.slug}`} className="hover:text-sky-700">
+                <h2 className="text-xl font-extrabold text-[#223752] tracking-tight">
+                  <Link href={`/markets/${market.slug}`} className="hover:text-[#3B6B91]">
                     {market.countryName} Medical Supply Corridor
                   </Link>
                 </h2>
@@ -158,14 +159,14 @@ export default function MarketsHubPage() {
 
                 <dl className="pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-700">
                   <div className="flex items-start gap-2">
-                    <Plane className="w-3.5 h-3.5 text-[#38B6FF] shrink-0 mt-0.5" />
+                    <Plane className="w-3.5 h-3.5 text-[#3B6B91] shrink-0 mt-0.5" />
                     <div>
                       <dt className="sr-only">Air Freight Lead Time</dt>
                       <dd className="font-medium">{market.airLeadTime}</dd>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
+                    <MapPin className="w-3.5 h-3.5 text-[#3F7D6B] shrink-0 mt-0.5" />
                     <div>
                       <dt className="sr-only">Primary Entry Port</dt>
                       <dd className="line-clamp-1 text-slate-600">{market.portsAndAirports[0]}</dd>
@@ -183,10 +184,10 @@ export default function MarketsHubPage() {
 
               <Link
                 href={`/markets/${market.slug}`}
-                className="w-full h-10 px-4 bg-[#0B2F63] hover:bg-[#164082] text-white text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
+                className="w-full h-10 px-4 bg-[#223752] hover:bg-[#2E496B] text-white text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
               >
                 <span>View {market.countryName} Export Guide</span>
-                <ArrowRight className="w-4 h-4 text-[#38B6FF]" />
+                <ArrowRight className="w-4 h-4 text-[#8CB3D4]" />
               </Link>
             </article>
           ))}
@@ -195,11 +196,11 @@ export default function MarketsHubPage() {
         {/* Corporate Disclosure Banner */}
         <section className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-700">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#2F6153]">
               <ShieldCheck className="w-4 h-4" />
               <span>Export &amp; Corporate Transparency</span>
             </div>
-            <h2 className="text-xl font-extrabold text-[#0B2F63]">
+            <h2 className="text-xl font-extrabold text-[#223752]">
               US Corporate HQ Dispatching Globally via Licensed Importers
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
@@ -208,12 +209,15 @@ export default function MarketsHubPage() {
           </div>
           <Link
             href="/contact"
-            className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center gap-2 shrink-0 transition-colors"
+            className="h-11 px-5 bg-[#223752] hover:bg-[#19293F] text-white text-sm font-bold rounded-xl inline-flex items-center gap-2 shrink-0 transition-colors"
           >
             <span>Request Country Freight Quote</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-[#8CB3D4]" />
           </Link>
         </section>
+
+        {/* Interactive D3 Global Distribution Map */}
+        <MarketsMapSection />
       </div>
     </SubpageLayout>
   );

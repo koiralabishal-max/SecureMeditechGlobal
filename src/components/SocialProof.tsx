@@ -30,11 +30,11 @@ export const SocialProof: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-white border-t border-slate-200">
+    <section className="py-14 sm:py-16 bg-white border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <SectionHeader
             eyebrow="Institutional Trust"
             icon={<Building2 />}
@@ -42,7 +42,7 @@ export const SocialProof: React.FC = () => {
           />
 
           {/* Social Proof Facebook Callout */}
-          <div className="flex items-center gap-3 bg-[#F8FAFC] border border-slate-200 px-4 py-3 rounded-2xl shrink-0 self-start md:self-auto">
+          <div className="flex items-center gap-3 bg-[#F7F8FA] border border-slate-200 px-4 py-3 rounded-2xl shrink-0 self-start md:self-auto">
             <div className="w-10 h-10 rounded-xl bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center shrink-0">
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -57,7 +57,7 @@ export const SocialProof: React.FC = () => {
                 href="https://www.facebook.com/profile.php?id=61591817960540"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sky-600 hover:underline font-semibold"
+                className="text-[#3B6B91] hover:underline font-semibold"
               >
                 Join our Facebook Community →
               </a>
@@ -68,10 +68,10 @@ export const SocialProof: React.FC = () => {
         {/* Testimonials 3-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {testimonials.map((t, idx) => (
-            <div key={idx} className="bg-[#F8FAFC] p-6 sm:p-7 rounded-2xl border border-slate-200/90 flex flex-col justify-between hover:shadow-md transition-shadow">
+            <div key={idx} className="bg-[#F7F8FA] p-6 sm:p-7 rounded-2xl border border-slate-200/90 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
                 {/* Clean quote mark */}
-                <div className="text-5xl font-serif text-[#38B6FF] leading-none h-8 mb-2" aria-hidden="true">“</div>
+                <div className="text-5xl font-serif text-[#8CB3D4] leading-none h-8 mb-2" aria-hidden="true">“</div>
                 <blockquote className="text-[15px] text-slate-700 leading-relaxed mb-6">
                   {t.quote}
                 </blockquote>
@@ -79,15 +79,15 @@ export const SocialProof: React.FC = () => {
 
               <div className="pt-4 border-t border-slate-200 space-y-2">
                 <div>
-                  <h3 className="text-sm font-bold text-[#0B2F63] flex items-center gap-1.5">
-                    {idx === 0 ? <Stethoscope className="w-3.5 h-3.5 text-[#38B6FF]" /> : <Briefcase className="w-3.5 h-3.5 text-[#38B6FF]" />}
+                  <h3 className="text-sm font-bold text-[#223752] flex items-center gap-1.5">
+                    {idx === 0 ? <Stethoscope className="w-3.5 h-3.5 text-[#3B6B91]" /> : <Briefcase className="w-3.5 h-3.5 text-[#3B6B91]" />}
                     <span>{t.author}</span>
                   </h3>
                   <div className="text-xs text-slate-600 font-medium mt-1">{t.role}</div>
                   <div className="text-xs text-slate-500 mt-0.5">{t.institution}</div>
                 </div>
 
-                <div className="mt-3 text-xs font-semibold leading-snug text-emerald-800 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-100">
+                <div className="mt-3 text-xs font-semibold leading-snug text-[#2F6153] bg-[#EFF5F3] px-3 py-2 rounded-lg border border-[#D3E3DD]">
                   Impact: {t.outcome}
                 </div>
               </div>

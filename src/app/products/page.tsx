@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ChevronRight, Layers, Package, ShieldCheck, Clock } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
+import { CatalogQuickSearch } from '@/components/CatalogQuickSearch';
 import { CATEGORIES, PRODUCTS } from '@/data/products';
 import {
   buildBreadcrumbSchema,
@@ -83,10 +85,10 @@ export default function ProductsPage() {
       />
 
       {/* Page Hero */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-300 mb-5">
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -95,7 +97,7 @@ export default function ProductsPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <Layers className="w-4 h-4" />
             <span>8 Clinical Divisions · {PRODUCTS.length} Certified Products</span>
           </p>
@@ -112,7 +114,7 @@ export default function ProductsPage() {
               <Link
                 key={cat.name}
                 href={`/products/category/${toCategorySlug(cat.name)}`}
-                className="px-3.5 py-2 rounded-full bg-white/10 hover:bg-[#38B6FF] text-slate-200 hover:text-[#071E40] text-xs font-semibold transition-colors border border-white/15"
+                className="px-3.5 py-2 rounded-full bg-white/10 hover:bg-[#DCE7F2] text-slate-200 hover:text-[#19293F] text-xs font-semibold transition-colors border border-white/15"
               >
                 {cat.name} ({cat.count})
               </Link>
@@ -122,7 +124,9 @@ export default function ProductsPage() {
       </section>
 
       {/* Products Grouped by Clinical Division */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-14">
+        <CatalogQuickSearch />
+
         {CATEGORIES.map((category) => {
           const items = PRODUCTS.filter((p) => p.category === category.name);
           const slug = toCategorySlug(category.name);
@@ -131,8 +135,8 @@ export default function ProductsPage() {
             <section key={category.name} id={slug} className="scroll-mt-24">
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-5 border-b border-slate-200 mb-7">
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0B2F63] tracking-tight">
-                    <Link href={`/products/category/${slug}`} className="hover:text-sky-700 transition-colors">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#223752] tracking-tight">
+                    <Link href={`/products/category/${slug}`} className="hover:text-[#3B6B91] transition-colors">
                       {category.name}
                     </Link>
                   </h2>
@@ -140,7 +144,7 @@ export default function ProductsPage() {
                 </div>
                 <Link
                   href={`/products/category/${slug}`}
-                  className="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200 px-3.5 py-1.5 rounded-full self-start sm:self-auto inline-flex items-center gap-1.5 transition-colors"
+                  className="text-xs font-bold uppercase tracking-wider text-[#3B6B91] bg-[#F1F5F8] hover:bg-[#E4ECF3] border border-[#DCE4EC] px-3.5 py-1.5 rounded-full self-start sm:self-auto inline-flex items-center gap-1.5 transition-colors"
                 >
                   <span>Explore {items.length} {items.length === 1 ? 'Product' : 'Products'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -151,19 +155,20 @@ export default function ProductsPage() {
                 {items.map((product) => (
                   <article
                     key={product.id}
-                    className="group bg-white rounded-2xl border border-slate-200 hover:border-[#38B6FF]/70 shadow-xs hover:shadow-lg transition-all flex flex-col overflow-hidden"
+                    className="group bg-white rounded-2xl border border-slate-200 hover:border-[#94B3CE] shadow-xs hover:shadow-lg transition-all flex flex-col overflow-hidden"
                   >
                     <Link href={`/products/${product.id}`} className="relative aspect-[4/3] bg-slate-100 overflow-hidden block">
-                      <img
+                      <Image
                         src={product.image}
                         alt={`${product.name} (${product.sku}) – ${product.tagline}`}
                         loading="lazy"
-                        decoding="async"
-                        width={400}
-                        height={300}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        width={600}
+                        height={450}
+                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
-                      <span className="absolute top-3 left-3 bg-[#0B2F63]/90 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+                      <span className="absolute top-3 left-3 bg-[#223752]/90 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
                         {product.certifications[0]}
                       </span>
                     </Link>
@@ -172,12 +177,12 @@ export default function ProductsPage() {
                       <div>
                         <div className="flex items-center justify-between gap-2 text-xs mb-2">
                           <span className="font-mono text-slate-500">{product.sku}</span>
-                          <span className="font-medium text-emerald-700 flex items-center gap-1">
+                          <span className="font-medium text-[#2F6153] flex items-center gap-1">
                             <ShieldCheck className="w-3.5 h-3.5" />
                             ISO 13485
                           </span>
                         </div>
-                        <h3 className="text-lg font-bold text-[#0B2F63] leading-snug">
+                        <h3 className="text-lg font-bold text-[#223752] leading-snug">
                           <Link href={`/products/${product.id}`} className="hover:underline">
                             {product.name}
                           </Link>
@@ -201,10 +206,10 @@ export default function ProductsPage() {
 
                         <Link
                           href={`/products/${product.id}`}
-                          className="w-full h-10 px-4 text-sm font-bold text-white bg-[#0B2F63] hover:bg-[#164082] rounded-xl transition-colors flex items-center justify-center gap-2"
+                          className="w-full h-10 px-4 text-sm font-bold text-white bg-[#223752] hover:bg-[#2E496B] rounded-xl transition-colors flex items-center justify-center gap-2"
                         >
                           <span>View Full Specifications</span>
-                          <ArrowRight className="w-4 h-4 text-[#38B6FF]" />
+                          <ArrowRight className="w-4 h-4 text-[#8CB3D4]" />
                         </Link>
                       </div>
                     </div>
@@ -216,7 +221,7 @@ export default function ProductsPage() {
         })}
 
         {/* OEM & Wholesale Quotation Bridge */}
-        <section className="bg-[#0B2F63] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <section className="bg-[#223752] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl space-y-2">
             <h2 className="text-2xl font-extrabold">
               Require Private Label Packaging or Multi-SKU Hospital Quotations?
@@ -228,7 +233,7 @@ export default function ProductsPage() {
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link
               href="/oem-manufacturing"
-              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
+              className="h-11 px-5 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
             >
               <span>OEM &amp; Private Label</span>
               <ArrowRight className="w-4 h-4" />

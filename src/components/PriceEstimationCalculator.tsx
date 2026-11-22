@@ -272,11 +272,11 @@ I would like to receive an official formal proforma invoice and technical dossie
     <div className={`bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden ${className}`}>
       
       {/* Header Banner */}
-      <div className="bg-[#0B2F63] text-white p-5 sm:p-6 border-b border-white/10">
+      <div className="bg-[#223752] text-white p-5 sm:p-6 border-b border-white/10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#38B6FF] to-blue-400 flex items-center justify-center text-[#0B2F63] font-bold shrink-0 shadow-sm">
-              <Calculator className="w-5 h-5 text-[#0B2F63]" />
+            <div className="w-10 h-10 rounded-xl bg-[#DCE7F2] flex items-center justify-center text-[#19293F] font-bold shrink-0 shadow-sm">
+              <Calculator className="w-5 h-5 text-[#19293F]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -291,7 +291,7 @@ I would like to receive an official formal proforma invoice and technical dossie
           </div>
 
           <div className="flex items-center gap-2 self-start sm:self-auto text-xs text-slate-300">
-            <span className="inline-flex items-center gap-1.5 font-medium text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-1 rounded-lg">
+            <span className="inline-flex items-center gap-1.5 font-medium text-[#9DC5B8] bg-[#1F3530] border border-[#32594E] px-2.5 py-1 rounded-lg">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>ISO 13485 Direct Factory Rates</span>
             </span>
@@ -331,7 +331,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                       }}
                       className={`text-left p-2.5 rounded-xl border text-xs transition-all ${
                         isSelected
-                          ? 'border-[#0B2F63] bg-blue-50/70 text-[#0B2F63] font-bold shadow-2xs'
+                          ? 'border-[#223752] bg-[#F1F5F8] text-[#223752] font-bold shadow-2xs'
                           : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700 font-medium'
                       }`}
                     >
@@ -362,7 +362,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 focus-within:border-[#0B2F63] focus-within:ring-2 focus-within:ring-[#0B2F63]/15">
+                <div className="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 focus-within:border-[#223752] focus-within:ring-2 focus-within:ring-[#223752]/15">
                   <input
                     type="number"
                     aria-label="Order volume quantity"
@@ -388,7 +388,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                 step={currentConfig.minOrderQty < 100 ? 50 : 250}
                 value={volume}
                 onChange={(e) => setVolume(Number(e.target.value))}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#0B2F63]"
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#223752]"
               />
 
               {/* Quick Volume Preset Buttons */}
@@ -407,7 +407,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                     onClick={() => setVolume(preset.qty)}
                     className={`px-2.5 py-1 text-[11px] font-medium rounded-lg border transition-colors ${
                       volume === preset.qty
-                        ? 'bg-[#0B2F63] text-white border-[#0B2F63]'
+                        ? 'bg-[#223752] text-white border-[#223752]'
                         : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-900'
                     }`}
                   >
@@ -431,7 +431,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                       onClick={() => setIncoterm(term)}
                       className={`py-1.5 text-xs font-bold rounded-lg transition-all ${
                         incoterm === term
-                          ? 'bg-white text-[#0B2F63] shadow-xs'
+                          ? 'bg-white text-[#223752] shadow-xs'
                           : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
@@ -457,7 +457,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                     onClick={() => setFreightMode('sea')}
                     className={`py-1.5 text-xs font-medium rounded-lg transition-all flex items-center justify-center gap-1.5 ${
                       freightMode === 'sea'
-                        ? 'bg-white text-[#0B2F63] font-bold shadow-xs'
+                        ? 'bg-white text-[#223752] font-bold shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -470,7 +470,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                     onClick={() => setFreightMode('air')}
                     className={`py-1.5 text-xs font-medium rounded-lg transition-all flex items-center justify-center gap-1.5 ${
                       freightMode === 'air'
-                        ? 'bg-white text-[#0B2F63] font-bold shadow-xs'
+                        ? 'bg-white text-[#223752] font-bold shadow-xs'
                         : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
@@ -498,7 +498,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                 type="button"
                 onClick={() => setCustomPackaging(!customPackaging)}
                 className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                  customPackaging ? 'bg-[#0B2F63]' : 'bg-slate-300'
+                  customPackaging ? 'bg-[#223752]' : 'bg-slate-300'
                 }`}
                 role="switch"
                 aria-checked={customPackaging}
@@ -515,12 +515,12 @@ I would like to receive an official formal proforma invoice and technical dossie
           </div>
 
           {/* Right Column: Live Quotation Summary Card */}
-          <div className="lg:col-span-5 bg-[#071E40] text-white p-5 sm:p-6 rounded-2xl border border-slate-700/80 shadow-md flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-[#19293F] text-white p-5 sm:p-6 rounded-2xl border border-slate-700/80 shadow-md flex flex-col justify-between">
             
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-700">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#38B6FF]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8CB3D4]">
                     Indicative Budgetary Quote
                   </span>
                   <div className="text-xs text-slate-300">
@@ -528,7 +528,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-[11px] font-semibold text-emerald-400 font-mono">
+                  <span className="text-[11px] font-semibold text-[#7DB5A4] font-mono">
                     {volumeDiscountPct > 0 ? `-${Math.round(volumeDiscountPct * 100)}% Volume Discount` : 'Base MOQ Rate'}
                   </span>
                 </div>
@@ -542,7 +542,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                   <span className="text-xs sm:text-sm font-normal text-slate-300 ml-1.5 font-sans">USD</span>
                 </div>
                 
-                <div className="flex items-center gap-2 text-xs text-[#38B6FF] mt-1 font-mono">
+                <div className="flex items-center gap-2 text-xs text-[#8CB3D4] mt-1 font-mono">
                   <span>Unit Price: ${unitMin.toFixed(2)} – ${unitMax.toFixed(2)} / {currentConfig.unit}</span>
                 </div>
               </div>
@@ -579,16 +579,16 @@ I would like to receive an official formal proforma invoice and technical dossie
 
                 <div className="flex items-center justify-between">
                   <span className="text-slate-400">Private Label Branding:</span>
-                  <span className={customPackaging ? 'text-emerald-400 font-semibold' : 'text-slate-400'}>
+                  <span className={customPackaging ? 'text-[#7DB5A4] font-semibold' : 'text-slate-400'}>
                     {customPackaging ? 'Configured (Custom IFU/Pouch)' : 'Standard Export Barrier'}
                   </span>
                 </div>
               </div>
 
               {/* Lead Time & Assurance */}
-              <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700 text-xs space-y-1">
+              <div className="bg-[#121E2F] p-3 rounded-xl border border-slate-700 text-xs space-y-1">
                 <div className="flex items-center gap-1.5 text-slate-300 font-medium">
-                  <Clock className="w-3.5 h-3.5 text-[#38B6FF]" />
+                  <Clock className="w-3.5 h-3.5 text-[#8CB3D4]" />
                   <span>Estimated Dispatch Timeline</span>
                 </div>
                 <div className="text-[11px] text-slate-400 leading-relaxed">
@@ -606,7 +606,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                 <button
                   type="button"
                   onClick={handleApplyToRfq}
-                  className="w-full py-3 px-4 bg-[#38B6FF] hover:bg-[#209ee8] text-white text-xs sm:text-sm font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full py-3 px-4 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-xs sm:text-sm font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <FileText className="w-4 h-4" />
                   <span>Transfer to Official RFQ Basket</span>
@@ -624,8 +624,8 @@ I would like to receive an official formal proforma invoice and technical dossie
                 >
                   {copied ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400">Copied!</span>
+                      <Check className="w-3.5 h-3.5 text-[#7DB5A4]" />
+                      <span className="text-[#7DB5A4]">Copied!</span>
                     </>
                   ) : (
                     <>
@@ -640,7 +640,7 @@ I would like to receive an official formal proforma invoice and technical dossie
                   href={`https://wa.me/13075334504?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer text-center"
+                  className="py-2.5 px-3 bg-[#3F7D6B] hover:bg-[#336859] text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer text-center"
                   title="Connect on WhatsApp with this quote estimate"
                 >
                   <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">

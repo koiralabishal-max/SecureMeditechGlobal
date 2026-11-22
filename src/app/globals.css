@@ -4,21 +4,21 @@
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-brand-navy: #0B2F63;
-  --color-brand-navy-dark: #071E40;
-  --color-brand-navy-light: #164082;
-  --color-brand-blue: #38B6FF;
-  --color-brand-green: #10B981;
+  --color-brand-navy: #223752;
+  --color-brand-navy-dark: #19293F;
+  --color-brand-navy-light: #2E496B;
+  --color-brand-blue: #4C7A9C;
+  --color-brand-green: #3F7D6B;
 }
 
 @layer base {
   :root {
-    --brand-navy: #0B2F63;
-    --brand-navy-dark: #071E40;
-    --brand-navy-light: #164082;
-    --brand-tech-blue: #38B6FF;
-    --brand-vitality-green: #10B981;
-    --brand-bg: #F8FAFC;
+    --brand-navy: #223752;
+    --brand-navy-dark: #19293F;
+    --brand-navy-light: #2E496B;
+    --brand-tech-blue: #4C7A9C;
+    --brand-vitality-green: #3F7D6B;
+    --brand-bg: #F7F8FA;
   }
 
   html {

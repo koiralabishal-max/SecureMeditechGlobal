@@ -35,7 +35,7 @@ export const SERVICES: MedicalService[] = [
     ],
     standards: ['ISO 13485:2016', 'ISO 14644-1 Class 7/8', 'ISO 11135 EtO', 'ISO 10993'],
     targetAudience: 'Medical device brand owners, OEM clients, national healthcare ministries',
-    image: '/assets/images/oem_cleanroom_facility_1792848782226.jpg'
+    image: '/assets/webp/oem_cleanroom_facility_1792848782226.webp'
   },
   {
     id: 'cad-tooling-dfm',
@@ -59,7 +59,7 @@ export const SERVICES: MedicalService[] = [
     ],
     standards: ['ISO 14971 Risk Management', 'ISO 13485:2016 D&D', 'MDR Annex IX'],
     targetAudience: 'Biomedical innovators, device startups, multinational procurement directors',
-    image: '/assets/images/product_icu_pressure_monitor_1792988228259.jpg'
+    image: '/assets/webp/product_icu_pressure_monitor_1792988228259.webp'
   },
   {
     id: 'global-logistics-coldchain',
@@ -83,7 +83,7 @@ export const SERVICES: MedicalService[] = [
     ],
     standards: ['Good Distribution Practice (GDP)', 'WHO Annex 5 GDP Guidelines', 'IATA Cargo'],
     targetAudience: 'Hospital procurement teams, regional distributor networks, UN agencies',
-    image: '/assets/images/hero_medical_logistics_1792848779603.jpg'
+    image: '/assets/webp/hero_medical_logistics_1792848779603.webp'
   },
   {
     id: 'turnkey-hospital-equipment',
@@ -107,7 +107,7 @@ export const SERVICES: MedicalService[] = [
     ],
     standards: ['MDR (EU) 2017/745', 'IEC 60601-1 Medical Electrical Equipment', 'ISO 13485'],
     targetAudience: 'Hospital administrators, clinic directors, healthcare construction EPCs',
-    image: '/assets/aistudio/image_c5072168.png'
+    image: '/assets/webp/image_c5072168.webp'
   },
   {
     id: 'biomedical-calibration-maintenance',
@@ -131,7 +131,7 @@ export const SERVICES: MedicalService[] = [
     ],
     standards: ['IEC 62353 Medical Electrical Safety', 'ISO 17025 Calibration', 'ISO 9001'],
     targetAudience: 'Hospital biomedical engineering heads, clinical laboratory managers',
-    image: '/assets/images/product_biochemistry_analyzer_1792848780691.jpg'
+    image: '/assets/webp/product_biochemistry_analyzer_1792848780691.webp'
   },
   {
     id: 'regulatory-technical-dossier',
@@ -155,6 +155,6 @@ export const SERVICES: MedicalService[] = [
     ],
     standards: ['MDR (EU) 2017/745', 'ISO 13485:2016', 'ISO 14971:2019', 'ISO 10993'],
     targetAudience: 'Importers, pharmaceutical distributors, regional health ministries',
-    image: '/assets/images/product_surgical_gloves_1792848782534.jpg'
+    image: '/assets/webp/product_surgical_gloves_1792848782534.webp'
   }
 ];

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
@@ -136,17 +137,17 @@ export default async function BlogDetailPage({
       />
 
       {/* Article Hero */}
-      <section className="bg-[#071E40] text-white py-12 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-12 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex flex-wrap items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
-            <Link href="/blog" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/blog" className="hover:text-[#8CB3D4] transition-colors">
               Blog
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -155,7 +156,7 @@ export default async function BlogDetailPage({
             </span>
           </nav>
 
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF] mb-3">
+          <span className="inline-block text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4] mb-3">
             {post.category}
           </span>
 
@@ -169,17 +170,17 @@ export default async function BlogDetailPage({
 
           <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center gap-5 text-xs sm:text-sm text-slate-300">
             <div className="flex items-center gap-2">
-              <User className="w-4 h-4 text-[#38B6FF]" />
+              <User className="w-4 h-4 text-[#8CB3D4]" />
               <span>
                 <strong className="text-white">{post.author}</strong> · {post.authorRole}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-[#10B981]" />
+              <Calendar className="w-4 h-4 text-[#7DB5A4]" />
               <time dateTime={post.isoDate}>{post.publishedDate}</time>
             </div>
             <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-[#38B6FF]" />
+              <Clock className="w-4 h-4 text-[#8CB3D4]" />
               <span>{post.readTime}</span>
             </div>
           </div>
@@ -192,11 +193,15 @@ export default async function BlogDetailPage({
           {/* Main Content */}
           <article className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-2xs space-y-8">
             <div className="rounded-2xl overflow-hidden border border-slate-200 aspect-[16/9] bg-slate-100">
-              <img
+              <Image
                 src={post.featuredImage}
                 alt={`${post.title} – ${SITE.name}`}
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 800px"
                 width={960}
                 height={540}
+                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -212,7 +217,7 @@ export default async function BlogDetailPage({
             {post.sections &&
               post.sections.map((section) => (
                 <section key={section.heading} className="space-y-4 pt-4 border-t border-slate-100">
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63] tracking-tight">
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752] tracking-tight">
                     {section.heading}
                   </h2>
                   {section.paragraphs.map((p, idx) => (
@@ -224,7 +229,7 @@ export default async function BlogDetailPage({
                     <ul className="space-y-2.5 pt-1 text-sm sm:text-base text-slate-700">
                       {section.bullets.map((bullet) => (
                         <li key={bullet} className="flex items-start gap-2.5">
-                          <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-1" />
+                          <CheckCircle2 className="w-4 h-4 text-[#3F7D6B] shrink-0 mt-1" />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -236,7 +241,7 @@ export default async function BlogDetailPage({
             {/* External Authoritative References */}
             {post.externalReferences && post.externalReferences.length > 0 && (
               <section className="pt-6 border-t border-slate-200 space-y-3">
-                <h2 className="text-base font-extrabold text-[#0B2F63]">
+                <h2 className="text-base font-extrabold text-[#223752]">
                   Regulatory &amp; Standards References
                 </h2>
                 <ul className="space-y-2 text-sm">
@@ -246,7 +251,7 @@ export default async function BlogDetailPage({
                         href={ref.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-semibold text-[#0B2F63] hover:text-sky-700 hover:underline inline-flex items-center gap-1.5"
+                        className="font-semibold text-[#223752] hover:text-[#3B6B91] hover:underline inline-flex items-center gap-1.5"
                       >
                         <span>{ref.title}</span>
                         <ExternalLink className="w-3.5 h-3.5 shrink-0" />
@@ -263,7 +268,7 @@ export default async function BlogDetailPage({
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs font-semibold bg-sky-50 text-[#0B2F63] border border-sky-100 px-3 py-1 rounded-full"
+                  className="text-xs font-semibold bg-[#F1F5F8] text-[#223752] border border-[#DCE4EC] px-3 py-1 rounded-full"
                 >
                   {tag}
                 </span>
@@ -275,8 +280,8 @@ export default async function BlogDetailPage({
           <aside className="lg:col-span-4 space-y-6">
             {post.internalLinks && post.internalLinks.length > 0 && (
               <div className="bg-white rounded-2xl border border-slate-200 p-6 space-y-4 shadow-2xs">
-                <h2 className="text-base font-extrabold text-[#0B2F63] flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-[#38B6FF]" />
+                <h2 className="text-base font-extrabold text-[#223752] flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-[#3B6B91]" />
                   <span>Related Catalog &amp; Corridor Links</span>
                 </h2>
                 <div className="space-y-2.5">
@@ -284,12 +289,12 @@ export default async function BlogDetailPage({
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="block p-3 rounded-xl border border-slate-200 hover:border-[#38B6FF] hover:bg-sky-50/40 transition-colors"
+                      className="block p-3 rounded-xl border border-slate-200 hover:border-[#94B3CE] hover:bg-[#F1F5F8]/60 transition-colors"
                     >
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-sky-700">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#3B6B91]">
                         {link.type}
                       </span>
-                      <div className="text-sm font-bold text-[#0B2F63] flex items-center justify-between gap-2 mt-0.5">
+                      <div className="text-sm font-bold text-[#223752] flex items-center justify-between gap-2 mt-0.5">
                         <span>{link.label}</span>
                         <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                       </div>
@@ -299,8 +304,8 @@ export default async function BlogDetailPage({
               </div>
             )}
 
-            <div className="bg-[#0B2F63] text-white rounded-2xl p-6 space-y-4">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#38B6FF]">
+            <div className="bg-[#223752] text-white rounded-2xl p-6 space-y-4">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8CB3D4]">
                 <ShieldCheck className="w-4 h-4" />
                 <span>ISO 13485 &amp; CE MDR Verified</span>
               </div>
@@ -313,13 +318,13 @@ export default async function BlogDetailPage({
               <div className="space-y-2.5 pt-1">
                 <Link
                   href="/contact"
-                  className="w-full h-11 px-4 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center justify-center gap-2 transition-colors"
+                  className="w-full h-11 px-4 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-sm font-bold rounded-xl inline-flex items-center justify-center gap-2 transition-colors"
                 >
                   <span>Contact Procurement Desk</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/#price-calculator"
+                  href="/price-calculator"
                   className="w-full h-11 px-4 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-xl inline-flex items-center justify-center border border-white/20 transition-colors"
                 >
                   <span>Open Price Estimator</span>
@@ -332,12 +337,12 @@ export default async function BlogDetailPage({
         {/* Related Guides */}
         <section className="mt-14 pt-12 border-t border-slate-200 space-y-6">
           <div className="flex items-center justify-between gap-3">
-            <h2 className="text-2xl font-extrabold text-[#0B2F63]">
+            <h2 className="text-2xl font-extrabold text-[#223752]">
               More B2B Procurement &amp; Regulatory Guides
             </h2>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B2F63] hover:text-[#38B6FF]"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#223752] hover:text-[#3B6B91]"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>All Articles</span>
@@ -348,18 +353,18 @@ export default async function BlogDetailPage({
               <Link
                 key={rel.slug}
                 href={`/blog/${rel.slug}`}
-                className="group bg-white rounded-2xl border border-slate-200 hover:border-[#38B6FF] p-5 flex flex-col justify-between gap-3 transition-all shadow-2xs hover:shadow-md"
+                className="group bg-white rounded-2xl border border-slate-200 hover:border-[#94B3CE] p-5 flex flex-col justify-between gap-3 transition-all shadow-2xs hover:shadow-md"
               >
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-sky-700">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#3B6B91]">
                     {rel.category}
                   </span>
-                  <h3 className="text-base font-bold text-[#0B2F63] group-hover:underline mt-1">
+                  <h3 className="text-base font-bold text-[#223752] group-hover:underline mt-1">
                     {rel.title}
                   </h3>
                   <p className="text-xs text-slate-600 mt-1.5 line-clamp-2">{rel.summary}</p>
                 </div>
-                <span className="text-xs font-bold text-[#0B2F63] inline-flex items-center gap-1">
+                <span className="text-xs font-bold text-[#223752] inline-flex items-center gap-1">
                   <span>Read Article</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>

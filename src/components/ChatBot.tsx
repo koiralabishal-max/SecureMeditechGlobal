@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { trackWhatsAppInquiry } from '@/lib/analytics';
 import { 
   MessageSquare, 
   X, 
@@ -186,7 +187,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
       if (isBullet) {
         return (
           <li key={idx} className="flex items-start gap-2 ml-1 my-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#38B6FF] mt-2 shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4C7A9C] mt-2 shrink-0" />
             <span className="text-slate-700 leading-relaxed">{renderedParts}</span>
           </li>
         );
@@ -208,27 +209,21 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
     <>
       {/* Floating Launcher Button */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-50">
           <button
             onClick={onToggle}
-            className="group relative flex items-center gap-3 px-4 py-3.5 bg-gradient-to-r from-[#0B2F63] to-[#124185] hover:from-[#0E3A7B] hover:to-[#174e9e] text-white rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 border border-white/20"
+            className="group relative flex items-center gap-3 px-4 py-3.5 bg-[#223752] hover:bg-[#2E496B] text-white rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 border border-white/15"
             aria-label="Open AI Procurement Specialist"
           >
-            {/* Live Indicator Pulse */}
-            <span className="absolute -top-1 -right-1 flex h-4 w-4">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#38B6FF] opacity-75" />
-              <span className="relative inline-flex rounded-full h-4 w-4 bg-[#38B6FF] ring-2 ring-white" />
-            </span>
-
             <div className="p-1 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-              <Sparkles className="w-5 h-5 text-[#38B6FF]" />
+              <Sparkles className="w-5 h-5 text-[#8CB3D4]" />
             </div>
             <div className="text-left hidden sm:block pr-1">
-              <div className="text-xs font-bold uppercase tracking-wider text-[#38B6FF]">
-                AI Procurement
+              <div className="text-xs font-bold uppercase tracking-wider text-[#8CB3D4]">
+                Procurement
               </div>
               <div className="text-xs font-semibold text-white">
-                Chat Specialist
+                Advisory Desk
               </div>
             </div>
           </button>
@@ -245,25 +240,21 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
           } bg-white rounded-2xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200`}
         >
           {/* Header */}
-          <div className="bg-[#0B2F63] text-white px-4 py-3.5 flex items-center justify-between shrink-0 border-b border-white/10">
+          <div className="bg-[#223752] text-white px-4 py-3.5 flex items-center justify-between shrink-0 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="relative">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#38B6FF] to-blue-400 flex items-center justify-center text-[#0B2F63] font-bold shadow-xs">
+                <div className="w-9 h-9 rounded-xl bg-[#DCE7F2] flex items-center justify-center text-[#19293F] font-bold shadow-xs">
                   <Bot className="w-5 h-5" />
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-[#0B2F63]" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
                   <h3 className="text-sm font-bold text-white tracking-tight">
-                    AI Procurement Specialist
+                    Procurement Specialist
                   </h3>
-                  <span className="px-1.5 py-0.2 rounded text-[11px] font-bold bg-[#38B6FF]/20 text-[#38B6FF] border border-[#38B6FF]/30">
-                    Flash 3.8
-                  </span>
                 </div>
                 <p className="text-xs text-slate-300 flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                  <ShieldCheck className="w-3 h-3 text-[#7DB5A4]" />
                   <span>ISO 13485 Knowledge Base</span>
                 </p>
               </div>
@@ -310,14 +301,14 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                       className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
                     >
                       {!isUser && (
-                        <div className="w-7 h-7 rounded-lg bg-[#0B2F63] text-[#38B6FF] flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-7 h-7 rounded-lg bg-[#223752] text-[#8CB3D4] flex items-center justify-center shrink-0 mt-0.5">
                           <Bot className="w-4 h-4" />
                         </div>
                       )}
 
                       <div className={`max-w-[85%] rounded-2xl px-4 py-3 relative group ${
                         isUser
-                          ? 'bg-[#0B2F63] text-white shadow-xs rounded-tr-xs'
+                          ? 'bg-[#223752] text-white shadow-xs rounded-tr-xs'
                           : 'bg-white text-slate-800 border border-slate-200/90 shadow-2xs rounded-tl-xs'
                       }`}>
                         {/* Text */}
@@ -333,7 +324,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
 
                         {/* Timestamp & Utilities */}
                         <div className={`mt-2 flex items-center justify-between gap-3 text-[11px] ${
-                          isUser ? 'text-blue-200' : 'text-slate-400'
+                          isUser ? 'text-slate-300' : 'text-slate-400'
                         }`}>
                           <span>{msg.timestamp}</span>
                           {!isUser && (
@@ -345,8 +336,8 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                               >
                                 {isCopied === msg.id ? (
                                   <>
-                                    <Check className="w-3 h-3 text-emerald-600" />
-                                    <span className="text-emerald-600">Copied</span>
+                                    <Check className="w-3 h-3 text-[#3F7D6B]" />
+                                    <span className="text-[#3F7D6B]">Copied</span>
                                   </>
                                 ) : (
                                   <>
@@ -372,11 +363,11 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                 {/* Loading indicator */}
                 {isLoading && (
                   <div className="flex gap-2.5 justify-start">
-                    <div className="w-7 h-7 rounded-lg bg-[#0B2F63] text-[#38B6FF] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-lg bg-[#223752] text-[#8CB3D4] flex items-center justify-center shrink-0 mt-0.5">
                       <Bot className="w-4 h-4" />
                     </div>
                     <div className="bg-white border border-slate-200 px-4 py-3 rounded-2xl rounded-tl-xs shadow-2xs flex items-center gap-2 text-slate-500">
-                      <Loader2 className="w-4 h-4 animate-spin text-[#38B6FF]" />
+                      <Loader2 className="w-4 h-4 animate-spin text-[#3B6B91]" />
                       <span className="text-xs">Consulting catalog & specs...</span>
                     </div>
                   </div>
@@ -393,7 +384,7 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                       <button
                         key={i}
                         onClick={() => handleSendMessage(suggestion)}
-                        className="text-xs font-medium text-slate-700 bg-white hover:bg-blue-50 hover:text-[#0B2F63] hover:border-blue-200 px-3 py-1.5 rounded-full border border-slate-200 shadow-2xs whitespace-nowrap transition-colors flex items-center gap-1 shrink-0"
+                        className="text-xs font-medium text-slate-700 bg-white hover:bg-[#F1F5F8] hover:text-[#223752] hover:border-[#DCE4EC] px-3 py-1.5 rounded-full border border-slate-200 shadow-2xs whitespace-nowrap transition-colors flex items-center gap-1 shrink-0"
                       >
                         <span>{suggestion}</span>
                         <ChevronRight className="w-3 h-3 text-slate-400" />
@@ -419,13 +410,13 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                     onChange={(e) => setInputText(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask about MOQs, lead times, or specs..."
-                    className="flex-1 max-h-24 p-2.5 text-base sm:text-sm bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#38B6FF] focus:ring-2 focus:ring-[#38B6FF]/20 rounded-xl resize-none outline-none text-slate-800 placeholder-slate-400"
+                    className="flex-1 max-h-24 p-2.5 text-base sm:text-sm bg-slate-50 focus:bg-white border border-slate-200 focus:border-[#5C89AD] focus:ring-2 focus:ring-[#5C89AD]/20 rounded-xl resize-none outline-none text-slate-800 placeholder-slate-400"
                   />
                   
                   <button
                     type="submit"
                     disabled={!inputText.trim() || isLoading}
-                    className="p-2.5 bg-[#0B2F63] hover:bg-[#164082] disabled:opacity-40 text-white rounded-xl shadow-xs transition-colors shrink-0"
+                    className="p-2.5 bg-[#223752] hover:bg-[#2E496B] disabled:opacity-40 text-white rounded-xl shadow-xs transition-colors shrink-0"
                     aria-label="Send message"
                   >
                     <Send className="w-4 h-4" />
@@ -442,7 +433,8 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                       href="https://wa.me/13075334504?text=Hello%20Secure%20MediTech%20Global,%20I%20am%20chatting%20with%20your%20AI%20Assistant%20and%20would%20like%20to%20connect%20with%20a%20procurement%20specialist%20on%20WhatsApp."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#10B981] hover:text-[#059669] hover:bg-emerald-50 px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 transition-colors"
+                      onClick={() => trackWhatsAppInquiry({ source: 'ai_chatbot_widget' })}
+                      className="text-[#3F7D6B] hover:text-[#2F6153] hover:bg-[#EFF5F3] px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 transition-colors"
                       title="Chat with Procurement Team on WhatsApp (+1 307 533-4504)"
                     >
                       <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
@@ -454,9 +446,9 @@ export const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle, onOpenRfq })
                     <button
                       type="button"
                       onClick={onOpenRfq}
-                      className="text-[#0B2F63] hover:text-[#38B6FF] hover:bg-blue-50 px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 transition-colors"
+                      className="text-[#223752] hover:text-[#3B6B91] hover:bg-[#F1F5F8] px-1.5 py-0.5 rounded font-semibold flex items-center gap-1 transition-colors"
                     >
-                      <FileText className="w-3 h-3 text-[#38B6FF]" />
+                      <FileText className="w-3 h-3 text-[#3B6B91]" />
                       <span>Open RFQ Form</span>
                     </button>
                   </div>

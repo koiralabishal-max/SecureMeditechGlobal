@@ -1,34 +1,52 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ShieldCheck, Mail, ArrowRight, CheckCircle2, Globe2, Calculator } from 'lucide-react';
-import { PriceEstimationCalculator } from './PriceEstimationCalculator';
+import { Mail, ArrowRight, CheckCircle2, Globe2, Calculator } from 'lucide-react';
 import { Product } from '../types';
 
 interface FooterProps {
   onTransferToRfq?: (product: Product, quantity: number, notes: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
+export const Footer: React.FC<FooterProps> = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+  const [newsletterBusy, setNewsletterBusy] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) return;
-    setNewsletterSubscribed(true);
+    setNewsletterBusy(true);
+    try {
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'newsletter',
+          fullName: newsletterEmail,
+          email: newsletterEmail,
+          sourcePath: typeof window !== 'undefined' ? window.location.pathname : '/',
+        }),
+      });
+      if (res.ok) {
+        setNewsletterSubscribed(true);
+      }
+    } finally {
+      setNewsletterBusy(false);
+    }
   };
 
   return (
-    <footer className="bg-[#071E40] text-slate-300 border-t border-slate-800">
+    <footer className="bg-[#19293F] text-slate-300 border-t border-slate-800/80">
       
       {/* Newsletter & Global Advisory Strip */}
-      <div className="border-b border-slate-800 py-10">
+      <div className="border-b border-slate-800/80 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Globe2 className="w-5 h-5 text-[#38B6FF]" />
+              <Globe2 className="w-5 h-5 text-[#8CB3D4]" />
               <span>Regulatory & Global Supply Bulletins</span>
             </h2>
             <p className="text-sm text-slate-400 mt-1.5 max-w-xl leading-relaxed">
@@ -38,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
 
           <div className="w-full md:w-auto">
             {newsletterSubscribed ? (
-              <div className="flex items-center gap-2 text-sm font-semibold text-[#10B981] bg-emerald-950/40 border border-emerald-800/60 px-4 py-2.5 rounded-xl">
+              <div className="flex items-center gap-2 text-sm font-semibold text-[#7DB5A4] bg-[#1F3530] border border-[#32594E] px-4 py-2.5 rounded-xl">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Subscription confirmed. Welcome to the procurement bulletin.</span>
               </div>
@@ -53,14 +71,15 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Enter institutional work email..."
                     aria-label="Work email"
-                    className="w-full h-11 pl-9 pr-3 bg-slate-900 text-base sm:text-sm text-white placeholder-slate-500 rounded-xl border border-slate-700 focus:outline-none focus:border-[#38B6FF]"
+                    className="w-full h-11 pl-9 pr-3 bg-[#121E2F] text-base sm:text-sm text-white placeholder-slate-500 rounded-xl border border-slate-700 focus:outline-none focus:border-[#8CB3D4]"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="h-11 px-4 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl transition-colors shrink-0 flex items-center gap-1.5"
+                  disabled={newsletterBusy}
+                  className="h-11 px-4 bg-[#DCE7F2] hover:bg-[#CBDCEB] disabled:opacity-60 text-[#19293F] text-sm font-bold rounded-xl transition-colors shrink-0 flex items-center gap-1.5"
                 >
-                  <span>Subscribe</span>
+                  <span>{newsletterBusy ? 'Saving...' : 'Subscribe'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </form>
@@ -69,45 +88,21 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
         </div>
       </div>
 
-      {/* B2B Wholesale Price Estimation Calculator Tool Section */}
-      <div id="price-calculator" className="border-b border-slate-800 py-12 bg-[#051730]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#38B6FF] mb-1">
-                <Calculator className="w-4 h-4" />
-                <span>Hospital & Institutional Procurement Tool</span>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                Budgetary Price & Volume Calculator
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
-                Simulate bulk order volumes across clinical categories to estimate FOB, CIF, or DDP budgetary ranges and volume tier concessions before placing a formal RFQ.
-              </p>
-            </div>
-            <div className="text-xs text-slate-400 font-mono">
-              Incoterms 2020 · CE MDR & ISO 13485 Verified
-            </div>
-          </div>
-
-          <PriceEstimationCalculator onTransferToRfq={onTransferToRfq} />
-        </div>
-      </div>
-
       {/* Main Navigation Links Grid */}
-      <div className="py-14 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="sr-only">Corporate Information, Medical Divisions & Regulatory Directory</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
           
           {/* Brand Info & Socials */}
           <div className="sm:col-span-2 space-y-5">
             <div className="bg-white/95 p-3 rounded-xl border border-white/20 shadow-sm inline-block max-w-[260px]">
-              <img
-                src="/logo.png"
+              <Image
+                src="/assets/webp/logo.webp"
                 alt="Secure MediTech Global corporate logo"
                 loading="lazy"
-                width={979}
-                height={271}
+                width={260}
+                height={72}
+                referrerPolicy="no-referrer"
                 className="h-10 w-auto object-contain"
               />
             </div>
@@ -165,7 +160,7 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
                 href="/"
                 title="Secure MediTech Global Home"
                 aria-label="Secure MediTech Global Home"
-                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#38B6FF] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700/60"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-[#356386] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700/60"
               >
                 <Globe2 className="w-4 h-4" />
               </Link>
@@ -176,10 +171,10 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
               <p className="text-slate-300 font-semibold">Registered US Headquarters:</p>
               <p className="text-slate-300">30 N Gould St Ste R, Sheridan, WY 82801, USA</p>
               <p>
-                Phone: <a href="tel:+13075334504" className="text-slate-300 hover:text-[#38B6FF]">+1 (307) 533-4504</a>
+                Phone: <a href="tel:+13075334504" className="text-slate-300 hover:text-[#8CB3D4]">+1 (307) 533-4504</a>
                 </p>
               <p>
-                Email: <a href="mailto:info@securemeditechglobal.com" className="text-slate-300 hover:text-[#38B6FF]">info@securemeditechglobal.com</a>
+                Email: <a href="mailto:info@securemeditechglobal.com" className="text-slate-300 hover:text-[#8CB3D4]">info@securemeditechglobal.com</a>
               </p>
             </address>
           </div>
@@ -191,42 +186,42 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/products/category/critical-care-monitoring" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/critical-care-monitoring" className="hover:text-[#8CB3D4] transition-colors">
                   Critical Care &amp; Monitoring
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/anesthesia-airway-management" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/anesthesia-airway-management" className="hover:text-[#8CB3D4] transition-colors">
                   Anesthesia &amp; Airway Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/iv-infusion-supplies" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/iv-infusion-supplies" className="hover:text-[#8CB3D4] transition-colors">
                   IV &amp; Infusion Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/respiratory-care" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/respiratory-care" className="hover:text-[#8CB3D4] transition-colors">
                   Respiratory Care Devices
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/urology-catheters" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/urology-catheters" className="hover:text-[#8CB3D4] transition-colors">
                   Urology &amp; Foley Catheters
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/dialysis-supplies" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/dialysis-supplies" className="hover:text-[#8CB3D4] transition-colors">
                   Hemodialysis Catheter Kits
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/surgical-ot-supplies" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/surgical-ot-supplies" className="hover:text-[#8CB3D4] transition-colors">
                   Surgical &amp; OT Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/products/category/laboratory-diagnostics" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products/category/laboratory-diagnostics" className="hover:text-[#8CB3D4] transition-colors">
                   Laboratory &amp; Diagnostics
                 </Link>
               </li>
@@ -240,32 +235,32 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/oem-manufacturing" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/oem-manufacturing" className="hover:text-[#8CB3D4] transition-colors">
                   OEM Medical Manufacturing
                 </Link>
               </li>
               <li>
-                <Link href="/services#cad-tooling-dfm" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services#cad-tooling-dfm" className="hover:text-[#8CB3D4] transition-colors">
                   CAD Tooling &amp; DFM Prototyping
                 </Link>
               </li>
               <li>
-                <Link href="/services#regulatory-ce-mdr-dossier-support" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services#regulatory-ce-mdr-dossier-support" className="hover:text-[#8CB3D4] transition-colors">
                   CE MDR 2017/745 Technical Files
                 </Link>
               </li>
               <li>
-                <Link href="/services#oem-contract-manufacturing" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services#oem-contract-manufacturing" className="hover:text-[#8CB3D4] transition-colors">
                   Private Label Medical Supplies
                 </Link>
               </li>
               <li>
-                <Link href="/services#international-logistics-forwarding" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services#international-logistics-forwarding" className="hover:text-[#8CB3D4] transition-colors">
                   Global Cold-Chain Forwarding
                 </Link>
               </li>
               <li>
-                <Link href="/services#biomedical-calibration-maintenance" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services#biomedical-calibration-maintenance" className="hover:text-[#8CB3D4] transition-colors">
                   Biomedical Calibration Support
                 </Link>
               </li>
@@ -279,42 +274,42 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li>
-                <Link href="/about" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/about" className="hover:text-[#8CB3D4] transition-colors">
                   About Us &amp; ISO 13485 Facility
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/products" className="hover:text-[#8CB3D4] transition-colors">
                   Full Medical Supplies Catalog
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/services" className="hover:text-[#8CB3D4] transition-colors">
                   All B2B Healthcare Services
                 </Link>
               </li>
               <li>
-                <Link href="/markets" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/markets" className="hover:text-[#8CB3D4] transition-colors">
                   Global Export Markets (8 Corridors)
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/blog" className="hover:text-[#8CB3D4] transition-colors">
                   Procurement &amp; OEM Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#38B6FF] transition-colors">
+                <Link href="/contact" className="hover:text-[#8CB3D4] transition-colors">
                   Contact &amp; Wholesale RFQ Desk
                 </Link>
               </li>
               <li>
-                <Link href="/#faq" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF]">
+                <Link href="/faq" className="hover:text-[#8CB3D4] transition-colors text-[#8CB3D4]">
                   Procurement &amp; Logistics FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/#price-calculator" className="hover:text-[#38B6FF] transition-colors text-[#38B6FF] flex items-center gap-1 font-medium">
+                <Link href="/price-calculator" className="hover:text-[#8CB3D4] transition-colors text-[#8CB3D4] flex items-center gap-1 font-medium">
                   <Calculator className="w-3.5 h-3.5" />
                   <span>Wholesale Price Estimator</span>
                 </Link>
@@ -327,19 +322,19 @@ export const Footer: React.FC<FooterProps> = ({ onTransferToRfq }) => {
         {/* Regional Export Corridors Internal Links */}
         <div className="mt-10 pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-400">
           <span className="font-bold uppercase tracking-wider text-slate-300">Priority Export Markets:</span>
-          <Link href="/markets/nepal" className="hover:text-[#38B6FF] transition-colors">Nepal</Link>
-          <Link href="/markets/india" className="hover:text-[#38B6FF] transition-colors">India</Link>
-          <Link href="/markets/kenya" className="hover:text-[#38B6FF] transition-colors">Kenya</Link>
-          <Link href="/markets/rwanda" className="hover:text-[#38B6FF] transition-colors">Rwanda</Link>
-          <Link href="/markets/south-africa" className="hover:text-[#38B6FF] transition-colors">South Africa</Link>
-          <Link href="/markets/nigeria" className="hover:text-[#38B6FF] transition-colors">Nigeria</Link>
-          <Link href="/markets/united-kingdom" className="hover:text-[#38B6FF] transition-colors">United Kingdom</Link>
-          <Link href="/markets/united-states" className="hover:text-[#38B6FF] transition-colors">United States</Link>
+          <Link href="/markets/nepal" className="hover:text-[#8CB3D4] transition-colors">Nepal</Link>
+          <Link href="/markets/india" className="hover:text-[#8CB3D4] transition-colors">India</Link>
+          <Link href="/markets/kenya" className="hover:text-[#8CB3D4] transition-colors">Kenya</Link>
+          <Link href="/markets/rwanda" className="hover:text-[#8CB3D4] transition-colors">Rwanda</Link>
+          <Link href="/markets/south-africa" className="hover:text-[#8CB3D4] transition-colors">South Africa</Link>
+          <Link href="/markets/nigeria" className="hover:text-[#8CB3D4] transition-colors">Nigeria</Link>
+          <Link href="/markets/united-kingdom" className="hover:text-[#8CB3D4] transition-colors">United Kingdom</Link>
+          <Link href="/markets/united-states" className="hover:text-[#8CB3D4] transition-colors">United States</Link>
         </div>
       </div>
 
       {/* Bottom Bar & Disclosures */}
-      <div className="border-t border-slate-800/80 py-6 bg-[#041226] text-xs text-slate-500">
+      <div className="border-t border-slate-800/80 py-6 bg-[#121E2F] text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-center sm:text-left">
             © {new Date().getFullYear()} Secure MediTech Global. All rights reserved. Registered medical device manufacturer and global wholesale exporter.

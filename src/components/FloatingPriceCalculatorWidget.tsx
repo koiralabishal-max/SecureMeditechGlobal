@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Calculator, X, Maximize2, Minimize2, ArrowDownRight } from 'lucide-react';
+import Link from 'next/link';
+import { Calculator, X, Maximize2, Minimize2, ArrowUpRight } from 'lucide-react';
 import { PriceEstimationCalculator } from './PriceEstimationCalculator';
 import { Product } from '../types';
 
@@ -13,14 +14,6 @@ export const FloatingPriceCalculatorWidget: React.FC<FloatingPriceCalculatorWidg
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  const handleScrollToFooterCalculator = () => {
-    setIsOpen(false);
-    const el = document.getElementById('price-calculator');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleTransferAndClose = (product: Product, quantity: number, notes: string) => {
     onTransferToRfq(product, quantity, notes);
     setIsOpen(false);
@@ -28,20 +21,20 @@ export const FloatingPriceCalculatorWidget: React.FC<FloatingPriceCalculatorWidg
 
   return (
     <>
-      {/* Floating Launcher Button on Bottom-Left */}
+      {/* Floating Launcher Button on Bottom-Left (desktop/tablet) */}
       {!isOpen && (
-        <div className="fixed bottom-6 left-6 z-40">
+        <div className="hidden md:block fixed bottom-6 left-6 z-40">
           <button
             onClick={() => setIsOpen(true)}
-            className="group relative flex items-center gap-2.5 px-4 py-3 bg-[#071E40] hover:bg-[#0B2F63] text-white rounded-full shadow-2xl hover:shadow-[#38B6FF]/20 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 border border-slate-700/80 cursor-pointer"
+            className="group relative flex items-center gap-2.5 px-4 py-3 bg-[#19293F] hover:bg-[#223752] text-white rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 border border-slate-700/70 cursor-pointer"
             aria-label="Open Price Estimation Calculator"
           >
-            <div className="w-7 h-7 rounded-full bg-[#38B6FF]/20 text-[#38B6FF] flex items-center justify-center shrink-0 group-hover:bg-[#38B6FF] group-hover:text-[#0B2F63] transition-colors">
+            <div className="w-7 h-7 rounded-full bg-white/10 text-[#8CB3D4] flex items-center justify-center shrink-0 group-hover:bg-[#DCE7F2] group-hover:text-[#19293F] transition-colors">
               <Calculator className="w-4 h-4" />
             </div>
 
             <div className="text-left pr-1">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#38B6FF]">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-[#8CB3D4]">
                 Wholesale Tool
               </div>
               <div className="text-xs font-semibold text-white">
@@ -62,9 +55,9 @@ export const FloatingPriceCalculatorWidget: React.FC<FloatingPriceCalculatorWidg
             aria-label="Price Estimation Calculator"
           >
             {/* Top Bar Controls */}
-            <div className="bg-[#0B2F63] px-5 py-3 text-white flex items-center justify-between border-b border-white/10 shrink-0">
+            <div className="bg-[#223752] px-5 py-3 text-white flex items-center justify-between border-b border-white/10 shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-[#38B6FF] text-[#0B2F63] flex items-center justify-center font-bold">
+                <div className="w-8 h-8 rounded-lg bg-[#DCE7F2] text-[#19293F] flex items-center justify-center font-bold">
                   <Calculator className="w-4 h-4" />
                 </div>
                 <div>
@@ -78,15 +71,15 @@ export const FloatingPriceCalculatorWidget: React.FC<FloatingPriceCalculatorWidg
               </div>
 
               <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleScrollToFooterCalculator}
+                <Link
+                  href="/price-calculator"
+                  onClick={() => setIsOpen(false)}
                   className="hidden sm:flex items-center gap-1 px-2.5 py-1 text-xs text-slate-300 hover:text-white bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
-                  title="Jump down to full footer calculator"
+                  title="Open full page calculator"
                 >
-                  <ArrowDownRight className="w-3.5 h-3.5" />
-                  <span>View in Footer</span>
-                </button>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <span>Full Page</span>
+                </Link>
 
                 <button
                   type="button"

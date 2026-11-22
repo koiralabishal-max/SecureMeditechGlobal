@@ -63,7 +63,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '7 min read',
     summary:
       'A practical B2B procurement framework for auditing quality management systems, sterilization documentation, AQL defect tolerances, and export freight reliability when selecting an international medical supplies partner.',
-    featuredImage: '/assets/images/hero_medical_logistics_1792848779603.jpg',
+    featuredImage: '/assets/webp/hero_medical_logistics_1792848779603.webp',
     tags: [
       'Wholesale Medical Supplies',
       'Supplier Qualification',
@@ -145,7 +145,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '6 min read',
     summary:
       'A clinical and procurement breakdown of core sterile disposables every adult and surgical Intensive Care Unit needs stocked for vascular access, hemodynamic monitoring, mechanical ventilation, and VAP risk reduction.',
-    featuredImage: '/assets/aistudio/image_c5072168.png',
+    featuredImage: '/assets/webp/image_c5072168.webp',
     tags: ['ICU Consumables', 'Critical Care', 'CVP Kit', 'Closed Suction', 'NIV Masks'],
     content: [
       'Intensive Care Units generate the highest per-bed consumable velocity inside acute care hospitals. Stockouts of multi-lumen central lines, pressure monitoring transducers, or closed suction circuits directly stall emergency admissions and post-operative transfers.',
@@ -214,7 +214,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '8 min read',
     summary:
       'An end-to-end engineering walkthrough of how OEM medical device contract manufacturing operates—from NDA & Design for Manufacturability (DFM) to ISO Class 7 cleanroom molding and regulatory technical files.',
-    featuredImage: '/assets/images/oem_cleanroom_facility_1792848782226.jpg',
+    featuredImage: '/assets/webp/oem_cleanroom_facility_1792848782226.webp',
     tags: [
       'OEM Medical Device Manufacturer',
       'Cleanroom Molding',
@@ -284,7 +284,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '6 min read',
     summary:
       'Discover how regional medical distributors, surgical group buyers, and healthcare brands use private-label manufacturing to safeguard tender margins, standardize hospital procedure packs, and eliminate multi-tier broker markups.',
-    featuredImage: '/assets/aistudio/image_4aa64575.png',
+    featuredImage: '/assets/webp/image_4aa64575.webp',
     tags: [
       'Private Label Medical Supplies',
       'Distributor Strategy',
@@ -348,7 +348,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '6 min read',
     summary:
       'What pathology directors and hospital biomedical engineers should evaluate before procuring automated biochemistry analyzers: optical stability, refrigerated reagent storage, HL7 connectivity, and post-sale calibration.',
-    featuredImage: '/assets/images/product_biochemistry_analyzer_1792848780691.jpg',
+    featuredImage: '/assets/webp/product_biochemistry_analyzer_1792848780691.webp',
     tags: [
       'Laboratory Equipment Supplier',
       'Diagnostic Equipment',
@@ -418,7 +418,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '7 min read',
     summary:
       'How hospital supply chain officers structure quarterly bulk medical consumables tenders, optimize mixed-SKU container loads, balance air vs ocean freight lead times, and mitigate stockout risk.',
-    featuredImage: '/assets/images/product_iv_cannula_set_1792988226730.jpg',
+    featuredImage: '/assets/webp/product_iv_cannula_set_1792988226730.webp',
     tags: [
       'Hospital Procurement',
       'Bulk Medical Supplies',
@@ -454,7 +454,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     internalLinks: [
-      { label: 'Wholesale Budget Price Calculator', href: '/#price-calculator', type: 'service' },
+      { label: 'Wholesale Budget Price Calculator', href: '/price-calculator', type: 'service' },
       { label: 'IV & Infusion Supplies Catalog', href: '/products/category/iv-infusion-supplies', type: 'category' },
       { label: 'Surgical & OT Barrier Supplies', href: '/products/category/surgical-ot-supplies', type: 'category' },
       { label: 'Nigeria Bulk Supply Corridor', href: '/markets/nigeria', type: 'market' },
@@ -483,7 +483,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '6 min read',
     summary:
       'An executive analysis of the stringent biocompatibility, clinical evaluation, and post-market surveillance demands under Europe’s Medical Device Regulation for Class IIa/IIb/III catheters.',
-    featuredImage: '/assets/aistudio/image_ff91983b.png',
+    featuredImage: '/assets/webp/image_ff91983b.webp',
     tags: ['EU MDR', 'CE Certification', 'ISO 13485', 'Biocompatibility', 'Catheters'],
     content: [
       'The transition from the legacy Medical Device Directive (MDD 93/42/EEC) to the European Union Medical Device Regulation (EU MDR 2017/745) has transformed the global medical device landscape. For manufacturers and international distributors of invasive single-use devices, such as Central Venous Catheters (CVC) and hemodialysis access lines, the barrier to market entry is higher than ever.',
@@ -518,7 +518,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '5 min read',
     summary:
       'How multi-day closed bronchial suction catheter systems preserve Positive End-Expiratory Pressure (PEEP) and minimize circuit disconnection during mechanical ventilation.',
-    featuredImage: '/assets/aistudio/image_1869f62c.png',
+    featuredImage: '/assets/webp/image_1869f62c.webp',
     tags: ['Critical Care', 'Ventilator Care', 'Infection Control', 'VAP Prevention', 'ICU'],
     content: [
       'Ventilator-associated pneumonia (VAP) remains one of the most serious healthcare-associated complications in intensive care units worldwide. A primary risk vector during routine ICU nursing care is breaking the sterile ventilator circuit during open endotracheal suctioning.',
@@ -546,7 +546,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '7 min read',
     summary:
       'A technical look at continuous 304 stainless steel spiral reinforcement in endotracheal tubes designed to resist kinking and compression in head, neck, and prone surgeries.',
-    featuredImage: '/assets/images/flexometallic_tube_clean_1793719762077.jpg',
+    featuredImage: '/assets/webp/flexometallic_tube_clean_1793719762077.webp',
     tags: ['Anesthesia', 'Airway Management', 'Flexometallic', 'Surgical Safety', 'ETT'],
     content: [
       'During neurosurgical procedures, spinal corrections, and prolonged head and neck oncology interventions, patients are frequently positioned in the prone or sharp lateral orientation. Standard PVC endotracheal tubes remain vulnerable to kinking, external surgical retraction, and thermal softening at body temperature.',
@@ -574,7 +574,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '5 min read',
     summary:
       'Evaluating how staggered arterial and venous lumen spacing minimizes blood recirculation and sustains >350–400 mL/min flow during acute renal replacement therapy.',
-    featuredImage: '/assets/aistudio/image_d84fe53c.png',
+    featuredImage: '/assets/webp/image_d84fe53c.webp',
     tags: ['Dialysis', 'Nephrology', 'Vascular Access', 'Hemodialysis', 'Catheters'],
     content: [
       'In acute renal replacement therapy (RRT), effective dialyzer clearance relies on uninterrupted extracorporeal blood flow through temporary vascular access. Access recirculation occurs when freshly dialyzed venous blood is aspirated back into the arterial intake port instead of entering systemic circulation.',
@@ -602,7 +602,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '8 min read',
     summary:
       'How multi-gateway consolidation across Dubai, Singapore, Europe, and Africa connects hospitals and licensed importers across Nepal, India, Kenya, Rwanda, South Africa, Nigeria, UK, and USA.',
-    featuredImage: '/assets/images/hero_medical_logistics_1792848779603.jpg',
+    featuredImage: '/assets/webp/hero_medical_logistics_1792848779603.webp',
     tags: ['Global Logistics', 'Supply Chain', 'Hospital Procurement', 'Incoterms', 'Emergency Dispatch'],
     content: [
       'Single-route maritime disruptions and prolonged port queues can rapidly deplete hospital safety stock of essential consumables across emerging and mature health systems alike.',

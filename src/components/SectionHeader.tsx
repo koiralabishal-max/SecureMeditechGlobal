@@ -27,7 +27,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     <div className={`max-w-3xl ${isCenter ? 'mx-auto text-center' : ''} ${className}`}>
       <p
         className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] ${
-          isDark ? 'text-[#38B6FF]' : 'text-sky-600'
+          isDark ? 'text-[#8CB3D4]' : 'text-[#3B6B91]'
         } [&_svg]:w-4 [&_svg]:h-4`}
       >
         {icon}
@@ -35,7 +35,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       </p>
       <h2
         className={`mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight leading-[1.15] ${
-          isDark ? 'text-white' : 'text-[#0B2F63]'
+          isDark ? 'text-white' : 'text-[#223752]'
         }`}
       >
         {title}

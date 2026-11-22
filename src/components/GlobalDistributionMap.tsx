@@ -199,17 +199,17 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
   };
 
   const getRouteColor = (mode: ShippingRoute['mode'], isHighlighted: boolean) => {
-    if (isHighlighted) return '#38B6FF';
+    if (isHighlighted) return '#8CB3D4';
     switch (mode) {
       case 'Cold-Chain Air':
-        return '#10B981'; // Emerald
+        return '#7DB5A4'; // Clinical sage
       case 'Ocean Container':
-        return '#2DD4BF'; // Teal
+        return '#7EA8A2'; // Muted seafoam
       case 'Inter-Hub Corridor':
-        return '#38B6FF'; // Bright Cyan
+        return '#8CB3D4'; // Muted steel blue
       case 'Air Priority':
       default:
-        return '#60A5FA'; // Sky Blue
+        return '#94B3CE'; // Soft steel blue
     }
   };
 
@@ -236,16 +236,12 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
   };
 
   return (
-    <div className="bg-[#071E40] text-white rounded-3xl p-5 sm:p-8 lg:p-10 border border-slate-700/60 shadow-2xl relative overflow-hidden">
-      
-      {/* Background Decorative Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#38B6FF]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="bg-[#19293F] text-white rounded-3xl p-5 sm:p-8 lg:p-10 border border-slate-700/60 shadow-xl relative overflow-hidden">
 
       {/* Header and Controls */}
       <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-6 border-b border-slate-700/60 pb-6">
         <div>
-          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#38B6FF] tracking-wider uppercase mb-2">
+          <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8CB3D4] tracking-wider uppercase mb-2">
             <Globe2 className="w-4 h-4" />
             <span>Interactive Logistics Footprint & Hub Network</span>
           </div>
@@ -258,12 +254,12 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
         </div>
 
         {/* Corridor Mode Switcher */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-900/80 rounded-xl border border-slate-700/80 self-start lg:self-end">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-900/75 rounded-xl border border-slate-700/80 self-start lg:self-end">
           <button
             onClick={() => setActiveFilter('ALL')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activeFilter === 'ALL'
-                ? 'bg-[#38B6FF] text-[#071E40] font-bold shadow-xs'
+                ? 'bg-[#DCE7F2] text-[#19293F] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -273,7 +269,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             onClick={() => setActiveFilter('Air Priority')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
               activeFilter === 'Air Priority'
-                ? 'bg-[#60A5FA] text-[#071E40] font-bold shadow-xs'
+                ? 'bg-[#CBDCEB] text-[#19293F] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -284,7 +280,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             onClick={() => setActiveFilter('Cold-Chain Air')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
               activeFilter === 'Cold-Chain Air'
-                ? 'bg-[#10B981] text-[#071E40] font-bold shadow-xs'
+                ? 'bg-[#D5E6DF] text-[#19293F] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -295,7 +291,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             onClick={() => setActiveFilter('Ocean Container')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
               activeFilter === 'Ocean Container'
-                ? 'bg-[#2DD4BF] text-[#071E40] font-bold shadow-xs'
+                ? 'bg-[#D2E3E1] text-[#19293F] font-bold shadow-xs'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -306,15 +302,15 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
       </div>
 
       {/* Prominent Quick-Select Bar for Requested Destinations */}
-      <div className="relative z-10 mb-6 bg-slate-900/90 rounded-2xl border border-slate-700/80 p-3 sm:p-4 shadow-lg">
+      <div className="relative z-10 mb-6 bg-slate-900/75 rounded-2xl border border-slate-700/80 p-3 sm:p-4 shadow-md">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2.5">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-[#7DB5A4]"></span>
             <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
               Focus Distribution Corridors & Priority Healthcare Markets:
             </span>
           </div>
-          <span className="text-xs text-[#38B6FF] font-medium hidden sm:inline">
+          <span className="text-xs text-[#8CB3D4] font-medium hidden sm:inline">
             Click any country to inspect air/sea transit times & hospital networks
           </span>
         </div>
@@ -328,14 +324,14 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 onClick={() => handleSelectDestination(dest)}
                 className={`px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border ${
                   isSelected
-                    ? 'bg-[#38B6FF] text-[#071E40] border-[#38B6FF] shadow-md scale-102 font-extrabold'
-                    : 'bg-slate-800/90 text-slate-200 border-slate-700 hover:bg-slate-700 hover:border-slate-500'
+                    ? 'bg-[#DCE7F2] text-[#19293F] border-[#CBDCEB] shadow-md font-extrabold'
+                    : 'bg-slate-800/85 text-slate-200 border-slate-700 hover:bg-slate-700 hover:border-slate-500'
                 }`}
               >
                 <span className="text-sm">{dest.flag}</span>
                 <span>{dest.name}</span>
                 <span className={`text-[11px] font-mono px-1.5 py-0.2 rounded ${
-                  isSelected ? 'bg-[#071E40]/20 text-[#071E40]' : 'bg-slate-900 text-[#38B6FF]'
+                  isSelected ? 'bg-[#19293F]/15 text-[#19293F]' : 'bg-slate-900 text-[#8CB3D4]'
                 }`}>
                   {dest.leadTimeAir.split(' ')[0]}
                 </span>
@@ -350,8 +346,8 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             }}
             className={`px-3 py-2 rounded-xl text-xs font-medium transition-all border ml-auto ${
               sidebarTab === 'hub'
-                ? 'bg-amber-400 text-[#071E40] border-amber-400 font-bold'
-                : 'bg-slate-800/80 text-slate-400 border-slate-700 hover:text-white'
+                ? 'bg-[#E9DEC8] text-[#19293F] border-[#D4A76A] font-bold'
+                : 'bg-slate-800/80 text-slate-300 border-slate-700 hover:text-white'
             }`}
           >
             Strategic Gateways ({SHIPPING_HUBS.length} Hubs)
@@ -363,7 +359,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         {/* Left Column: Interactive D3 SVG Map */}
-        <div className="lg:col-span-8 bg-[#05152E]/90 rounded-2xl border border-slate-700/80 p-2 sm:p-4 shadow-inner relative overflow-hidden">
+        <div className="lg:col-span-8 bg-[#142235]/95 rounded-2xl border border-slate-700/80 p-2 sm:p-4 shadow-inner relative overflow-hidden">
           
           {/* Top Bar inside Map: Search & Zoom Controls */}
           <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between gap-3 pointer-events-none">
@@ -374,7 +370,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search Nepal, Kenya, Rwanda, India..."
-                className="w-full px-3 py-1.5 text-xs bg-slate-900/90 text-white placeholder-slate-400 border border-slate-700 rounded-lg focus:outline-none focus:border-[#38B6FF] backdrop-blur-xs"
+                className="w-full px-3 py-1.5 text-xs bg-slate-900/90 text-white placeholder-slate-400 border border-slate-700 rounded-lg focus:outline-none focus:border-[#8CB3D4] backdrop-blur-xs"
               />
             </div>
 
@@ -412,33 +408,33 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
               className="w-full h-full cursor-grab active:cursor-grabbing select-none"
             >
               <defs>
-                {/* SVG Glow Filter */}
-                <filter id="hub-glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                {/* Subtle SVG Pin Accent Filter */}
+                <filter id="hub-glow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="1.2" result="coloredBlur"/>
                   <feMerge>
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
-                <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="2" result="blur"/>
+                <filter id="route-glow" x="-15%" y="-15%" width="130%" height="130%">
+                  <feGaussianBlur stdDeviation="0.8" result="blur"/>
                   <feMerge>
                     <feMergeNode in="blur"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
-                <filter id="dest-glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="2.5" result="glowBlur"/>
+                <filter id="dest-glow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="1" result="glowBlur"/>
                   <feMerge>
                     <feMergeNode in="glowBlur"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
                 
-                {/* Radial gradient for oceanic depth */}
+                {/* Radial gradient for calm slate ocean */}
                 <radialGradient id="oceanGrad" cx="50%" cy="50%" r="75%">
-                  <stop offset="0%" stopColor="#0B2347" />
-                  <stop offset="100%" stopColor="#041226" />
+                  <stop offset="0%" stopColor="#1C2F47" />
+                  <stop offset="100%" stopColor="#101C2C" />
                 </radialGradient>
               </defs>
 
@@ -452,7 +448,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 <path
                   d={pathGenerator(graticuleGenerator()) || ''}
                   fill="none"
-                  stroke="#1B3A68"
+                  stroke="#2B466B"
                   strokeWidth="0.5"
                   strokeOpacity="0.4"
                   strokeDasharray="2,4"
@@ -467,10 +463,10 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                       <path
                         key={`land-${i}`}
                         d={d}
-                        fill="#102E5C"
-                        stroke="#1F4D8F"
+                        fill="#223856"
+                        stroke="#365780"
                         strokeWidth="0.8"
-                        className="transition-colors hover:fill-[#153B73]"
+                        className="transition-colors hover:fill-[#2B466B]"
                       />
                     );
                   })}
@@ -530,7 +526,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                       >
                         <circle
                           r={isConnected ? 3 : 2}
-                          fill={isConnected ? '#38B6FF' : '#94A3B8'}
+                          fill={isConnected ? '#8CB3D4' : '#94A3B8'}
                           fillOpacity={isConnected ? 0.9 : 0.6}
                         />
                       </g>
@@ -556,22 +552,12 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         onMouseLeave={() => setHoveredDest(null)}
                         className="cursor-pointer group"
                       >
-                        {/* Animated Radar Pulse for Priority Countries */}
-                        <circle
-                          r={isSelected ? "16" : "11"}
-                          fill="none"
-                          stroke="#10B981"
-                          strokeWidth="1.5"
-                          strokeOpacity={isSelected ? "0.8" : "0.4"}
-                          className="animate-ping"
-                        />
-
                         {/* Outer Marker Ring */}
                         <circle
                           r={isSelected ? 8 : isHovered ? 7 : 5.5}
-                          fill="#10B981"
-                          fillOpacity={0.3}
-                          stroke="#10B981"
+                          fill="#7DB5A4"
+                          fillOpacity={0.28}
+                          stroke="#7DB5A4"
                           strokeWidth={isSelected ? 2 : 1.5}
                           filter="url(#dest-glow)"
                           className="transition-all duration-200"
@@ -581,7 +567,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         <circle
                           r={isSelected ? 4 : 3}
                           fill="#FFFFFF"
-                          stroke="#065F46"
+                          stroke="#2F6153"
                           strokeWidth="1.5"
                         />
 
@@ -593,16 +579,16 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                             width={target.name.length * 7 + 20}
                             height={15}
                             rx={4}
-                            fill={isSelected ? '#10B981' : '#0B2347'}
-                            fillOpacity={isSelected ? 0.95 : 0.85}
-                            stroke={isSelected ? '#FFFFFF' : '#38B6FF'}
+                            fill={isSelected ? '#D5E6DF' : '#142235'}
+                            fillOpacity={isSelected ? 0.95 : 0.88}
+                            stroke={isSelected ? '#FFFFFF' : '#8CB3D4'}
                             strokeWidth={isSelected ? 1.2 : 0.8}
                           />
                           <text
                             textAnchor="middle"
                             y={7}
                             className="text-[10px] font-extrabold select-none pointer-events-none"
-                            fill={isSelected ? '#071E40' : '#FFFFFF'}
+                            fill={isSelected ? '#19293F' : '#FFFFFF'}
                           >
                             {target.flag} {target.name}
                           </text>
@@ -630,12 +616,12 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         onMouseLeave={() => setHoveredHub(null)}
                         className="cursor-pointer group"
                       >
-                        {/* Outer Glow Ring */}
+                        {/* Outer Ring */}
                         <circle
                           r={isSelected ? 9 : isHovered ? 8 : 6}
-                          fill={hub.isHQ ? '#F59E0B' : '#38B6FF'}
+                          fill={hub.isHQ ? '#D4A76A' : '#8CB3D4'}
                           fillOpacity={0.25}
-                          stroke={hub.isHQ ? '#F59E0B' : '#38B6FF'}
+                          stroke={hub.isHQ ? '#D4A76A' : '#8CB3D4'}
                           strokeWidth={isSelected ? 2 : 1.2}
                           filter="url(#hub-glow)"
                           className="transition-all duration-200"
@@ -644,8 +630,8 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         {/* Center Pin Node */}
                         <circle
                           r={isSelected ? 5 : 3.5}
-                          fill={hub.isHQ ? '#FDE68A' : '#FFFFFF'}
-                          stroke={hub.isHQ ? '#D97706' : '#0B2F63'}
+                          fill={hub.isHQ ? '#F6E9D2' : '#FFFFFF'}
+                          stroke={hub.isHQ ? '#9A733E' : '#223752'}
                           strokeWidth="1.5"
                         />
 
@@ -656,7 +642,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                           className="text-[10px] sm:text-[11px] font-bold select-none pointer-events-none"
                           fill={isSelected ? '#FFFFFF' : '#CBD5E1'}
                           style={{
-                            textShadow: '0 1px 3px rgba(0,0,0,0.9), 0 0 6px #071E40',
+                            textShadow: '0 1px 3px rgba(0,0,0,0.85), 0 0 4px #19293F',
                             letterSpacing: '0.02em'
                           }}
                         >
@@ -675,7 +661,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
               <div className="absolute bottom-4 left-4 bg-slate-900/95 border border-slate-700/90 rounded-xl p-3 shadow-xl backdrop-blur-md pointer-events-none max-w-xs transition-opacity z-30">
                 {hoveredDest ? (
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#7DB5A4] flex items-center gap-1">
                       <span>{hoveredDest.flag}</span>
                       <span>Priority Healthcare Corridor</span>
                     </div>
@@ -683,7 +669,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                       {hoveredDest.name} ({hoveredDest.cities})
                     </div>
                     <div className="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                      <Plane className="w-3 h-3 text-[#38B6FF]" />
+                      <Plane className="w-3 h-3 text-[#8CB3D4]" />
                       <span>Air: {hoveredDest.leadTimeAir}</span>
                     </div>
                     <div className="text-[11px] text-slate-400 mt-0.5">
@@ -692,20 +678,20 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   </div>
                 ) : hoveredHub ? (
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#38B6FF]">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#8CB3D4]">
                       {hoveredHub.type}
                     </div>
                     <div className="text-xs font-bold text-white mt-0.5">
                       {hoveredHub.name} ({hoveredHub.city})
                     </div>
                     <div className="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-emerald-400" />
+                      <Clock className="w-3 h-3 text-[#7DB5A4]" />
                       <span>Air: {hoveredHub.transitAir}</span>
                     </div>
                   </div>
                 ) : hoveredRoute ? (
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#10B981]">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#7DB5A4]">
                       {hoveredRoute.mode} Corridor
                     </div>
                     <div className="text-xs font-bold text-white mt-0.5">
@@ -727,19 +713,19 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
           <div className="mt-3 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
             <div className="flex flex-wrap items-center gap-4">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] border border-white inline-block"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#7DB5A4] border border-white inline-block"></span>
                 <span className="text-white font-semibold">Priority Healthcare Corridor</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#38B6FF] border border-white inline-block"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#8CB3D4] border border-white inline-block"></span>
                 <span>Logistics Gateway</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-4 h-0.5 bg-[#10B981] inline-block"></span>
+                <span className="w-4 h-0.5 bg-[#7DB5A4] inline-block"></span>
                 <span>Cold-Chain Lane (2°C–8°C)</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-4 h-0.5 bg-[#60A5FA] inline-block"></span>
+                <span className="w-4 h-0.5 bg-[#94B3CE] inline-block"></span>
                 <span>Air Priority Lane</span>
               </span>
             </div>
@@ -751,7 +737,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
         </div>
 
         {/* Right Column: Selected Destination or Hub Dossier */}
-        <div className="lg:col-span-4 bg-slate-900/90 rounded-2xl border border-slate-700/80 p-5 sm:p-6 shadow-xl flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-slate-900/75 rounded-2xl border border-slate-700/80 p-5 sm:p-6 shadow-lg flex flex-col justify-between">
           <div>
             
             {/* View Mode Toggle: Priority Destinations vs Strategic Hubs */}
@@ -764,7 +750,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   onClick={() => setSidebarTab('destination')}
                   className={`px-2.5 py-1 rounded text-xs font-semibold transition ${
                     sidebarTab === 'destination'
-                      ? 'bg-[#10B981] text-[#071E40] font-bold'
+                      ? 'bg-[#D5E6DF] text-[#19293F] font-bold'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -774,7 +760,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   onClick={() => setSidebarTab('hub')}
                   className={`px-2.5 py-1 rounded text-xs font-semibold transition ${
                     sidebarTab === 'hub'
-                      ? 'bg-[#38B6FF] text-[#071E40] font-bold'
+                      ? 'bg-[#DCE7F2] text-[#19293F] font-bold'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -787,7 +773,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             {sidebarTab === 'destination' && selectedDestination && (
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 flex items-center gap-1">
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#1F3530] text-[#9DC5B8] border border-[#32594E] flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
                     <span>{selectedDestination.region} Medical Network</span>
                   </span>
@@ -804,7 +790,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 </div>
 
                 <p className="text-xs text-slate-400 mt-1 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#38B6FF] shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-[#8CB3D4] shrink-0" />
                   <span>Key Hubs: {selectedDestination.cities}</span>
                 </p>
 
@@ -813,10 +799,10 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                     <div className="text-xs text-slate-400 flex items-center justify-between mb-1 font-semibold">
                       <span className="flex items-center gap-1.5">
-                        <Plane className="w-3.5 h-3.5 text-[#38B6FF]" />
+                        <Plane className="w-3.5 h-3.5 text-[#8CB3D4]" />
                         <span>Priority Air Freight Dispatch</span>
                       </span>
-                      <span className="text-[11px] font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-800/40">
+                      <span className="text-[11px] font-bold text-[#9DC5B8] bg-[#1F3530] px-1.5 py-0.2 rounded border border-[#32594E]">
                         Active
                       </span>
                     </div>
@@ -831,7 +817,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   {selectedDestination.leadTimeOcean && (
                     <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                       <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
-                        <Anchor className="w-3.5 h-3.5 text-teal-400" />
+                        <Anchor className="w-3.5 h-3.5 text-[#7EA8A2]" />
                         <span>Ocean Maritime Container Freight</span>
                       </div>
                       <div className="text-xs font-bold text-white">
@@ -842,21 +828,21 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                     <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#7DB5A4]" />
                       <span>Customs Clearance & Regulatory Authority</span>
                     </div>
                     <div className="text-xs text-slate-200 leading-relaxed font-medium">
                       {selectedDestination.regulatoryBody}
                     </div>
-                    <div className="text-xs text-emerald-400 mt-1 flex items-center gap-1">
-                      <ThermometerSnowflake className="w-3 h-3 text-[#38B6FF]" />
+                    <div className="text-xs text-[#9DC5B8] mt-1 flex items-center gap-1">
+                      <ThermometerSnowflake className="w-3 h-3 text-[#8CB3D4]" />
                       <span>Cold-Chain 2°C–8°C dataloggers installed on all shipments</span>
                     </div>
                   </div>
 
                   <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                     <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
-                      <MapPin className="w-3.5 h-3.5 text-[#38B6FF]" />
+                      <MapPin className="w-3.5 h-3.5 text-[#8CB3D4]" />
                       <span>Regional Healthcare Delivery Zones</span>
                     </div>
                     <div className="text-xs text-slate-300 leading-relaxed">
@@ -877,7 +863,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         onClick={() => handleSelectDestination(dest)}
                         className={`p-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition ${
                           dest.id === selectedDestination.id
-                            ? 'bg-[#10B981] text-[#071E40] font-bold'
+                            ? 'bg-[#D5E6DF] text-[#19293F] font-bold'
                             : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                         }`}
                       >
@@ -906,7 +892,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                         onClick={() => handleSelectHub(hub.id)}
                         className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-left transition-all ${
                           hub.id === selectedHubId
-                            ? 'bg-[#38B6FF] text-[#071E40] shadow-sm font-bold'
+                            ? 'bg-[#DCE7F2] text-[#19293F] shadow-sm font-bold'
                             : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
                         }`}
                       >
@@ -919,11 +905,11 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                 {/* Selected Hub Profile Card */}
                 <div className="border-t border-slate-800 pt-3">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-900/60 text-[#38B6FF] border border-blue-700/60">
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#223752] text-[#8CB3D4] border border-[#365780]">
                       {selectedHub.type}
                     </span>
                     {selectedHub.isHQ && (
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-[#3A2E1E] text-[#E6C594] border border-[#6E532E]">
                         Global HQ
                       </span>
                     )}
@@ -940,7 +926,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                   <div className="mt-4 space-y-3">
                     <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                       <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
-                        <Plane className="w-3.5 h-3.5 text-[#38B6FF]" />
+                        <Plane className="w-3.5 h-3.5 text-[#8CB3D4]" />
                         <span>Priority Air Lead Time</span>
                       </div>
                       <div className="text-xs font-bold text-white">
@@ -950,7 +936,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
                     <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/60">
                       <div className="text-xs text-slate-400 flex items-center gap-1.5 mb-1 font-semibold">
-                        <Warehouse className="w-3.5 h-3.5 text-emerald-400" />
+                        <Warehouse className="w-3.5 h-3.5 text-[#7DB5A4]" />
                         <span>Customs & Storage Infrastructure</span>
                       </div>
                       <div className="text-xs text-slate-200 leading-relaxed font-medium">
@@ -965,7 +951,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                       <ul className="text-xs text-slate-300 space-y-1">
                         {selectedHub.servedMarkets.map((mkt, idx) => (
                           <li key={idx} className="flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#38B6FF]"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#8CB3D4]"></span>
                             <span>{mkt}</span>
                           </li>
                         ))}
@@ -984,7 +970,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             {sidebarTab === 'destination' && selectedDestination ? (
               <button
                 onClick={() => handleInquiryClick(`${selectedDestination.name} Medical Corridor (${selectedDestination.cities})`)}
-                className="w-full py-2.5 px-4 bg-[#10B981] hover:bg-[#059669] text-[#071E40] text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 px-4 bg-[#D5E6DF] hover:bg-[#C3DBD1] text-[#19293F] text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5"
               >
                 <span>Request {selectedDestination.name} Distribution Quote</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -992,7 +978,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
             ) : (
               <button
                 onClick={() => handleInquiryClick(`${selectedHub.name} (${selectedHub.city})`)}
-                className="w-full py-2.5 px-4 bg-[#38B6FF] hover:bg-[#209ee8] text-[#071E40] text-xs font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 px-4 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-xs font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5"
               >
                 <span>Inquire for {selectedHub.city.split('/')[0]} Dispatch</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -1008,7 +994,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
       <div className="relative z-10 mt-10 pt-8 border-t border-slate-700/60">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] uppercase tracking-wider mb-1">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#7DB5A4] uppercase tracking-wider mb-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Direct Healthcare Distribution Network</span>
             </div>
@@ -1027,8 +1013,8 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
               key={dest.id}
               className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
                 selectedDestinationId === dest.id
-                  ? 'bg-slate-800/90 border-[#10B981] shadow-lg ring-1 ring-[#10B981]/50'
-                  : 'bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50'
+                  ? 'bg-slate-800/90 border-[#7DB5A4] shadow-lg ring-1 ring-[#7DB5A4]/40'
+                  : 'bg-slate-900/65 border-slate-800 hover:border-slate-700 hover:bg-slate-800/50'
               }`}
             >
               <div>
@@ -1037,7 +1023,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
                     <span className="text-xl">{dest.flag}</span>
                     <span className="text-sm font-bold text-white">{dest.name}</span>
                   </div>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/50">
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#1F3530] text-[#9DC5B8] border border-[#32594E]">
                     {dest.leadTimeAir.split(' ')[0]} Air
                   </span>
                 </div>
@@ -1048,11 +1034,11 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
 
                 <div className="space-y-1.5 text-xs text-slate-300 bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/80">
                   <div className="flex items-start gap-1.5">
-                    <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
+                    <ShieldCheck className="w-3 h-3 text-[#7DB5A4] shrink-0 mt-0.5" />
                     <span className="leading-snug">{dest.regulatoryBody}</span>
                   </div>
                   <div className="flex items-start gap-1.5">
-                    <MapPin className="w-3 h-3 text-[#38B6FF] shrink-0 mt-0.5" />
+                    <MapPin className="w-3 h-3 text-[#8CB3D4] shrink-0 mt-0.5" />
                     <span className="leading-snug text-slate-400 line-clamp-2">{dest.coverageZones}</span>
                   </div>
                 </div>
@@ -1061,14 +1047,14 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
               <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between">
                 <button
                   onClick={() => handleSelectDestination(dest)}
-                  className="text-xs font-semibold text-[#38B6FF] hover:text-white flex items-center gap-1 transition"
+                  className="text-xs font-semibold text-[#8CB3D4] hover:text-white flex items-center gap-1 transition"
                 >
                   <span>View on Map</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => handleInquiryClick(`${dest.name} Medical Corridor (${dest.cities})`)}
-                  className="px-2.5 py-1 bg-[#10B981] hover:bg-[#059669] text-[#071E40] text-xs font-bold rounded-lg transition"
+                  className="px-2.5 py-1 bg-[#D5E6DF] hover:bg-[#C3DBD1] text-[#19293F] text-xs font-bold rounded-lg transition"
                 >
                   Inquire
                 </button>
@@ -1082,7 +1068,7 @@ export const GlobalDistributionMap: React.FC<GlobalDistributionMapProps> = ({
       <div className="relative z-10 mt-8 pt-6 border-t border-slate-700/60 grid grid-cols-2 sm:grid-cols-4 gap-4">
         {GLOBAL_COVERAGE_STATS.map((stat, idx) => (
           <div key={idx} className="bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-center sm:text-left">
-            <div className="text-xl sm:text-2xl font-extrabold text-[#38B6FF] tracking-tight">
+            <div className="text-xl sm:text-2xl font-extrabold text-[#8CB3D4] tracking-tight">
               {stat.value}
             </div>
             <div className="text-xs font-bold text-white mt-0.5">

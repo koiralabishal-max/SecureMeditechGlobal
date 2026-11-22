@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Calendar, ChevronRight, Clock, User } from 'lucide-react';
 import { SubpageLayout } from '@/components/SubpageLayout';
@@ -91,13 +92,13 @@ export default function BlogIndexPage() {
       />
 
       {/* Blog Hero */}
-      <section className="bg-[#071E40] text-white py-14 sm:py-16 border-b border-slate-800">
+      <section className="bg-[#19293F] text-white py-14 sm:py-16 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs text-slate-300 mb-5"
           >
-            <Link href="/" className="hover:text-[#38B6FF] transition-colors">
+            <Link href="/" className="hover:text-[#8CB3D4] transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
@@ -106,7 +107,7 @@ export default function BlogIndexPage() {
             </span>
           </nav>
 
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#38B6FF]">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-[#8CB3D4]">
             <BookOpen className="w-4 h-4" />
             <span>Hospital Procurement, OEM Engineering &amp; Regulatory Insights</span>
           </p>
@@ -127,21 +128,24 @@ export default function BlogIndexPage() {
           {BLOG_POSTS.map((post, idx) => (
             <article
               key={post.id}
-              className="group bg-white rounded-2xl border border-slate-200 hover:border-[#38B6FF]/80 shadow-xs hover:shadow-lg transition-all flex flex-col overflow-hidden"
+              className="group bg-white rounded-2xl border border-slate-200 hover:border-[#94B3CE] shadow-xs hover:shadow-lg transition-all flex flex-col overflow-hidden"
             >
               <Link
                 href={`/blog/${post.slug}`}
                 className="relative aspect-[16/10] bg-slate-100 overflow-hidden block"
               >
-                <img
+                <Image
                   src={post.featuredImage}
                   alt={`${post.title} – ${SITE.name}`}
+                  priority={idx === 0}
                   loading={idx < 3 ? 'eager' : 'lazy'}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   width={600}
                   height={375}
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-[#0B2F63]/90 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+                <span className="absolute top-3 left-3 bg-[#223752]/90 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
                   {post.category}
                 </span>
               </Link>
@@ -159,7 +163,7 @@ export default function BlogIndexPage() {
                     </span>
                   </div>
 
-                  <h2 className="text-lg font-extrabold text-[#0B2F63] leading-snug">
+                  <h2 className="text-lg font-extrabold text-[#223752] leading-snug">
                     <Link href={`/blog/${post.slug}`} className="hover:underline">
                       {post.title}
                     </Link>
@@ -172,12 +176,12 @@ export default function BlogIndexPage() {
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2 text-xs text-slate-600 min-w-0">
-                    <User className="w-3.5 h-3.5 text-[#38B6FF] shrink-0" />
+                    <User className="w-3.5 h-3.5 text-[#3B6B91] shrink-0" />
                     <span className="truncate font-medium">{post.author}</span>
                   </div>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="text-xs font-bold text-[#0B2F63] hover:text-sky-700 inline-flex items-center gap-1 shrink-0"
+                    className="text-xs font-bold text-[#223752] hover:text-[#3B6B91] inline-flex items-center gap-1 shrink-0"
                   >
                     <span>Read Guide</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -189,7 +193,7 @@ export default function BlogIndexPage() {
         </div>
 
         {/* Procurement CTA Bridge */}
-        <section className="bg-[#0B2F63] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <section className="bg-[#223752] text-white rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl space-y-2">
             <h2 className="text-2xl font-extrabold">
               Need Sample Technical Files, Batch CoAs, or Custom OEM Pricing?
@@ -201,7 +205,7 @@ export default function BlogIndexPage() {
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link
               href="/products"
-              className="h-11 px-5 bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
+              className="h-11 px-5 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-sm font-bold rounded-xl inline-flex items-center gap-2 transition-colors"
             >
               <span>Browse Medical Catalog</span>
               <ArrowRight className="w-4 h-4" />

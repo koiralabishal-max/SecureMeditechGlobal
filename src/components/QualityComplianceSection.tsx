@@ -1,10 +1,22 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ShieldCheck, CheckCircle2, Award, FileSpreadsheet, Globe, ThermometerSnowflake, Anchor, Plane, ArrowRight } from 'lucide-react';
-import { GlobalDistributionMap } from './GlobalDistributionMap';
 import { SectionHeader } from './SectionHeader';
+
+const GlobalDistributionMap = dynamic(
+  () => import('./GlobalDistributionMap').then((m) => m.GlobalDistributionMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[460px] sm:h-[540px] rounded-3xl bg-[#19293F] border border-slate-800 animate-pulse flex items-center justify-center text-slate-300 text-sm">
+        Loading Interactive Global Distribution Map...
+      </div>
+    ),
+  }
+);
 
 interface QualityComplianceSectionProps {
   onSelectHubForInquiry?: (hubName: string) => void;
@@ -38,29 +50,29 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
 
   const logisticsFeatures = [
     {
-      icon: <ThermometerSnowflake className="w-5 h-5 text-[#38B6FF]" />,
+      icon: <ThermometerSnowflake className="w-5 h-5 text-[#8CB3D4]" />,
       title: 'Validated Cold-Chain & Temp Integrity',
       desc: 'Active 2°C–8°C and -20°C temperature monitoring dataloggers installed in every IVD reagent consignment.'
     },
     {
-      icon: <Plane className="w-5 h-5 text-[#10B981]" />,
+      icon: <Plane className="w-5 h-5 text-[#7DB5A4]" />,
       title: 'Priority Air Freight Dispatch',
       desc: 'Daily departures from international hubs with direct customs bonded transit to 65+ countries.'
     },
     {
-      icon: <Anchor className="w-5 h-5 text-[#38B6FF]" />,
+      icon: <Anchor className="w-5 h-5 text-[#8CB3D4]" />,
       title: 'Containerized Ocean Freight',
       desc: 'Full Container Load (FCL) and Less than Container Load (LCL) palletized shipping with moisture barrier wrapping.'
     },
     {
-      icon: <FileSpreadsheet className="w-5 h-5 text-[#10B981]" />,
+      icon: <FileSpreadsheet className="w-5 h-5 text-[#7DB5A4]" />,
       title: 'Turnkey Commercial Documentation',
       desc: 'Complete issuance of Certificate of Origin (COO), Certificate of Free Sale (CFS), and Fumigation certificates.'
     }
   ];
 
   return (
-    <section id="compliance" className="py-20 sm:py-24 bg-[#F8FAFC]">
+    <section id="compliance" className="py-20 sm:py-24 bg-[#F7F8FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
@@ -75,22 +87,22 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
         {/* 4-Column Certification Matrix */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {certificationsList.map((cert, index) => (
-            <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#38B6FF]/60 hover:shadow-md transition-all flex flex-col justify-between">
+            <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs hover:border-[#94B3CE] hover:shadow-md transition-all flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-sky-50 text-[#0B2F63] border border-sky-100">
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-md bg-[#F1F5F8] text-[#223752] border border-[#DCE4EC]">
                     {cert.code}
                   </span>
-                  <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#3F7D6B]" />
                 </div>
-                <h3 className="text-base font-bold text-[#0B2F63] leading-snug">
+                <h3 className="text-base font-bold text-[#223752] leading-snug">
                   {cert.title}
                 </h3>
                 <p className="text-sm text-slate-600 mt-2 leading-relaxed">
                   {cert.description}
                 </p>
               </div>
-              <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
+              <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-[#2F6153] font-semibold flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Audited & Validated</span>
               </div>
@@ -99,11 +111,9 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
         </div>
 
         {/* Global Logistics Architecture Sub-Section */}
-        <div className="bg-[#0B2F63] rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#38B6FF]/10 rounded-full blur-3xl pointer-events-none" />
-          
+        <div className="bg-[#223752] rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-xl">
           <div className="relative z-10 max-w-3xl mb-10">
-            <div className="flex items-center gap-2 text-xs font-bold text-[#38B6FF] tracking-[0.12em] uppercase mb-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#8CB3D4] tracking-[0.12em] uppercase mb-3">
               <Globe className="w-4 h-4" />
               <span>International Medical Supply & Logistics Network</span>
             </div>
@@ -116,21 +126,21 @@ export const QualityComplianceSection: React.FC<QualityComplianceSectionProps> =
             <div className="mt-5 flex flex-wrap items-center gap-4 text-sm">
               <Link
                 href="/markets"
-                className="text-[#38B6FF] font-bold hover:underline inline-flex items-center gap-1"
+                className="text-[#8CB3D4] font-bold hover:underline inline-flex items-center gap-1"
               >
                 <span>Explore All 8 Country Corridors</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/about"
-                className="text-slate-200 font-semibold hover:text-[#38B6FF] hover:underline inline-flex items-center gap-1"
+                className="text-slate-200 font-semibold hover:text-[#8CB3D4] hover:underline inline-flex items-center gap-1"
               >
                 <span>About Our Quality &amp; Accreditations</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/blog"
-                className="text-slate-200 font-semibold hover:text-[#38B6FF] hover:underline inline-flex items-center gap-1"
+                className="text-slate-200 font-semibold hover:text-[#8CB3D4] hover:underline inline-flex items-center gap-1"
               >
                 <span>Procurement &amp; Regulatory Guides</span>
                 <ArrowRight className="w-4 h-4" />

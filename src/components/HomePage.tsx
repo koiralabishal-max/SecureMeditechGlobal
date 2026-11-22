@@ -1,35 +1,38 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Product, ProductCategory, QuoteItem } from '../types';
-import { PRODUCTS } from '../data/products';
+import dynamic from 'next/dynamic';
+import { Product, ProductCategory, QuoteItem, RfqFormData } from '../types';
 import { TopBar } from './TopBar';
 import { Navbar } from './Navbar';
 import { Hero } from './Hero';
 import { ProductCatalog } from './ProductCatalog';
-import { OemSection } from './OemSection';
-import { QualityComplianceSection } from './QualityComplianceSection';
-import { FaqSection } from './FaqSection';
+import { HomeCapabilitiesOverview } from './HomeCapabilitiesOverview';
 import { SocialProof } from './SocialProof';
-import { ContactSection } from './ContactSection';
+import { HomeProcurementCta } from './HomeProcurementCta';
 import { Footer } from './Footer';
-import { RfqModal } from './RfqModal';
-import { SpecSheetModal } from './SpecSheetModal';
-import { ProductDetailModal } from './ProductDetailModal';
-import { ChatBot } from './ChatBot';
-import { FloatingPriceCalculatorWidget } from './FloatingPriceCalculatorWidget';
+import { MobileContactBar } from './MobileContactBar';
 import { Toast } from './Toast';
+import { trackBulkQuoteRequest, trackOemInquiry } from '@/lib/analytics';
+
+const RfqModal = dynamic(() => import('./RfqModal').then((m) => m.RfqModal), { ssr: false });
+const SpecSheetModal = dynamic(() => import('./SpecSheetModal').then((m) => m.SpecSheetModal), { ssr: false });
+const ProductDetailModal = dynamic(() => import('./ProductDetailModal').then((m) => m.ProductDetailModal), { ssr: false });
+const ChatBot = dynamic(() => import('./ChatBot').then((m) => m.ChatBot), { ssr: false });
+const FloatingPriceCalculatorWidget = dynamic(
+  () => import('./FloatingPriceCalculatorWidget').then((m) => m.FloatingPriceCalculatorWidget),
+  { ssr: false }
+);
 
 export function HomePage() {
   const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
-
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory>('All');
   const [activeSpecSheet, setActiveSpecSheet] = useState<Product | null>(null);
   const [activeProductDetail, setActiveProductDetail] = useState<Product | null>(null);
   const [isRfqModalOpen, setIsRfqModalOpen] = useState(false);
+  const [rfqDefaultBusinessType, setRfqDefaultBusinessType] = useState<RfqFormData['businessType'] | undefined>(undefined);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [prefilledHub, setPrefilledHub] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -38,16 +41,13 @@ export function HomePage() {
     }, 3500);
   };
 
-  const handleSelectHubForInquiry = (hubName: string) => {
-    setPrefilledHub(hubName);
-    showToast(`Configured logistics inquiry for ${hubName}`);
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleAddToQuote = (product: Product, quantity = 500) => {
+    trackBulkQuoteRequest({
+      stage: 'add_item',
+      sku: product.sku,
+      productName: product.name,
+      totalUnits: quantity,
+    });
     setQuoteItems((prev) => {
       const existing = prev.find((item) => item.product.id === product.id);
       if (existing) {
@@ -88,10 +88,13 @@ export function HomePage() {
   };
 
   const handleRequestBulkRfq = () => {
+    setRfqDefaultBusinessType(undefined);
     setIsRfqModalOpen(true);
   };
 
   const handleStartOemInquiry = () => {
+    trackOemInquiry({ source: 'homepage_oem_section' });
+    setRfqDefaultBusinessType('OEM / Brand Partner');
     setIsRfqModalOpen(true);
   };
 
@@ -122,27 +125,21 @@ export function HomePage() {
   const quoteItemIds = quoteItems.map((item) => item.product.id);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-800 selection:bg-[#38B6FF]/20 selection:text-[#0B2F63]">
-      
-      {/* 1. Top Announcement / Utility Bar */}
+    <div className="min-h-screen flex flex-col bg-[#F7F8FA] text-slate-800 selection:bg-[#4C7A9C]/20 selection:text-[#223752]">
       <TopBar />
 
-      {/* 2. Sticky Navigation Bar */}
       <Navbar
         onOpenRfq={() => setIsRfqModalOpen(true)}
         quoteCount={quoteItems.length}
         onSelectCategory={handleSelectCategory}
       />
 
-      {/* Main Content Sections */}
       <main className="flex-1">
-        {/* 3. Hero Section */}
         <Hero
           onExploreCatalog={handleExploreCatalog}
           onRequestBulkRfq={handleRequestBulkRfq}
         />
 
-        {/* 4. Interactive Product Showcase Grid */}
         <ProductCatalog
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
@@ -150,69 +147,62 @@ export function HomePage() {
           onOpenSpecSheet={(prod) => setActiveSpecSheet(prod)}
           onOpenDetails={(prod) => setActiveProductDetail(prod)}
           quoteItemIds={quoteItemIds}
+          featuredOnly
         />
 
-        {/* 5. B2B OEM & Contract Manufacturing Section */}
-        <OemSection onStartOemInquiry={handleStartOemInquiry} />
+        <HomeCapabilitiesOverview onStartOemInquiry={handleStartOemInquiry} />
 
-        {/* 6. Quality & Regulatory Compliance Section */}
-        <QualityComplianceSection onSelectHubForInquiry={handleSelectHubForInquiry} />
-
-        {/* 7. Comprehensive FAQ: Lead Times, International Shipping, OEM Minimums */}
-        <FaqSection
-          onOpenChat={() => setIsChatOpen(true)}
-          onOpenRfq={() => setIsRfqModalOpen(true)}
-        />
-
-        {/* 8. Social Proof & Case Studies */}
         <SocialProof />
 
-        {/* 9. Direct Contact & Logistics Inquiries */}
-        <ContactSection prefilledHub={prefilledHub} />
+        <HomeProcurementCta onOpenRfq={handleRequestBulkRfq} />
       </main>
 
-      {/* 10. Comprehensive Footer with Built-in Wholesale Price Estimation Calculator */}
-      <Footer onTransferToRfq={handleTransferFromCalculator} />
+      <Footer />
 
-      {/* Floating Quick Price Calculator Widget (Bottom-Left) */}
       <FloatingPriceCalculatorWidget onTransferToRfq={handleTransferFromCalculator} />
 
-      {/* AI Procurement Specialist Multi-turn Chatbot (Bottom-Right) */}
       <ChatBot
         isOpen={isChatOpen}
         onToggle={() => setIsChatOpen((prev) => !prev)}
         onOpenRfq={handleRequestBulkRfq}
       />
 
-      {/* Modals & Overlays */}
-      <RfqModal
-        isOpen={isRfqModalOpen}
-        onClose={() => setIsRfqModalOpen(false)}
-        quoteItems={quoteItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
-        onClearQuote={handleClearQuote}
-      />
+      {isRfqModalOpen && (
+        <RfqModal
+          isOpen={isRfqModalOpen}
+          onClose={() => setIsRfqModalOpen(false)}
+          quoteItems={quoteItems}
+          onUpdateQuantity={handleUpdateQuantity}
+          onRemoveItem={handleRemoveItem}
+          onClearQuote={handleClearQuote}
+          defaultBusinessType={rfqDefaultBusinessType}
+        />
+      )}
 
-      <SpecSheetModal
-        product={activeSpecSheet}
-        onClose={() => setActiveSpecSheet(null)}
-        onAddToQuote={handleAddToQuote}
-      />
+      {activeSpecSheet && (
+        <SpecSheetModal
+          product={activeSpecSheet}
+          onClose={() => setActiveSpecSheet(null)}
+          onAddToQuote={handleAddToQuote}
+        />
+      )}
 
-      <ProductDetailModal
-        product={activeProductDetail}
-        onClose={() => setActiveProductDetail(null)}
-        onAddToQuote={handleAddToQuote}
-        onOpenSpecSheet={(prod) => setActiveSpecSheet(prod)}
-        isInQuote={activeProductDetail ? quoteItemIds.includes(activeProductDetail.id) : false}
-      />
+      {activeProductDetail && (
+        <ProductDetailModal
+          product={activeProductDetail}
+          onClose={() => setActiveProductDetail(null)}
+          onAddToQuote={handleAddToQuote}
+          onOpenSpecSheet={(prod) => setActiveSpecSheet(prod)}
+          isInQuote={quoteItemIds.includes(activeProductDetail.id)}
+        />
+      )}
 
       <Toast
         message={toastMessage}
         onClose={() => setToastMessage(null)}
       />
 
+      <MobileContactBar onOpenQuote={handleRequestBulkRfq} />
     </div>
   );
 }

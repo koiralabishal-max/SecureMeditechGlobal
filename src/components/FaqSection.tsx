@@ -65,7 +65,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-24 bg-[#F8FAFC] border-t border-slate-200/80 relative">
+    <section id="faq" className="py-20 sm:py-24 bg-[#F7F8FA] border-t border-slate-200/80 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -91,7 +91,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                 placeholder="Search lead times, Incoterms, MOQs, cleanrooms..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-12 pl-11 pr-16 text-base sm:text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-200 focus:border-[#38B6FF] focus:ring-3 focus:ring-[#38B6FF]/15 rounded-xl transition-all outline-none text-slate-800 placeholder-slate-400"
+                className="w-full h-12 pl-11 pr-16 text-base sm:text-sm bg-slate-50 hover:bg-white focus:bg-white border border-slate-200 focus:border-[#5C89AD] focus:ring-3 focus:ring-[#5C89AD]/15 rounded-xl transition-all outline-none text-slate-800 placeholder-slate-400"
               />
               {searchQuery && (
                 <button
@@ -110,7 +110,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
               </span>
               <button
                 onClick={expandAll}
-                className="text-sm font-semibold text-[#0B2F63] hover:text-sky-600 transition-colors h-10 px-3 rounded-lg hover:bg-slate-100"
+                className="text-sm font-semibold text-[#223752] hover:text-[#3B6B91] transition-colors h-10 px-3 rounded-lg hover:bg-slate-100"
               >
                 {expandedId === 'all' ? 'Collapse all' : 'Expand all'}
               </button>
@@ -127,7 +127,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                   onClick={() => setActiveCategory(cat)}
                   className={`h-10 px-4 rounded-full text-sm font-semibold transition-colors ${
                     isActive
-                      ? 'bg-[#0B2F63] text-white shadow-sm'
+                      ? 'bg-[#223752] text-white shadow-sm'
                       : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200/80 hover:text-slate-900'
                   }`}
                 >
@@ -150,9 +150,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
               <div className="flex items-center justify-center gap-3 mt-4">
                 <button
                   onClick={onOpenChat}
-                  className="h-10 px-4 text-sm font-bold text-white bg-[#0B2F63] rounded-xl hover:bg-[#164082] transition-colors inline-flex items-center gap-2"
+                  className="h-10 px-4 text-sm font-bold text-white bg-[#223752] rounded-xl hover:bg-[#2E496B] transition-colors inline-flex items-center gap-2"
                 >
-                  <Sparkles className="w-4 h-4 text-[#38B6FF]" />
+                  <Sparkles className="w-4 h-4 text-[#8CB3D4]" />
                   <span>Ask AI Specialist</span>
                 </button>
                 <button
@@ -171,13 +171,13 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
               const getCategoryIcon = () => {
                 switch (faq.category) {
                   case 'Lead Times':
-                    return <Clock className="w-4 h-4 text-amber-500" />;
+                    return <Clock className="w-4 h-4 text-amber-600/80" />;
                   case 'International Shipping':
-                    return <Globe2 className="w-4 h-4 text-[#38B6FF]" />;
+                    return <Globe2 className="w-4 h-4 text-[#3B6B91]" />;
                   case 'OEM & MOQs':
-                    return <Layers className="w-4 h-4 text-emerald-500" />;
+                    return <Layers className="w-4 h-4 text-[#3F7D6B]" />;
                   case 'Quality & Compliance':
-                    return <ShieldCheck className="w-4 h-4 text-indigo-500" />;
+                    return <ShieldCheck className="w-4 h-4 text-[#223752]" />;
                   default:
                     return <HelpCircle className="w-4 h-4 text-slate-400" />;
                 }
@@ -188,7 +188,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                   key={faq.id}
                   className={`bg-white rounded-2xl border transition-all duration-200 overflow-hidden ${
                     isOpen 
-                      ? 'border-[#38B6FF]/60 shadow-md ring-1 ring-[#38B6FF]/20' 
+                      ? 'border-[#94B3CE] shadow-md ring-1 ring-[#94B3CE]/30' 
                       : 'border-slate-200/90 hover:border-slate-300 shadow-2xs'
                   }`}
                 >
@@ -209,12 +209,12 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                               {faq.category}
                             </span>
                           </div>
-                          <span className="block text-base sm:text-lg font-bold text-[#0B2F63] leading-snug">
+                          <span className="block text-base sm:text-lg font-bold text-[#223752] leading-snug">
                             {faq.question}
                           </span>
                         </div>
                       </div>
-                      <div className={`p-2 rounded-full bg-slate-50 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 bg-blue-50 text-[#0B2F63]' : 'text-slate-400'}`}>
+                      <div className={`p-2 rounded-full bg-slate-50 transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 bg-[#F1F5F8] text-[#223752]' : 'text-slate-400'}`}>
                         <ChevronDown className="w-5 h-5" />
                       </div>
                     </button>
@@ -231,9 +231,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                         {faq.highlights.map((h, i) => (
                           <span
                             key={i}
-                            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-medium bg-emerald-50 text-emerald-800 border border-emerald-100"
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-medium bg-[#EFF5F3] text-[#2F6153] border border-[#D3E3DD]"
                           >
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#3F7D6B]" />
                             <span>{h}</span>
                           </span>
                         ))}
@@ -247,12 +247,10 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
         </div>
 
         {/* Live Help & AI Assistance Card */}
-        <div className="max-w-4xl mx-auto mt-12 bg-gradient-to-br from-[#0B2F63] via-[#0E3A7B] to-[#164A96] rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-[#38B6FF]/15 rounded-full blur-2xl pointer-events-none" />
-          
+        <div className="max-w-4xl mx-auto mt-12 bg-[#223752] rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="max-w-xl text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#38B6FF] text-xs font-bold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#8CB3D4] text-xs font-bold uppercase tracking-wider mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Instant Consultation Available</span>
               </div>
@@ -267,9 +265,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 shrink-0 w-full md:w-auto">
               <button
                 onClick={onOpenChat}
-                className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-bold bg-[#38B6FF] hover:bg-[#5cc4ff] text-[#071E40] shadow-md transition-all active:scale-[0.98] whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-bold bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] shadow-md transition-all active:scale-[0.98] whitespace-nowrap"
               >
-                <Sparkles className="w-4 h-4 text-[#0B2F63]" />
+                <Sparkles className="w-4 h-4 text-[#223752]" />
                 <span>Chat with AI Specialist</span>
               </button>
 
@@ -277,7 +275,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
                 onClick={onOpenRfq}
                 className="inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl text-sm font-bold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all active:scale-[0.98] whitespace-nowrap"
               >
-                <FileText className="w-4 h-4 text-[#38B6FF]" />
+                <FileText className="w-4 h-4 text-[#8CB3D4]" />
                 <span>Request Custom Quote</span>
               </button>
             </div>
@@ -290,14 +288,14 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenChat, onOpenRfq })
               href="tel:+13075334504" 
               className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-[#38B6FF]" />
+              <PhoneCall className="w-3.5 h-3.5 text-[#8CB3D4]" />
               <span>+1 (307) 533-4504</span>
             </a>
             <a 
               href="mailto:info@securemeditechglobal.com" 
               className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <Mail className="w-3.5 h-3.5 text-[#38B6FF]" />
+              <Mail className="w-3.5 h-3.5 text-[#8CB3D4]" />
               <span>info@securemeditechglobal.com</span>
             </a>
             <span className="hidden sm:inline text-slate-400">|</span>

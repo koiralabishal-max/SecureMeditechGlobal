@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { HomePage } from '@/components/HomePage';
-import { FAQ_DATA } from '@/data/faqs';
 import { PRODUCTS } from '@/data/products';
 import {
   buildWebPageSchema,
@@ -56,15 +55,6 @@ const structuredData = {
         position: index + 1,
         url: `${SITE.url}/products/${product.id}`,
         name: product.name,
-      })),
-    },
-    {
-      '@type': 'FAQPage',
-      '@id': `${SITE.url}/#faq`,
-      mainEntity: FAQ_DATA.map((faq) => ({
-        '@type': 'Question',
-        name: faq.question,
-        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
       })),
     },
   ],

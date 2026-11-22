@@ -61,35 +61,45 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="spec-modal-title"
+        className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+      >
         
         {/* Top Modal Controls */}
-        <div className="bg-[#0B2F63] text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-[#223752] text-white px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-[#38B6FF]" />
+            <FileText className="w-5 h-5 text-[#8CB3D4]" />
             <div>
-              <h3 className="text-sm font-bold tracking-tight">Engineering Specification Sheet</h3>
+              <h3 id="spec-modal-title" className="text-sm font-bold tracking-tight">Engineering Specification Sheet</h3>
               <p className="text-xs text-slate-300 font-mono">TDS Ref: SMT-{product.sku}-V4</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
             <button
+              type="button"
               onClick={handlePrint}
               className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
               title="Print Specification Sheet"
+              aria-label="Print Specification Sheet"
             >
               <Printer className="w-4 h-4" />
             </button>
             <button
+              type="button"
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#38B6FF] hover:bg-[#209ee8] text-white text-xs font-bold rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-[#DCE7F2] hover:bg-[#CBDCEB] text-[#19293F] text-xs font-bold rounded-lg transition-colors"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download PDF</span>
             </button>
             <button
+              type="button"
               onClick={onClose}
+              aria-label="Close specification sheet dialog"
               className="p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors ml-2"
             >
               <X className="w-5 h-5" />
@@ -104,14 +114,15 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
             <div className="space-y-2">
               <img
-                src="/logo.png"
+                src="/assets/webp/logo.webp"
                 alt="Secure MediTech Global corporate logo"
-                width={979}
-                height={271}
+                width={260}
+                height={72}
+                loading="lazy"
                 className="h-9 w-auto object-contain"
               />
               <div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B2F63]">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#223752]">
                   {product.name}
                 </h2>
                 <p className="text-xs text-slate-500 font-mono mt-0.5">
@@ -123,9 +134,9 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
             <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-xl text-right">
               <div>
                 <div className="text-[11px] text-slate-400 font-bold uppercase">Compliance Standard</div>
-                <div className="text-xs font-bold text-[#0B2F63]">{product.certifications[0]}</div>
+                <div className="text-xs font-bold text-[#223752]">{product.certifications[0]}</div>
               </div>
-              <ShieldCheck className="w-6 h-6 text-[#10B981] ml-1" />
+              <ShieldCheck className="w-6 h-6 text-[#3F7D6B] ml-1" />
             </div>
           </div>
 
@@ -146,7 +157,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
             </h3>
             <div className="overflow-hidden border border-slate-200 rounded-xl">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#0B2F63]/5 text-[#0B2F63] font-bold border-b border-slate-200">
+                <thead className="bg-[#223752]/5 text-[#223752] font-bold border-b border-slate-200">
                   <tr>
                     <th className="py-2.5 px-4 font-semibold w-1/3">Parameter</th>
                     <th className="py-2.5 px-4 font-semibold">Engineering Value / Specification</th>
@@ -167,8 +178,8 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
           {/* Regulatory & Packaging Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
-              <h4 className="text-xs font-bold text-[#0B2F63] mb-2 flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
+              <h4 className="text-xs font-bold text-[#223752] mb-2 flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-[#3F7D6B]" />
                 <span>Applicable Standards</span>
               </h4>
               <ul className="text-xs text-slate-600 space-y-1">
@@ -182,7 +193,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
             </div>
 
             <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
-              <h4 className="text-xs font-bold text-[#0B2F63] mb-2">Packaging & Logistics</h4>
+              <h4 className="text-xs font-bold text-[#223752] mb-2">Packaging & Logistics</h4>
               <div className="text-xs text-slate-600 space-y-1">
                 <p><strong className="text-slate-800">Export Packaging:</strong> {product.packaging}</p>
                 <p><strong className="text-slate-800">Minimum Order Qty:</strong> {product.minOrderQty}</p>
@@ -210,7 +221,7 @@ Contact: info@securemeditechglobal.com | +1 (307) 533-4504 | 30 N Gould St Ste R
                 onAddToQuote(product);
                 onClose();
               }}
-              className="px-4 py-2 text-xs font-bold text-white bg-[#0B2F63] hover:bg-[#164082] rounded-lg shadow-xs"
+              className="px-4 py-2 text-xs font-bold text-white bg-[#223752] hover:bg-[#2E496B] rounded-lg shadow-xs"
             >
               Add Item to RFQ Quote
             </button>
